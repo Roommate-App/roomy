@@ -59,7 +59,10 @@ The following **additional** features are implemented:
 ## Wireframes
 
 ![Alt text](/Wireframes/1.jpg?raw=true "1")
-
+![Alt text](/Wireframes/2.jpg?raw=true "2")
+![Alt text](/Wireframes/3.jpg?raw=true "3")
+![Alt text](/Wireframes/4.jpg?raw=true "4")
+![Alt text](/Wireframes/5.jpg?raw=true "5")
 
 ## Video Walkthrough 
 
