@@ -1,7 +1,7 @@
 
-*Roomy*
+## Roomy
 
-**Roomy** is an App that brings rommmates together into a smarter househould. Roomy's can see wether each other our home or not, send notes to each other, and too tell each other that the house really needs toilet paper and a maybe a new succulent wouldn't be a bad idea either.'
+**Roomy** is an app that brings rommmates together into a smarter househould. Roomy's can see whether each other our home or not, send notes to each other, and tell each other that the house really needs toilet paper and a maybe a new succulent wouldn't be a bad idea either.
 
 Time spent: **X** hours spent in total
 
@@ -55,6 +55,11 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [ ] List anything else that you can get done to improve the app functionality!
+
+## Wireframes
+
+![Alt text](/Wireframes/1.jpg?raw=true "1")
+
 
 ## Video Walkthrough 
 
