@@ -70,14 +70,38 @@
 		A56978091E778E3200BC8378 /* roomy */ = {
 			isa = PBXGroup;
 			children = (
+				A569781E1E77911000BC8378 /* Cells */,
+				A569781D1E77910400BC8378 /* Models */,
+				A569781C1E7790E200BC8378 /* View Controllers */,
 				A569780A1E778E3200BC8378 /* AppDelegate.swift */,
-				A569780C1E778E3200BC8378 /* ViewController.swift */,
 				A569780E1E778E3200BC8378 /* Main.storyboard */,
 				A56978111E778E3200BC8378 /* Assets.xcassets */,
 				A56978131E778E3200BC8378 /* LaunchScreen.storyboard */,
 				A56978161E778E3200BC8378 /* Info.plist */,
 			);
 			path = roomy;
+			sourceTree = "<group>";
+		};
+		A569781C1E7790E200BC8378 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A569780C1E778E3200BC8378 /* ViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A569781D1E77910400BC8378 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		A569781E1E77911000BC8378 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		D03157F238AB5C7072527FBA /* Frameworks */ = {
@@ -376,6 +400,7 @@
 				A569781B1E778E3200BC8378 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
