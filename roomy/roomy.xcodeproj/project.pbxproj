@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B746737D24F0C7CB6868BEC /* Pods_roomy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E55EEA4792D224C573647F /* Pods_roomy.framework */; };
 		A569780B1E778E3200BC8378 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A569780A1E778E3200BC8378 /* AppDelegate.swift */; };
 		A569780D1E778E3200BC8378 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A569780C1E778E3200BC8378 /* ViewController.swift */; };
 		A56978101E778E3200BC8378 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A569780E1E778E3200BC8378 /* Main.storyboard */; };
@@ -15,6 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		33F20C97F9F8B6C11B2AB8EC /* Pods-roomy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roomy.release.xcconfig"; path = "Pods/Target Support Files/Pods-roomy/Pods-roomy.release.xcconfig"; sourceTree = "<group>"; };
+		37E55EEA4792D224C573647F /* Pods_roomy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_roomy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		795B37CFD45F9F7F799C89E1 /* Pods-roomy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roomy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-roomy/Pods-roomy.debug.xcconfig"; sourceTree = "<group>"; };
 		A56978071E778E3200BC8378 /* roomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = roomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A569780A1E778E3200BC8378 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A569780C1E778E3200BC8378 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,17 +33,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B746737D24F0C7CB6868BEC /* Pods_roomy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A2DD4AF2D4B1CFE4468A77D4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				795B37CFD45F9F7F799C89E1 /* Pods-roomy.debug.xcconfig */,
+				33F20C97F9F8B6C11B2AB8EC /* Pods-roomy.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A56977FE1E778E3200BC8378 = {
 			isa = PBXGroup;
 			children = (
 				A56978091E778E3200BC8378 /* roomy */,
 				A56978081E778E3200BC8378 /* Products */,
+				A2DD4AF2D4B1CFE4468A77D4 /* Pods */,
+				D03157F238AB5C7072527FBA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +80,14 @@
 			path = roomy;
 			sourceTree = "<group>";
 		};
+		D03157F238AB5C7072527FBA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37E55EEA4792D224C573647F /* Pods_roomy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A56978191E778E3200BC8378 /* Build configuration list for PBXNativeTarget "roomy" */;
 			buildPhases = (
+				AE89D60F28561162AEAF555A /* [CP] Check Pods Manifest.lock */,
 				A56978031E778E3200BC8378 /* Sources */,
 				A56978041E778E3200BC8378 /* Frameworks */,
 				A56978051E778E3200BC8378 /* Resources */,
+				0246B42EBCA72D4056B37832 /* [CP] Embed Pods Frameworks */,
+				59007EB5B9FF22488C5A5CC5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0246B42EBCA72D4056B37832 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-roomy/Pods-roomy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		59007EB5B9FF22488C5A5CC5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-roomy/Pods-roomy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE89D60F28561162AEAF555A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A56978031E778E3200BC8378 /* Sources */ = {
@@ -258,6 +333,7 @@
 		};
 		A569781A1E778E3200BC8378 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 795B37CFD45F9F7F799C89E1 /* Pods-roomy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = roomy/Info.plist;
@@ -270,6 +346,7 @@
 		};
 		A569781B1E778E3200BC8378 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33F20C97F9F8B6C11B2AB8EC /* Pods-roomy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = roomy/Info.plist;
