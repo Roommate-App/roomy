@@ -59,7 +59,7 @@ The following **additional** features are implemented:
 
 ## Data Schema
 
-![Alt text](/Wireframes/DataSchema.jpg?raw=true "Data Schema")
+![Alt text](/Wireframes/DataSchema.png?raw=true "Data Schema")
 
 ## Video Walkthrough 
 
