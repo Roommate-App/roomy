@@ -9,14 +9,20 @@ Time spent: **X** hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] Users can sign up as a "Roomy" with a Facebook or Google third party authentication.  
-- [ ] Users can create a "House" or join an already created "House".
+- [ ] Users can sign up as a "Roomy." 
+- [ ] Users can create a "House" or join an already created "House."
 - [ ] User's location is always running in the background
 - [ ] Google Map API 
 - [ ] Roomy's can see wether the other roomies are home or not home.
+
+The following **optional** features are implemented:
+
+- [ ] Users can sign up as a "Roomy" with a Facebook or Google third party authentication.  
 - [ ] A message board.
     - [ ] Rommies can compose a message.
     - [ ] Roomy can delete and edit their messages. 
+    - [ ] Customized message. 
+    - [ ] Filter for customized messages. 
 - [ ] To-Do / Shopping list. 
     - [ ] A roomy can add an to do/shopping item. 
     - [ ] A roomy can complete a task and remove it from the list. 
@@ -33,24 +39,11 @@ The following **required** functionality is completed:
     - [ ] Admin 
         - [ ] Default Admin is whomever created the house originally. Only they have the premission to add an admin. 
     - [ ] Location of house. 
-
-The following **optional** features are implemented:
-
 - [ ] A roomy can see the distance of how far their roomies are from the house.
 - [ ] Roomy can see the time of how long it will take them to get to the house.
     - [ ] Use Google Map Distance Matrix API 
     - [ ] User can customize the type of transportation they use to get home and the time will reflect that 
         chosen transportation.  
-- [ ] Customized message. 
-    - [ ] 
-    - [ ] 
-- [ ] Filter for customized messages. 
-    - [ ] 
-    - [ ] 
-- [ ] Point system.
-    - [ ] Google Leaderboards API 
-- [ ] Send notications when a roomie is within in a certain radius of a house
-    - [ ] Customizable distance of radius in roomy settings 
 
 The following **additional** features are implemented:
 
