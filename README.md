@@ -57,6 +57,10 @@ The following **additional** features are implemented:
 ![Alt text](/Wireframes/4.jpg?raw=true "4")
 ![Alt text](/Wireframes/5.jpg?raw=true "5")
 
+## Data Schema
+
+![Alt text](/Wireframes/DataSchema.jpg?raw=true "Data Schema")
+
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
