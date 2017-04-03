@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -80,7 +80,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="735" y="76"/>
+            <point key="canvasLocation" x="734" y="490"/>
         </scene>
         <!--House Login View Controller-->
         <scene sceneID="g2G-Pm-W2a">
@@ -151,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mYN-0S-J0Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1670" y="76"/>
+            <point key="canvasLocation" x="1425" y="490"/>
         </scene>
         <!--Roomy-->
         <scene sceneID="z4c-aJ-XdZ">
@@ -248,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XrD-5q-M3O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3938.4000000000001" y="75.112443778110944"/>
+            <point key="canvasLocation" x="3466" y="490"/>
         </scene>
         <!--User Sign Up View Controller-->
         <scene sceneID="xah-U3-b63">
@@ -351,6 +351,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <segue destination="jvM-lQ-pI9" kind="presentation" id="est-6F-ahL"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="House Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GMg-gR-Dzf">
                                 <rect key="frame" x="16" y="300" width="343" height="30"/>
@@ -406,7 +409,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="alO-Pl-57A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1670" y="1157"/>
+            <point key="canvasLocation" x="1425" y="1156"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="aVT-0x-ezd">
+            <objects>
+                <viewController id="jvM-lQ-pI9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hoi-lm-kUQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="THx-o8-JcQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iB2-Qv-twU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hmu-UQ-csi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2134" y="1156"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1Up-TP-M3V">
@@ -424,7 +445,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbV-ZY-YyZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2871" y="689"/>
+            <point key="canvasLocation" x="2748" y="490"/>
         </scene>
     </scenes>
     <resources>
@@ -433,7 +454,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2SJ-ap-7S9"/>
-        <segue reference="sMs-2Q-aZW"/>
+        <segue reference="cEd-F6-ho3"/>
         <segue reference="mci-MA-PUY"/>
     </inferredMetricsTieBreakers>
 </document>
