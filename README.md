@@ -9,8 +9,8 @@ Time spent: **X** hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] Users can sign up as a "Roomy." 
-- [ ] Users can create a "House" or join an already created "House."
+- [X] Users can sign up as a "Roomy." 
+- [X] Users can create a "House" or join an already created "House."
 - [ ] User's location is always running in the background
 - [ ] Google Map API 
 - [ ] Roomy's can see wether the other roomies are home or not home.
