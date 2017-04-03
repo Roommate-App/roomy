@@ -8,24 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		5B746737D24F0C7CB6868BEC /* Pods_roomy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E55EEA4792D224C573647F /* Pods_roomy.framework */; };
+		A51574FF1E7DB15B009F93F8 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51574FE1E7DB15B009F93F8 /* UserLoginViewController.swift */; };
+		A51575011E7DB195009F93F8 /* UserSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51575001E7DB195009F93F8 /* UserSignUpViewController.swift */; };
+		A51575031E7DB1A1009F93F8 /* HouseLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51575021E7DB1A1009F93F8 /* HouseLoginViewController.swift */; };
+		A51575051E7DB1AA009F93F8 /* HouseSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51575041E7DB1AA009F93F8 /* HouseSignUpViewController.swift */; };
+		A51575071E7DB4AB009F93F8 /* HomeTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51575061E7DB4AB009F93F8 /* HomeTimelineViewController.swift */; };
 		A569780B1E778E3200BC8378 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A569780A1E778E3200BC8378 /* AppDelegate.swift */; };
-		A569780D1E778E3200BC8378 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A569780C1E778E3200BC8378 /* ViewController.swift */; };
 		A56978101E778E3200BC8378 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A569780E1E778E3200BC8378 /* Main.storyboard */; };
 		A56978121E778E3200BC8378 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A56978111E778E3200BC8378 /* Assets.xcassets */; };
 		A56978151E778E3200BC8378 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A56978131E778E3200BC8378 /* LaunchScreen.storyboard */; };
+		A5800D651E7DE3C800FB35F4 /* House.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5800D641E7DE3C800FB35F4 /* House.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		33F20C97F9F8B6C11B2AB8EC /* Pods-roomy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roomy.release.xcconfig"; path = "Pods/Target Support Files/Pods-roomy/Pods-roomy.release.xcconfig"; sourceTree = "<group>"; };
 		37E55EEA4792D224C573647F /* Pods_roomy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_roomy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		795B37CFD45F9F7F799C89E1 /* Pods-roomy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roomy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-roomy/Pods-roomy.debug.xcconfig"; sourceTree = "<group>"; };
+		A51574FE1E7DB15B009F93F8 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
+		A51575001E7DB195009F93F8 /* UserSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignUpViewController.swift; sourceTree = "<group>"; };
+		A51575021E7DB1A1009F93F8 /* HouseLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseLoginViewController.swift; sourceTree = "<group>"; };
+		A51575041E7DB1AA009F93F8 /* HouseSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseSignUpViewController.swift; sourceTree = "<group>"; };
+		A51575061E7DB4AB009F93F8 /* HomeTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineViewController.swift; sourceTree = "<group>"; };
 		A56978071E778E3200BC8378 /* roomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = roomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A569780A1E778E3200BC8378 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A569780C1E778E3200BC8378 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A569780F1E778E3200BC8378 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A56978111E778E3200BC8378 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A56978141E778E3200BC8378 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A56978161E778E3200BC8378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5800D641E7DE3C800FB35F4 /* House.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = House.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +50,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		737448851E92FE06001609B0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		A2DD4AF2D4B1CFE4468A77D4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -47,6 +64,14 @@
 				33F20C97F9F8B6C11B2AB8EC /* Pods-roomy.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A51574FD1E7DB085009F93F8 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A569780E1E778E3200BC8378 /* Main.storyboard */,
+			);
+			name = Storyboard;
 			sourceTree = "<group>";
 		};
 		A56977FE1E778E3200BC8378 = {
@@ -70,11 +95,11 @@
 		A56978091E778E3200BC8378 /* roomy */ = {
 			isa = PBXGroup;
 			children = (
-				A569781E1E77911000BC8378 /* Cells */,
+				737448851E92FE06001609B0 /* Views */,
 				A569781D1E77910400BC8378 /* Models */,
 				A569781C1E7790E200BC8378 /* View Controllers */,
+				A51574FD1E7DB085009F93F8 /* Storyboard */,
 				A569780A1E778E3200BC8378 /* AppDelegate.swift */,
-				A569780E1E778E3200BC8378 /* Main.storyboard */,
 				A56978111E778E3200BC8378 /* Assets.xcassets */,
 				A56978131E778E3200BC8378 /* LaunchScreen.storyboard */,
 				A56978161E778E3200BC8378 /* Info.plist */,
@@ -85,7 +110,11 @@
 		A569781C1E7790E200BC8378 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A569780C1E778E3200BC8378 /* ViewController.swift */,
+				A51574FE1E7DB15B009F93F8 /* UserLoginViewController.swift */,
+				A51575001E7DB195009F93F8 /* UserSignUpViewController.swift */,
+				A51575021E7DB1A1009F93F8 /* HouseLoginViewController.swift */,
+				A51575041E7DB1AA009F93F8 /* HouseSignUpViewController.swift */,
+				A51575061E7DB4AB009F93F8 /* HomeTimelineViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -93,15 +122,9 @@
 		A569781D1E77910400BC8378 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A5800D641E7DE3C800FB35F4 /* House.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		A569781E1E77911000BC8378 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Cells;
 			sourceTree = "<group>";
 		};
 		D03157F238AB5C7072527FBA /* Frameworks */ = {
@@ -147,6 +170,7 @@
 				TargetAttributes = {
 					A56978061E778E3200BC8378 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 34WD9C788A;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -235,8 +259,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A569780D1E778E3200BC8378 /* ViewController.swift in Sources */,
+				A5800D651E7DE3C800FB35F4 /* House.swift in Sources */,
+				A51574FF1E7DB15B009F93F8 /* UserLoginViewController.swift in Sources */,
+				A51575031E7DB1A1009F93F8 /* HouseLoginViewController.swift in Sources */,
+				A51575011E7DB195009F93F8 /* UserSignUpViewController.swift in Sources */,
 				A569780B1E778E3200BC8378 /* AppDelegate.swift in Sources */,
+				A51575071E7DB4AB009F93F8 /* HomeTimelineViewController.swift in Sources */,
+				A51575051E7DB1AA009F93F8 /* HouseSignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,9 +389,10 @@
 			baseConfigurationReference = 795B37CFD45F9F7F799C89E1 /* Pods-roomy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 34WD9C788A;
 				INFOPLIST_FILE = roomy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = pdave.roomy;
+				PRODUCT_BUNDLE_IDENTIFIER = RyanLiszewski.roomy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -373,9 +403,10 @@
 			baseConfigurationReference = 33F20C97F9F8B6C11B2AB8EC /* Pods-roomy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 34WD9C788A;
 				INFOPLIST_FILE = roomy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = pdave.roomy;
+				PRODUCT_BUNDLE_IDENTIFIER = RyanLiszewski.roomy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
