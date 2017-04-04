@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class HomeViewController: UIViewController {
 
@@ -21,7 +22,27 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
+    
+    
+    //Logout button for test purposeses.
+    @IBAction func onLogoutButtonTapped(_ sender: Any) {
+        
+        PFUser.logOutInBackground { (error: Error?) in
+            if error == nil {
+                
+                House._currentHouse = nil
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginViewController = mainStoryboard.instantiateViewController(withIdentifier: "UserLoginViewController") as! UserLoginViewController
+                
+                self.present(loginViewController, animated: true, completion: nil)
+            }
+        }
+        
+        
+    }
+    
+    
     /*
     // MARK: - Navigation
 
