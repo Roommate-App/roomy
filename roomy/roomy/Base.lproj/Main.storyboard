@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -151,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mYN-0S-J0Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1425" y="490"/>
+            <point key="canvasLocation" x="1684" y="125"/>
         </scene>
         <!--Roomy-->
         <scene sceneID="z4c-aJ-XdZ">
@@ -327,7 +327,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vGg-pi-6Ym" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="735" y="1157"/>
+            <point key="canvasLocation" x="734" y="1155"/>
         </scene>
         <!--House Sign Up View Controller-->
         <scene sceneID="CEo-ER-bpb">
@@ -409,7 +409,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="alO-Pl-57A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1425" y="1156"/>
+            <point key="canvasLocation" x="1684" y="1156"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="aVT-0x-ezd">
@@ -427,7 +427,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hmu-UQ-csi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2270" y="1127"/>
+            <point key="canvasLocation" x="1684" y="2146"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1Up-TP-M3V">
@@ -445,15 +445,15 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbV-ZY-YyZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3578" y="-161"/>
+            <point key="canvasLocation" x="3586" y="-172"/>
         </scene>
-        <!--Home-->
+        <!--TabBar-->
         <scene sceneID="7Lp-Fo-Non">
             <objects>
-                <viewControllerPlaceholder storyboardName="Home" id="mmx-QW-oNT" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="TabBar" id="mmx-QW-oNT" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h7q-Gz-nUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3334" y="975"/>
+            <point key="canvasLocation" x="3203" y="1155"/>
         </scene>
     </scenes>
     <resources>
@@ -462,7 +462,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2SJ-ap-7S9"/>
-        <segue reference="sBm-D2-rdt"/>
-        <segue reference="S0f-Oj-vZA"/>
+        <segue reference="17s-h1-iDh"/>
+        <segue reference="pFi-gQ-5SJ"/>
     </inferredMetricsTieBreakers>
 </document>

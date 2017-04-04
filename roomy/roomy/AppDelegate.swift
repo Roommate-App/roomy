@@ -13,6 +13,7 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
     // First method that is called when the program runs
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -25,9 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = "https://floating-oasis-68386.herokuapp.com/parse"
             })
         )
-        
-        
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
         if PFUser.current() != nil {
             
@@ -42,13 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     if houseReturned != nil {
                         House.setCurrentHouse(house: currentHouse!)
                         
-                        let homeStoryBoard = UIStoryboard(name: "Home", bundle: nil)
-                        let tabBar = homeStoryBoard.instantiateViewController(withIdentifier: "tabBarController")
+                        let homeStoryBoard = UIStoryboard(name: "TabBar", bundle: nil)
+                        let tabBar = homeStoryBoard.instantiateViewController(withIdentifier: "TabBarController")
                         
                         self.window?.rootViewController = tabBar
                         self.window?.makeKeyAndVisible()
-    
-                        
                     } else {
                         print("AppDelegate/RetrievingHouse Error:  \(String(describing: error?.localizedDescription))")
                     }
