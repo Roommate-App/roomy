@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5B746737D24F0C7CB6868BEC /* Pods_roomy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E55EEA4792D224C573647F /* Pods_roomy.framework */; };
+		736DD9A71E933430008BAA2E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9A61E933430008BAA2E /* Home.storyboard */; };
+		736DD9A91E9338AF008BAA2E /* Messaging.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9A81E9338AF008BAA2E /* Messaging.storyboard */; };
+		736DD9AD1E933998008BAA2E /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9AC1E933998008BAA2E /* Profile.storyboard */; };
 		A51574FF1E7DB15B009F93F8 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51574FE1E7DB15B009F93F8 /* UserLoginViewController.swift */; };
 		A51575011E7DB195009F93F8 /* UserSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51575001E7DB195009F93F8 /* UserSignUpViewController.swift */; };
 		A51575031E7DB1A1009F93F8 /* HouseLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51575021E7DB1A1009F93F8 /* HouseLoginViewController.swift */; };
@@ -23,6 +26,9 @@
 /* Begin PBXFileReference section */
 		33F20C97F9F8B6C11B2AB8EC /* Pods-roomy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roomy.release.xcconfig"; path = "Pods/Target Support Files/Pods-roomy/Pods-roomy.release.xcconfig"; sourceTree = "<group>"; };
 		37E55EEA4792D224C573647F /* Pods_roomy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_roomy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		736DD9A61E933430008BAA2E /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		736DD9A81E9338AF008BAA2E /* Messaging.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messaging.storyboard; sourceTree = "<group>"; };
+		736DD9AC1E933998008BAA2E /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		795B37CFD45F9F7F799C89E1 /* Pods-roomy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roomy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-roomy/Pods-roomy.debug.xcconfig"; sourceTree = "<group>"; };
 		A51574FE1E7DB15B009F93F8 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		A51575001E7DB195009F93F8 /* UserSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignUpViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +76,9 @@
 			isa = PBXGroup;
 			children = (
 				A569780E1E778E3200BC8378 /* Main.storyboard */,
+				736DD9A61E933430008BAA2E /* Home.storyboard */,
+				736DD9A81E9338AF008BAA2E /* Messaging.storyboard */,
+				736DD9AC1E933998008BAA2E /* Profile.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -198,9 +207,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				736DD9AD1E933998008BAA2E /* Profile.storyboard in Resources */,
 				A56978151E778E3200BC8378 /* LaunchScreen.storyboard in Resources */,
 				A56978121E778E3200BC8378 /* Assets.xcassets in Resources */,
 				A56978101E778E3200BC8378 /* Main.storyboard in Resources */,
+				736DD9A71E933430008BAA2E /* Home.storyboard in Resources */,
+				736DD9A91E9338AF008BAA2E /* Messaging.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

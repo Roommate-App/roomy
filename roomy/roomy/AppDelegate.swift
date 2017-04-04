@@ -27,63 +27,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         
         
-        // reference the storyboard
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        // reference the 3 possible starting viewControllers using their Storyboard IDs
-        let userLoginViewController = mainStoryboard.instantiateViewController(withIdentifier: "UserLoginViewController") as! UserLoginViewController
-        let houseLoginViewController = mainStoryboard.instantiateViewController(withIdentifier: "HouseLoginViewController") as! HouseLoginViewController
-        let tabBar = mainStoryboard.instantiateViewController(withIdentifier: "tabBarController")
-        
-        
-        // Determining which ViewController should be the first one
-        // Checking to see if currentUser is logged in
         if PFUser.current() != nil {
             
             print("There is a current user.")
-            
-            // REMEMBER to cast as PFObject
             let currentHouse = PFUser.current()?["house"] as? PFObject
-            
-            // Checking to see if the user has a "house"
+
             if currentHouse != nil {
                 
                 print("There is a HouseID")
-                
-                // Fetching the house
                 currentHouse?.fetchInBackground(block: { (houseReturned: PFObject?, error: Error?) in
                     
                     if houseReturned != nil {
-                        
                         House.setCurrentHouse(house: currentHouse!)
                         
-                        // User and House exists, so tabBar will be the first viewController
+                        let homeStoryBoard = UIStoryboard(name: "Home", bundle: nil)
+                        let tabBar = homeStoryBoard.instantiateViewController(withIdentifier: "tabBarController")
+                        
                         self.window?.rootViewController = tabBar
+                        self.window?.makeKeyAndVisible()
+    
                         
                     } else {
-
                         print("AppDelegate/RetrievingHouse Error:  \(String(describing: error?.localizedDescription))")
                     }
                 })
-
-            // No house ID exits
-            } else {
-                
+                } else {
                 print("No HouseID exists")
-                
-                // User exists but HouseID doesn't, so start at the HouseLogin
+                let houseLoginViewController = mainStoryboard.instantiateViewController(withIdentifier: "HouseLoginViewController") as! HouseLoginViewController
                 window?.rootViewController = houseLoginViewController
             }
-            
         // No user exists
         } else {
-            
             print("No user exists")
             
-            // No user exists, so loginViewController will be first viewController
+            let userLoginViewController = mainStoryboard.instantiateViewController(withIdentifier: "UserLoginViewController") as! UserLoginViewController
             window?.rootViewController = userLoginViewController
+            window?.makeKeyAndVisible()
         }
-        
         return true
     }
 

@@ -36,7 +36,6 @@ class HomeTimelineViewController: UIViewController, CLLocationManagerDelegate{
         HouseAddressLabel.text = currentHouse.address
         roomiesCountLabel.text = "Number of roomies: \(String(describing: currentHouse.userIDs!.count))"
         
-        
         for user in (House._currentHouse?.userIDs)! {
             user.fetchInBackground(block: { (userReturned: PFObject?, error: Error?) in
                 if userReturned != nil {
@@ -47,7 +46,6 @@ class HomeTimelineViewController: UIViewController, CLLocationManagerDelegate{
             })
         }
         
-
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
 
