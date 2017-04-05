@@ -18,7 +18,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mapView: MKMapView!
     
-    var roomies: [PFUser]?
+    var roomies: [PFUser]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let circle = MKCircle(center: coordinate, radius: regionRadius)
         mapView.add(circle)
         getRoomies()
-        collectionView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,14 +53,12 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         for roomy in (House._currentHouse?.userIDs)! {
             roomy.fetchInBackground(block: { (userReturned: PFObject?, error: Error?) in
                 if userReturned != nil {
-                    self.roomies?.append(userReturned! as! PFUser)
-                    print(userReturned)
-                    self.collectionView.reloadData()
+                    self.roomies?.append(userReturned as! PFUser)
                 } else {
                     print("HomeTimelineViewController/ViewDidLoad() \(String(describing: error?.localizedDescription))")
                 }
+                self.collectionView.reloadData()
             })
-           collectionView.reloadData()
         }
     }
     
@@ -80,9 +77,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
     
     
-    //MARK: CollectionView functions
+    //MARK: - CollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        if roomies == nil {
+            return 0
+        } else {
+            return roomies!.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -92,10 +93,16 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let roomy = roomies?[indexPath.row]
         cell.roomyNameLabel.text = roomy?["username"] as? String
         
+        let isHome = roomy?["is_home"] as? Bool ?? true
+        if(isHome) {
+            cell.isRoomyHomeControl.selectedSegmentIndex = 0
+        } else {
+            cell.isRoomyHomeControl.selectedSegmentIndex = 1
+        }
         return cell
     }
     
-    //MARK: LocationManager and MapView functions
+    //MARK: - LocationManager and MapView
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.authorizedAlways {
             locationManager.startUpdatingLocation()
@@ -129,7 +136,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         circleRenderer.lineWidth = 1.0
         return circleRenderer
     }
-    
     
     /*
     // MARK: - Navigation
