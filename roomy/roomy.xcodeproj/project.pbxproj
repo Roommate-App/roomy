@@ -13,6 +13,10 @@
 		736DD9AD1E933998008BAA2E /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9AC1E933998008BAA2E /* Profile.storyboard */; };
 		736DD9AF1E940541008BAA2E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736DD9AE1E940541008BAA2E /* HomeViewController.swift */; };
 		736DD9B11E9405E4008BAA2E /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9B01E9405E4008BAA2E /* TabBar.storyboard */; };
+		73BEE39B1E94671D00353853 /* America.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 73BEE39A1E94671D00353853 /* America.gpx */; };
+		73BEE39F1E9469CB00353853 /* GoesHome.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 73BEE39E1E9469CB00353853 /* GoesHome.gpx */; };
+		73BEE3A11E9469D100353853 /* LeavesHome.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 73BEE3A01E9469D100353853 /* LeavesHome.gpx */; };
+		73BEE3A71E9478E000353853 /* RoomyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEE3A61E9478E000353853 /* RoomyCollectionViewCell.swift */; };
 		A51574FF1E7DB15B009F93F8 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51574FE1E7DB15B009F93F8 /* UserLoginViewController.swift */; };
 		A51575011E7DB195009F93F8 /* UserSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51575001E7DB195009F93F8 /* UserSignUpViewController.swift */; };
 		A51575031E7DB1A1009F93F8 /* HouseLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51575021E7DB1A1009F93F8 /* HouseLoginViewController.swift */; };
@@ -33,6 +37,10 @@
 		736DD9AC1E933998008BAA2E /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		736DD9AE1E940541008BAA2E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		736DD9B01E9405E4008BAA2E /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		73BEE39A1E94671D00353853 /* America.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = America.gpx; path = ../../../../Downloads/America.gpx; sourceTree = "<group>"; };
+		73BEE39E1E9469CB00353853 /* GoesHome.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = GoesHome.gpx; path = ../../../../Downloads/GoesHome.gpx; sourceTree = "<group>"; };
+		73BEE3A01E9469D100353853 /* LeavesHome.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LeavesHome.gpx; path = ../../../../Downloads/LeavesHome.gpx; sourceTree = "<group>"; };
+		73BEE3A61E9478E000353853 /* RoomyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomyCollectionViewCell.swift; sourceTree = "<group>"; };
 		795B37CFD45F9F7F799C89E1 /* Pods-roomy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roomy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-roomy/Pods-roomy.debug.xcconfig"; sourceTree = "<group>"; };
 		A51574FE1E7DB15B009F93F8 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		A51575001E7DB195009F93F8 /* UserSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignUpViewController.swift; sourceTree = "<group>"; };
@@ -63,8 +71,27 @@
 		737448851E92FE06001609B0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				73BEE3A61E9478E000353853 /* RoomyCollectionViewCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		73BEE3A21E9469F100353853 /* GPS Simulations */ = {
+			isa = PBXGroup;
+			children = (
+				73BEE3A01E9469D100353853 /* LeavesHome.gpx */,
+				73BEE39E1E9469CB00353853 /* GoesHome.gpx */,
+				73BEE39A1E94671D00353853 /* America.gpx */,
+			);
+			name = "GPS Simulations";
+			sourceTree = "<group>";
+		};
+		73BEE3A31E946BBE00353853 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				A569780A1E778E3200BC8378 /* AppDelegate.swift */,
+			);
+			name = Delegates;
 			sourceTree = "<group>";
 		};
 		A2DD4AF2D4B1CFE4468A77D4 /* Pods */ = {
@@ -109,11 +136,12 @@
 		A56978091E778E3200BC8378 /* roomy */ = {
 			isa = PBXGroup;
 			children = (
+				73BEE3A21E9469F100353853 /* GPS Simulations */,
 				737448851E92FE06001609B0 /* Views */,
 				A569781D1E77910400BC8378 /* Models */,
 				A569781C1E7790E200BC8378 /* View Controllers */,
+				73BEE3A31E946BBE00353853 /* Delegates */,
 				A51574FD1E7DB085009F93F8 /* Storyboard */,
-				A569780A1E778E3200BC8378 /* AppDelegate.swift */,
 				A56978111E778E3200BC8378 /* Assets.xcassets */,
 				A56978131E778E3200BC8378 /* LaunchScreen.storyboard */,
 				A56978161E778E3200BC8378 /* Info.plist */,
@@ -215,11 +243,14 @@
 			files = (
 				736DD9AD1E933998008BAA2E /* Profile.storyboard in Resources */,
 				A56978151E778E3200BC8378 /* LaunchScreen.storyboard in Resources */,
+				73BEE3A11E9469D100353853 /* LeavesHome.gpx in Resources */,
+				73BEE39B1E94671D00353853 /* America.gpx in Resources */,
 				A56978121E778E3200BC8378 /* Assets.xcassets in Resources */,
 				A56978101E778E3200BC8378 /* Main.storyboard in Resources */,
 				736DD9A71E933430008BAA2E /* Home.storyboard in Resources */,
 				736DD9B11E9405E4008BAA2E /* TabBar.storyboard in Resources */,
 				736DD9A91E9338AF008BAA2E /* Messaging.storyboard in Resources */,
+				73BEE39F1E9469CB00353853 /* GoesHome.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +315,7 @@
 				736DD9AF1E940541008BAA2E /* HomeViewController.swift in Sources */,
 				A51575011E7DB195009F93F8 /* UserSignUpViewController.swift in Sources */,
 				A569780B1E778E3200BC8378 /* AppDelegate.swift in Sources */,
+				73BEE3A71E9478E000353853 /* RoomyCollectionViewCell.swift in Sources */,
 				A51575071E7DB4AB009F93F8 /* HomeTimelineViewController.swift in Sources */,
 				A51575051E7DB1AA009F93F8 /* HouseSignUpViewController.swift in Sources */,
 			);

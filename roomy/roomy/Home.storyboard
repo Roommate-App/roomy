@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-2686" y="1877"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="e0I-Q4-Dr7">
             <objects>
                 <viewController id="BOz-Qg-GJO" customClass="HomeViewController" customModule="roomy" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,15 +46,65 @@
                                     <action selector="onLogoutButtonTapped:" destination="BOz-Qg-GJO" eventType="touchUpInside" id="LkH-1I-wpq"/>
                                 </connections>
                             </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hBd-zS-24V">
+                                <rect key="frame" x="0.0" y="332" width="375" height="286"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="htc-uN-izs">
+                                <rect key="frame" x="0.0" y="77" width="369" height="247"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Jit-zp-LHa">
+                                    <size key="itemSize" width="171" height="107"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RoomyCell" id="P1P-Ga-3Sp" customClass="RoomyCollectionViewCell" customModule="roomy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="171" height="107"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="171" height="107"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Oh-Rr-acm">
+                                                    <rect key="frame" x="8" y="0.0" width="45" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ISh-oQ-wC3">
+                                                    <rect key="frame" x="8" y="32" width="155" height="29"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <segments>
+                                                        <segment title="Home"/>
+                                                        <segment title="Not Home"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                        </view>
+                                        <connections>
+                                            <outlet property="isRoomyHomeControl" destination="ISh-oQ-wC3" id="9p2-DJ-Bai"/>
+                                            <outlet property="roomyNameLabel" destination="8Oh-Rr-acm" id="e0Z-Vu-lst"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="4xT-gg-BdL"/>
+                    <tabBarItem key="tabBarItem" title="Home" id="4xT-gg-BdL"/>
                     <navigationItem key="navigationItem" id="WOC-Ca-Mfi"/>
+                    <connections>
+                        <outlet property="collectionView" destination="htc-uN-izs" id="ZWm-qV-KiK"/>
+                        <outlet property="mapView" destination="hBd-zS-24V" id="HAL-Zv-3ML"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGS-RQ-bGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1751" y="1877"/>
+            <point key="canvasLocation" x="-1751.2" y="1876.9115442278862"/>
         </scene>
     </scenes>
 </document>
