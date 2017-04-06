@@ -151,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mYN-0S-J0Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1684" y="125"/>
+            <point key="canvasLocation" x="1420" y="125"/>
         </scene>
         <!--User Sign Up View Controller-->
         <scene sceneID="xah-U3-b63">
@@ -230,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vGg-pi-6Ym" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="734" y="1155"/>
+            <point key="canvasLocation" x="734" y="794"/>
         </scene>
         <!--House Sign Up View Controller-->
         <scene sceneID="CEo-ER-bpb">
@@ -309,7 +309,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="alO-Pl-57A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1684" y="1156"/>
+            <point key="canvasLocation" x="1420" y="794"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="aVT-0x-ezd">
@@ -327,7 +327,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hmu-UQ-csi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1684" y="2146"/>
+            <point key="canvasLocation" x="2108" y="794"/>
         </scene>
         <!--TabBar-->
         <scene sceneID="7Lp-Fo-Non">
@@ -335,7 +335,7 @@
                 <viewControllerPlaceholder storyboardName="TabBar" id="mmx-QW-oNT" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h7q-Gz-nUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3203" y="1155"/>
+            <point key="canvasLocation" x="2648" y="125"/>
         </scene>
     </scenes>
     <resources>
@@ -343,7 +343,7 @@
         <image name="ostap-senyuk-136511" width="5880" height="3920"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="S0f-Oj-vZA"/>
-        <segue reference="sBm-D2-rdt"/>
+        <segue reference="mci-MA-PUY"/>
+        <segue reference="pFi-gQ-5SJ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,7 @@ target 'roomy' do
   pod 'Parse'
   pod 'ParseUI'
   pod 'AFNetworking'
+  pod 'GooglePlaces'
 
   # Pods for roomy
 
