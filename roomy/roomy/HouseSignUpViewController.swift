@@ -14,7 +14,7 @@ import Parse
 
 
 // HouseSignUpViewController: Creates a new house
-class HouseSignUpViewController: UIViewController {
+class HouseSignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var houseIDTextField: UITextField!
@@ -24,10 +24,16 @@ class HouseSignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addressTextField.delegate = self
+        
         addressTextField.becomeFirstResponder()
     }
 
-
+    @IBAction func didTouchAddressTextField(_ sender: Any) {
+        performSegue(withIdentifier: "select-address", sender: nil)
+        print("selected address")
+    }
+    
     // signUpButtonPressed Action: creates new house
     // Extracts the address, houseID, and password
     // array of "userIDs" is set to currentUser
