@@ -135,6 +135,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         PFUser.current()?["is_home"] = false
         PFUser.current()?.saveInBackground()
     }
+    
     func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
         PFUser.current()?["test"] = manager.location?.coordinate.latitude
         PFUser.current()?.saveInBackground()

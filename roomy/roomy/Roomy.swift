@@ -34,9 +34,9 @@ class Roomy: PFUser {
 extension Roomy {
     static func createUser(username: String, password: String, email: String, successful: @escaping (Bool) -> (), failure: @escaping (Error) -> () ) {
         
-        let user = User(username: username, password: password, email: email)
+        let roomy = Roomy(username: username, password: password, email: email)
         
-        user.signUpInBackground { (success: Bool, error: Error?) in
+        roomy.signUpInBackground { (success: Bool, error: Error?) in
             if success {
                 print("Successfully signed up a user: User.swift")
                 successful(success)
