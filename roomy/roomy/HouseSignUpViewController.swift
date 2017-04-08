@@ -20,20 +20,20 @@ class HouseSignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var houseIDTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    let autocompleteController = GMSAutocompleteViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addressTextField.delegate = self
+        houseIDTextField.delegate = self
+        passwordTextField.delegate = self
         
-        addressTextField.becomeFirstResponder()
+        autocompleteController.delegate = self
     }
 
     @IBAction func didTouchAddressTextField(_ sender: Any) {
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
         present(autocompleteController, animated: true, completion: nil)
-        
     }
     
     // signUpButtonPressed Action: creates new house
@@ -79,10 +79,8 @@ class HouseSignUpViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
     }
 
 }
@@ -91,9 +89,11 @@ extension HouseSignUpViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
+        
+        print("Place address: \(place.coordinate)") // // // For Ryan's use // // //
+        
+        self.addressTextField.text = place.formattedAddress
+        self.houseIDTextField.becomeFirstResponder()
         dismiss(animated: true, completion: nil)
     }
     
