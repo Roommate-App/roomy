@@ -8,15 +8,40 @@
 
 import UIKit
 import Parse
+import CoreLocation
+import MapKit
+
+var _isBackground: Bool = false 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-
+    
+    lazy var locationManager: CLLocationManager! = {
+        let manager = CLLocationManager()
+        manager.delegate = self
+        manager.allowsBackgroundLocationUpdates = true
+        manager.requestAlwaysAuthorization()
+        manager.startMonitoringSignificantLocationChanges()
+        return manager
+        
+    }()
+    
+    
     // First method that is called when the program runs
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    
+        if(launchOptions?[UIApplicationLaunchOptionsKey.location] != nil){
+            locationManager.stopMonitoringSignificantLocationChanges()
+            locationManager.requestAlwaysAuthorization()
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.distanceFilter = 1000
+            locationManager.allowsBackgroundLocationUpdates = true
+            locationManager.startUpdatingLocation()
+        }
         
         // Setting up Parse with keys
         Parse.initialize(
@@ -75,25 +100,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        
+//        print("app is going to close")
+//        locationManager.stopUpdatingLocation()
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager.distanceFilter = kCLDistanceFilterNone
+//        locationManager.pausesLocationUpdatesAutomatically = false
+//        locationManager.activityType = CLActivityType.fitness
+//        locationManager.startMonitoringSignificantLocationChanges()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits
+        locationManager.startMonitoringSignificantLocationChanges()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        locationManager.startMonitoringSignificantLocationChanges()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        locationManager.stopMonitoringSignificantLocationChanges()
+        locationManager.startUpdatingLocation()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[0]
+        PFUser.current()?["latitude"] = location.coordinate.latitude
+        PFUser.current()?.saveInBackground()
+          self.locationManager.allowDeferredLocationUpdates(untilTraveled: CLLocationDistanceMax, timeout: 10)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
+        PFUser.current()?["test"] = manager.location?.coordinate.latitude
+        PFUser.current()?.saveInBackground()
+    }
 }
 

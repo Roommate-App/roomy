@@ -51,7 +51,6 @@ class HomeTimelineViewController: UIViewController, CLLocationManagerDelegate{
 
     }
     
-    
     @IBAction func logoutButtonPressed(_ sender: Any) {
         
         PFUser.logOutInBackground { (error: Error?) in
@@ -61,10 +60,8 @@ class HomeTimelineViewController: UIViewController, CLLocationManagerDelegate{
                 self.performSegue(withIdentifier: "homeTimelineToUserLogin", sender: nil)
             }
         }
-        
     }
 
-    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus){
         
         if status == .authorizedAlways {
@@ -73,7 +70,6 @@ class HomeTimelineViewController: UIViewController, CLLocationManagerDelegate{
             PFUser.current()?["longitude"] = Double((locationManager.location?.coordinate.longitude)!)
             PFUser.current()?.saveInBackground()
         }
-        
     }
     
     
