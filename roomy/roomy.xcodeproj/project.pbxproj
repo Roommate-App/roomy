@@ -148,12 +148,9 @@
 		A56978091E778E3200BC8378 /* roomy */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				731F5DC31E95D2F40004277E /* GPS Simulations */,
-=======
 				A513C17A1E98805300F2B5D2 /* Cells */,
 				739DB3201E95C14200B287A1 /* GPS Simulations */,
->>>>>>> messaging
 				737448851E92FE06001609B0 /* Views */,
 				A569781D1E77910400BC8378 /* Models */,
 				A569781C1E7790E200BC8378 /* View Controllers */,
