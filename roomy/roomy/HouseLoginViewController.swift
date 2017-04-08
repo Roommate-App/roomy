@@ -83,7 +83,7 @@ class HouseLoginViewController: UIViewController {
                             PFUser.current()?.saveInBackground()
                             
                             // Sets the curret house
-                            House.setCurrentHouse(house: house)
+                            House.setCurrentHouse(house: house as! House)
                             
                             // Segues to the tabBar
                             self.performSegue(withIdentifier: "houseLoginToTabBar", sender: nil)

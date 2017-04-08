@@ -26,19 +26,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = "https://floating-oasis-68386.herokuapp.com/parse"
             })
         )
-        
+//
+// Need to pass an NSDictionary to setCurrentHouse!
         if PFUser.current() != nil {
             
             print("There is a current user.")
-            let currentHouse = PFUser.current()?["house"] as? PFObject
-
+            let currentHouse = PFUser.current()?["house"] as? House
+            
             if currentHouse != nil {
                 
                 print("There is a HouseID")
                 currentHouse?.fetchInBackground(block: { (houseReturned: PFObject?, error: Error?) in
                     
                     if houseReturned != nil {
-                        House.setCurrentHouse(house: currentHouse!)
                         
                         let homeStoryBoard = UIStoryboard(name: "TabBar", bundle: nil)
                         let tabBar = homeStoryBoard.instantiateViewController(withIdentifier: "TabBarController")
@@ -62,7 +62,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = userLoginViewController
             window?.makeKeyAndVisible()
         }
+        
+        configureParse()
+
         return true
+    }
+    
+    func configureParse() {
+        House.registerSubclass()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
