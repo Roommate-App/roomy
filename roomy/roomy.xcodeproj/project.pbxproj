@@ -17,6 +17,8 @@
 		739DB3251E95C14200B287A1 /* GoesHome.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 739DB3221E95C14200B287A1 /* GoesHome.gpx */; };
 		739DB3261E95C14200B287A1 /* LeavesHome.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 739DB3231E95C14200B287A1 /* LeavesHome.gpx */; };
 		73BEE3A71E9478E000353853 /* RoomyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEE3A61E9478E000353853 /* RoomyCollectionViewCell.swift */; };
+		A513C1791E987ED000F2B5D2 /* MessagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513C1781E987ED000F2B5D2 /* MessagingViewController.swift */; };
+		A513C17C1E98807600F2B5D2 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513C17B1E98807600F2B5D2 /* MessageTableViewCell.swift */; };
 		A51574FF1E7DB15B009F93F8 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51574FE1E7DB15B009F93F8 /* UserLoginViewController.swift */; };
 		A51575011E7DB195009F93F8 /* UserSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51575001E7DB195009F93F8 /* UserSignUpViewController.swift */; };
 		A51575031E7DB1A1009F93F8 /* HouseLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51575021E7DB1A1009F93F8 /* HouseLoginViewController.swift */; };
@@ -42,6 +44,8 @@
 		739DB3231E95C14200B287A1 /* LeavesHome.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LeavesHome.gpx; sourceTree = "<group>"; };
 		73BEE3A61E9478E000353853 /* RoomyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomyCollectionViewCell.swift; sourceTree = "<group>"; };
 		795B37CFD45F9F7F799C89E1 /* Pods-roomy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roomy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-roomy/Pods-roomy.debug.xcconfig"; sourceTree = "<group>"; };
+		A513C1781E987ED000F2B5D2 /* MessagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagingViewController.swift; sourceTree = "<group>"; };
+		A513C17B1E98807600F2B5D2 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		A51574FE1E7DB15B009F93F8 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		A51575001E7DB195009F93F8 /* UserSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignUpViewController.swift; sourceTree = "<group>"; };
 		A51575021E7DB1A1009F93F8 /* HouseLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseLoginViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A513C17A1E98805300F2B5D2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A513C17B1E98807600F2B5D2 /* MessageTableViewCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		A51574FD1E7DB085009F93F8 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +148,7 @@
 		A56978091E778E3200BC8378 /* roomy */ = {
 			isa = PBXGroup;
 			children = (
+				A513C17A1E98805300F2B5D2 /* Cells */,
 				739DB3201E95C14200B287A1 /* GPS Simulations */,
 				737448851E92FE06001609B0 /* Views */,
 				A569781D1E77910400BC8378 /* Models */,
@@ -158,6 +171,7 @@
 				A51575041E7DB1AA009F93F8 /* HouseSignUpViewController.swift */,
 				A51575061E7DB4AB009F93F8 /* HomeTimelineViewController.swift */,
 				736DD9AE1E940541008BAA2E /* HomeViewController.swift */,
+				A513C1781E987ED000F2B5D2 /* MessagingViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -312,6 +326,8 @@
 				A5800D651E7DE3C800FB35F4 /* House.swift in Sources */,
 				A51574FF1E7DB15B009F93F8 /* UserLoginViewController.swift in Sources */,
 				A51575031E7DB1A1009F93F8 /* HouseLoginViewController.swift in Sources */,
+				A513C1791E987ED000F2B5D2 /* MessagingViewController.swift in Sources */,
+				A513C17C1E98807600F2B5D2 /* MessageTableViewCell.swift in Sources */,
 				736DD9AF1E940541008BAA2E /* HomeViewController.swift in Sources */,
 				A51575011E7DB195009F93F8 /* UserSignUpViewController.swift in Sources */,
 				A569780B1E778E3200BC8378 /* AppDelegate.swift in Sources */,
