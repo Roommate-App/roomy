@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F0DA4F71E95E81B00B094A4 /* AddressValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DA4F61E95E81B00B094A4 /* AddressValidationViewController.swift */; };
+		4F4FB54D1E99995F003BB1B8 /* AddressValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FB54C1E99995F003BB1B8 /* AddressValidationViewController.swift */; };
 		5B746737D24F0C7CB6868BEC /* Pods_roomy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E55EEA4792D224C573647F /* Pods_roomy.framework */; };
 		736DD9A71E933430008BAA2E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9A61E933430008BAA2E /* Home.storyboard */; };
 		736DD9A91E9338AF008BAA2E /* Messaging.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9A81E9338AF008BAA2E /* Messaging.storyboard */; };
@@ -33,7 +33,7 @@
 /* Begin PBXFileReference section */
 		33F20C97F9F8B6C11B2AB8EC /* Pods-roomy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roomy.release.xcconfig"; path = "Pods/Target Support Files/Pods-roomy/Pods-roomy.release.xcconfig"; sourceTree = "<group>"; };
 		37E55EEA4792D224C573647F /* Pods_roomy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_roomy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F0DA4F61E95E81B00B094A4 /* AddressValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressValidationViewController.swift; sourceTree = "<group>"; };
+		4F4FB54C1E99995F003BB1B8 /* AddressValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressValidationViewController.swift; sourceTree = "<group>"; };
 		736DD9A61E933430008BAA2E /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		736DD9A81E9338AF008BAA2E /* Messaging.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messaging.storyboard; sourceTree = "<group>"; };
 		736DD9AC1E933998008BAA2E /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 				A51575001E7DB195009F93F8 /* UserSignUpViewController.swift */,
 				A51575021E7DB1A1009F93F8 /* HouseLoginViewController.swift */,
 				A51575041E7DB1AA009F93F8 /* HouseSignUpViewController.swift */,
-				4F0DA4F61E95E81B00B094A4 /* AddressValidationViewController.swift */,
+				4F4FB54C1E99995F003BB1B8 /* AddressValidationViewController.swift */,
 				A51575061E7DB4AB009F93F8 /* HomeTimelineViewController.swift */,
 				736DD9AE1E940541008BAA2E /* HomeViewController.swift */,
 			);
@@ -314,7 +314,7 @@
 			files = (
 				A5800D651E7DE3C800FB35F4 /* House.swift in Sources */,
 				A51574FF1E7DB15B009F93F8 /* UserLoginViewController.swift in Sources */,
-				4F0DA4F71E95E81B00B094A4 /* AddressValidationViewController.swift in Sources */,
+				4F4FB54D1E99995F003BB1B8 /* AddressValidationViewController.swift in Sources */,
 				A51575031E7DB1A1009F93F8 /* HouseLoginViewController.swift in Sources */,
 				736DD9AF1E940541008BAA2E /* HomeViewController.swift in Sources */,
 				A51575011E7DB195009F93F8 /* UserSignUpViewController.swift in Sources */,

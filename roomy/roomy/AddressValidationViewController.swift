@@ -2,13 +2,14 @@
 //  AddressValidationViewController.swift
 //  roomy
 //
-//  Created by Rodrigo Bell on 4/5/17.
+//  Created by Rodrigo Bell on 4/8/17.
 //  Copyright © 2017 Poojan Dave. All rights reserved.
 //
 
 import UIKit
+import GooglePlaces
 
-class AddressValidationViewController: UIViewController {
+class AddressValidationViewController: GMSAutocompleteViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

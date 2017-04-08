@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -62,6 +63,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = userLoginViewController
             window?.makeKeyAndVisible()
         }
+        
+        
+        // Google Places API
+        GMSPlacesClient.provideAPIKey("AIzaSyCeA-ugIfZ4hA1WpRuobEFMM8GciAYy6-o")
+        
         return true
     }
 
