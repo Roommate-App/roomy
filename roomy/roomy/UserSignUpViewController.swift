@@ -24,7 +24,6 @@ class UserSignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // ???
         emailTextField.becomeFirstResponder()
 
     }
@@ -34,27 +33,14 @@ class UserSignUpViewController: UIViewController {
     // Create new PFuser and populate the fields, then sign up the user and perform segue
     @IBAction func signUpButtonPressed(_ sender: Any) {
         
-        let email = emailTextField.text!
-        let username = usernameTextField.text!
-        let password = passwordTextField.text!
         
-        let newUser = PFUser()
-        newUser.email = email
-        newUser.username = username
-        newUser.password = password
-        
-        newUser["house"] = NSNull()
-    
-        newUser.signUpInBackground { (success: Bool, error: Error?) in
-            if success {
-                
-                print("UserSignUpViewController/signUpButtonPressed(): New user created")
-    
+        Roomy.createUser(username: emailTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, successful: { (_ successful: Bool) in
+                print("Successful user creation: UserSignUpViewController")
                 self.performSegue(withIdentifier: "userSignUpToHouseLogin", sender: nil)
-            } else {
-                print("UserSignUpViewController/signUpButtonPressed() Error: \(error!.localizedDescription)")
-            }
-        }
+        }, failure: { (_ error: Error) in
+                print("Error creating a user: UserSignUpViewController")
+        })
+
     }
     
     override func didReceiveMemoryWarning() {
