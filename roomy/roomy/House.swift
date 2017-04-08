@@ -48,6 +48,7 @@ class House: NSObject {
         
         // Save current house
         _currentHouse = newHouse
+        print("help")
         
     }
     
