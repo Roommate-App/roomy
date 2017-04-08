@@ -29,7 +29,6 @@ class House: NSObject {
         self.houseID = houseID
         self.password = password
         self.userIDs = userIDs
-        
     }
     
     

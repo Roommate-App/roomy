@@ -9,23 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
-        <scene sceneID="Ed0-SC-W7B">
-            <objects>
-                <tabBarController id="rUK-GI-gKh" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="dRG-VQ-hQX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="BOz-Qg-GJO" kind="relationship" relationship="viewControllers" id="ggx-6y-2Qe"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CxD-wq-XBd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2686" y="1877"/>
-        </scene>
         <!--Home-->
         <scene sceneID="e0I-Q4-Dr7">
             <objects>

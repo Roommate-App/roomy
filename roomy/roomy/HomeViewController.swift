@@ -29,6 +29,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         mapView.delegate = self
         
         locationManager.delegate = self
+        locationManager.allowsBackgroundLocationUpdates = true
         locationManager.requestAlwaysAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         
@@ -75,8 +76,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             }
         }
     }
-    
-    
+
     //MARK: - CollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if roomies == nil {
@@ -102,7 +102,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         return cell
     }
     
-    //MARK: - LocationManager and MapView
+    //MARK: - LocationManager Functions
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.authorizedAlways {
             locationManager.startUpdatingLocation()
@@ -115,7 +115,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let region = MKCoordinateRegionMake(location.coordinate, span)
         mapView.setRegion(region, animated: true)
         mapView.showsUserLocation = true
-        print(location)
+        PFUser.current()?["longitude"] = location.coordinate.longitude
+        PFUser.current()?.saveInBackground()
+        if UIApplication.shared.applicationState == .active{
+            print(location)
+        } else if(_isBackground) {
+            self.locationManager.allowDeferredLocationUpdates(untilTraveled: CLLocationDistanceMax, timeout: 1800)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
@@ -129,7 +135,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         PFUser.current()?["is_home"] = false
         PFUser.current()?.saveInBackground()
     }
+    func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
+        PFUser.current()?["test"] = manager.location?.coordinate.latitude
+        PFUser.current()?.saveInBackground()
+        print("test")
+    }
 
+    //MARK: - LocationManager
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let circleRenderer = MKCircleRenderer(overlay: overlay)
         circleRenderer.strokeColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
