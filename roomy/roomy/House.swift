@@ -36,7 +36,6 @@ class House: PFObject {
     }
 }
 
-
 extension House: PFSubclassing {
     static func parseClassName() -> String {
         return "House"
