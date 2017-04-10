@@ -16,8 +16,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     let locationManager = CLLocationManager()
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var mapView: MKMapView!
     
+    var region: CLCircularRegion!
     var roomies: [Roomy]? = []
     
     override func viewDidLoad() {
@@ -26,22 +26,9 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        mapView.delegate = self
         
-        locationManager.delegate = self
-        locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.requestAlwaysAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        
-        let title = "Home"
-        let coordinate = CLLocationCoordinate2D(latitude: 37.703026, longitude: -121.759735)
-        let regionRadius = 100.0
-        
-        let region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: title)
-        locationManager.startMonitoring(for: region)
-        
-        let circle = MKCircle(center: coordinate, radius: regionRadius)
-        mapView.add(circle)
+        LocationService.shared.setUpHouseFence()
+        LocationService.shared.isRoomyHome()
         getRoomies()
     }
 
@@ -50,41 +37,28 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        LocationService.shared.isRoomyHome()
+        for roomy in roomies! {
+            roomy.fetchInBackground()
+        }
+        collectionView.reloadData()
+    }
+    
     func getRoomies(){
-        let query = PFQuery(className: "User")
-        query.whereKey("house", equalTo: House._currentHouse?.houseID!)
-        query.findObjectsInBackground { (roomies: [PFObject]?, error: Error?) in
-          
-            
-            if roomies != nil {
-                for roomy in roomies! {
-                    self.roomies?.append(roomy as! Roomy)
+        for roomy in (House._currentHouse?.userIDs)! {
+            roomy.fetchInBackground(block: { (userReturned: PFObject?, error: Error?) in
+                if userReturned != nil {
+                    self.roomies?.append(userReturned as! Roomy)
+                } else {
+                    print("HomeTimelineViewController/ViewDidLoad() \(String(describing: error?.localizedDescription))")
                 }
+                //self.isHome()
                 self.collectionView.reloadData()
-                print(self.roomies)
-            } else {
-                print("ERROR: Couldn't get users")
-            }
+            })
         }
     }
-        
-        
-        
-        
-        
-        
-//        for roomy in (House._currentHouse?.userIDs)! {
-//            roomy.fetchInBackground(block: { (userReturned: PFObject?, error: Error?) in
-//                if userReturned != nil {
-//                    self.roomies?.append(userReturned as! PFUser)
-//                } else {
-//                    print("HomeTimelineViewController/ViewDidLoad() \(String(describing: error?.localizedDescription))")
-//                }
-//                self.collectionView.reloadData()
-//            })
-//        }
-    
-    
     
     //Logout button for test purposeses.
     @IBAction func onLogoutButtonTapped(_ sender: Any) {
@@ -113,63 +87,15 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoomyCell", for: indexPath) as! RoomyCollectionViewCell
         
         let roomy = roomies?[indexPath.row]
-        cell.roomyNameLabel.text = roomy?["username"] as? String
+        cell.roomyNameLabel.text = roomy?.username
         
-        let isHome = roomy?["is_home"] as? Bool ?? true
-        if(isHome) {
+        let home = roomy?["is_home"] as? Bool ?? true
+        if(home){
             cell.isRoomyHomeControl.selectedSegmentIndex = 0
         } else {
             cell.isRoomyHomeControl.selectedSegmentIndex = 1
         }
         return cell
-    }
-    
-    //MARK: - LocationManager Functions
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == CLAuthorizationStatus.authorizedAlways {
-            locationManager.startUpdatingLocation()
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[0]
-        let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegionMake(location.coordinate, span)
-        mapView.setRegion(region, animated: true)
-        mapView.showsUserLocation = true
-        PFUser.current()?["longitude"] = location.coordinate.longitude
-        PFUser.current()?.saveInBackground()
-        if UIApplication.shared.applicationState == .active{
-            print(location)
-        } else if(_isBackground) {
-            self.locationManager.allowDeferredLocationUpdates(untilTraveled: CLLocationDistanceMax, timeout: 1800)
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("User is home")
-        PFUser.current()?["is_home"] = true
-        PFUser.current()?.saveInBackground()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        print("User is not home")
-        PFUser.current()?["is_home"] = false
-        PFUser.current()?.saveInBackground()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
-        PFUser.current()?["test"] = manager.location?.coordinate.latitude
-        PFUser.current()?.saveInBackground()
-        print("test")
-    }
-
-    //MARK: - LocationManager
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let circleRenderer = MKCircleRenderer(overlay: overlay)
-        circleRenderer.strokeColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
-        circleRenderer.lineWidth = 1.0
-        return circleRenderer
     }
     
     /*
@@ -181,5 +107,4 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         // Pass the selected object to the new view controller.
     }
     */
-
 }

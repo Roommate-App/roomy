@@ -18,6 +18,9 @@ class HouseSignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var houseIDTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    var latitude: String?
+    var longitude: String?
+    
     let autocompleteController = GMSAutocompleteViewController()
 
     override func viewDidLoad() {
@@ -35,7 +38,7 @@ class HouseSignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signUpButtonPressed(_ sender: Any) {
-        House.createHouse(address: addressTextField.text!, houseID: houseIDTextField.text!, password: passwordTextField.text!, userIDs: [Roomy.current()!], successful:  { (_ successful: Bool) in
+        House.createHouse(address: addressTextField.text!, houseID: houseIDTextField.text!, password: passwordTextField.text!, userIDs: [Roomy.current()!], latitude: latitude!, longitude: longitude!,  successful:  { (_ successful: Bool) in
                 print("Successfully created house: in HouseSignUp")
                 self.performSegue(withIdentifier: "houseSignUpToTabBar", sender: nil)
             }, failure: { (_ error: Error) in
@@ -54,7 +57,8 @@ extension HouseSignUpViewController: GMSAutocompleteViewControllerDelegate {
     // Handle the user's selection. 
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         
-        print("Place address: \(place.coordinate)") // // // For Ryan's use // // //
+        longitude = String(place.coordinate.longitude)
+        latitude = String(place.coordinate.latitude)
         
         self.addressTextField.text = place.formattedAddress
         self.houseIDTextField.becomeFirstResponder()

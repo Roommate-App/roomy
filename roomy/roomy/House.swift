@@ -19,16 +19,19 @@ class House: PFObject {
     @NSManaged var houseID: String?
     @NSManaged var password: String?
     @NSManaged var userIDs: [Roomy]?
-    
+    @NSManaged var latitude: String?
+    @NSManaged var longitude: String?
     
     // constructor for House
-    convenience init(address: String, houseID: String, password: String, userIDs: [Roomy]) {
+    convenience init(address: String, houseID: String, password: String, userIDs: [Roomy], latitude: String, longitude: String) {
         self.init()
         
         self.address = address
         self.houseID = houseID
         self.password = password
         self.userIDs = userIDs
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
     class func setCurrentHouse (house: House) {
@@ -43,9 +46,9 @@ extension House: PFSubclassing {
 }
 
 extension House {
-    static func createHouse(address: String, houseID: String, password: String, userIDs: [Roomy],  successful: @escaping (Bool) -> () , failure: @escaping (Error) ->()) {
+    static func createHouse(address: String, houseID: String, password: String, userIDs: [Roomy], latitude: String, longitude: String, successful: @escaping (Bool) -> () , failure: @escaping (Error) ->()) {
         
-        let house = House(address: address, houseID: houseID, password: password, userIDs: userIDs)
+        let house = House(address: address, houseID: houseID, password: password, userIDs: userIDs, latitude: latitude, longitude: longitude)
         
         house.saveInBackground { (_ success: Bool?, _ error: Error?) in
             if success! {

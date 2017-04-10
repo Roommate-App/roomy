@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BOz-Qg-GJO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BOz-Qg-GJO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,10 +29,6 @@
                                     <action selector="onLogoutButtonTapped:" destination="BOz-Qg-GJO" eventType="touchUpInside" id="LkH-1I-wpq"/>
                                 </connections>
                             </button>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hBd-zS-24V">
-                                <rect key="frame" x="0.0" y="332" width="375" height="286"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </mapView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="htc-uN-izs">
                                 <rect key="frame" x="0.0" y="77" width="369" height="247"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -82,7 +78,6 @@
                     <navigationItem key="navigationItem" id="WOC-Ca-Mfi"/>
                     <connections>
                         <outlet property="collectionView" destination="htc-uN-izs" id="ZWm-qV-KiK"/>
-                        <outlet property="mapView" destination="hBd-zS-24V" id="HAL-Zv-3ML"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGS-RQ-bGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
