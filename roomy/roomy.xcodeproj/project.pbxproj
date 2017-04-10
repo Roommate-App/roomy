@@ -10,6 +10,8 @@
 		4F2C400A1E9B160B00EBC693 /* TodoList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C40091E9B160B00EBC693 /* TodoList.storyboard */; };
 		4F2C400C1E9B16E700EBC693 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C400B1E9B16E700EBC693 /* TodoListViewController.swift */; };
 		4F4FB54D1E99995F003BB1B8 /* AddressValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FB54C1E99995F003BB1B8 /* AddressValidationViewController.swift */; };
+		4FC8B1F51E9B1B1100109093 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8B1F41E9B1B1100109093 /* TodoItem.swift */; };
+		4FC8B1F71E9B1E8C00109093 /* TodoAddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8B1F61E9B1E8C00109093 /* TodoAddItemViewController.swift */; };
 		5B746737D24F0C7CB6868BEC /* Pods_roomy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E55EEA4792D224C573647F /* Pods_roomy.framework */; };
 		736DD9A71E933430008BAA2E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9A61E933430008BAA2E /* Home.storyboard */; };
 		736DD9A91E9338AF008BAA2E /* Messaging.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9A81E9338AF008BAA2E /* Messaging.storyboard */; };
@@ -38,6 +40,8 @@
 		4F2C40091E9B160B00EBC693 /* TodoList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TodoList.storyboard; sourceTree = "<group>"; };
 		4F2C400B1E9B16E700EBC693 /* TodoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		4F4FB54C1E99995F003BB1B8 /* AddressValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressValidationViewController.swift; sourceTree = "<group>"; };
+		4FC8B1F41E9B1B1100109093 /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
+		4FC8B1F61E9B1E8C00109093 /* TodoAddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoAddItemViewController.swift; sourceTree = "<group>"; };
 		731F5DC41E95D2F40004277E /* America.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = America.gpx; sourceTree = "<group>"; };
 		731F5DC51E95D2F40004277E /* GoesHome.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GoesHome.gpx; sourceTree = "<group>"; };
 		731F5DC61E95D2F40004277E /* LeavesHome.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LeavesHome.gpx; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 				A51575061E7DB4AB009F93F8 /* HomeTimelineViewController.swift */,
 				736DD9AE1E940541008BAA2E /* HomeViewController.swift */,
 				4F2C400B1E9B16E700EBC693 /* TodoListViewController.swift */,
+				4FC8B1F61E9B1E8C00109093 /* TodoAddItemViewController.swift */,
 				A513C1781E987ED000F2B5D2 /* MessagingViewController.swift */,
 			);
 			name = "View Controllers";
@@ -190,6 +195,7 @@
 			children = (
 				73713BA91E9994C000EF1923 /* Roomy.swift */,
 				A5800D641E7DE3C800FB35F4 /* House.swift */,
+				4FC8B1F41E9B1B1100109093 /* TodoItem.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -343,9 +349,11 @@
 				A51575031E7DB1A1009F93F8 /* HouseLoginViewController.swift in Sources */,
 				A513C1791E987ED000F2B5D2 /* MessagingViewController.swift in Sources */,
 				A513C17C1E98807600F2B5D2 /* MessageTableViewCell.swift in Sources */,
+				4FC8B1F71E9B1E8C00109093 /* TodoAddItemViewController.swift in Sources */,
 				736DD9AF1E940541008BAA2E /* HomeViewController.swift in Sources */,
 				4F2C400C1E9B16E700EBC693 /* TodoListViewController.swift in Sources */,
 				A51575011E7DB195009F93F8 /* UserSignUpViewController.swift in Sources */,
+				4FC8B1F51E9B1B1100109093 /* TodoItem.swift in Sources */,
 				A569780B1E778E3200BC8378 /* AppDelegate.swift in Sources */,
 				73BEE3A71E9478E000353853 /* RoomyCollectionViewCell.swift in Sources */,
 				A51575071E7DB4AB009F93F8 /* HomeTimelineViewController.swift in Sources */,
