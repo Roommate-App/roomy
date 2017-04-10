@@ -18,7 +18,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mapView: MKMapView!
     
-    var roomies: [PFUser]? = []
+    var roomies: [Roomy]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,17 +51,39 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
     
     func getRoomies(){
-        for roomy in (House._currentHouse?.userIDs)! {
-            roomy.fetchInBackground(block: { (userReturned: PFObject?, error: Error?) in
-                if userReturned != nil {
-                    self.roomies?.append(userReturned as! PFUser)
-                } else {
-                    print("HomeTimelineViewController/ViewDidLoad() \(String(describing: error?.localizedDescription))")
+        let query = PFQuery(className: "User")
+        query.whereKey("house", equalTo: House._currentHouse?.houseID!)
+        query.findObjectsInBackground { (roomies: [PFObject]?, error: Error?) in
+          
+            
+            if roomies != nil {
+                for roomy in roomies! {
+                    self.roomies?.append(roomy as! Roomy)
                 }
                 self.collectionView.reloadData()
-            })
+                print(self.roomies)
+            } else {
+                print("ERROR: Couldn't get users")
+            }
         }
     }
+        
+        
+        
+        
+        
+        
+//        for roomy in (House._currentHouse?.userIDs)! {
+//            roomy.fetchInBackground(block: { (userReturned: PFObject?, error: Error?) in
+//                if userReturned != nil {
+//                    self.roomies?.append(userReturned as! PFUser)
+//                } else {
+//                    print("HomeTimelineViewController/ViewDidLoad() \(String(describing: error?.localizedDescription))")
+//                }
+//                self.collectionView.reloadData()
+//            })
+//        }
+    
     
     
     //Logout button for test purposeses.
