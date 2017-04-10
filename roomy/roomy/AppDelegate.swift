@@ -8,14 +8,11 @@
 
 import UIKit
 import Parse
-<<<<<<< HEAD
 import CoreLocation
 import MapKit
-
-var _isBackground: Bool = false 
-=======
 import GooglePlaces
->>>>>>> validation
+
+var _isBackground: Bool = false
 
 @UIApplicationMain
 
@@ -92,15 +89,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             window?.makeKeyAndVisible()
         }
         
-<<<<<<< HEAD
         configureParse()
 
-=======
         
         // Google Places API
         GMSPlacesClient.provideAPIKey("AIzaSyCeA-ugIfZ4hA1WpRuobEFMM8GciAYy6-o")
         
->>>>>>> validation
+        
         return true
     }
     

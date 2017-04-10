@@ -8,30 +8,15 @@
 
 import UIKit
 import Parse
-<<<<<<< HEAD
-
-class HouseSignUpViewController: UIViewController {
-=======
 import GooglePlaces
 
+
 // Make sure only unique houseIDs are created (especially addresses)
-
-
 // HouseSignUpViewController: Creates a new house
 class HouseSignUpViewController: UIViewController, UITextFieldDelegate {
->>>>>>> validation
-    
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var houseIDTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-<<<<<<< HEAD
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        addressTextField.becomeFirstResponder()
-    }
-
-=======
     
     let autocompleteController = GMSAutocompleteViewController()
 
@@ -49,12 +34,6 @@ class HouseSignUpViewController: UIViewController, UITextFieldDelegate {
         present(autocompleteController, animated: true, completion: nil)
     }
     
-    // signUpButtonPressed Action: creates new house
-    // Extracts the address, houseID, and password
-    // array of "userIDs" is set to currentUser
-    // Create a newHouse of type PFObject and input appropriate keys for the object
-    // Save the object is background and then set the currentHouse and segue
->>>>>>> validation
     @IBAction func signUpButtonPressed(_ sender: Any) {
         House.createHouse(address: addressTextField.text!, houseID: houseIDTextField.text!, password: passwordTextField.text!, userIDs: [Roomy.current()!], successful:  { (_ successful: Bool) in
                 print("Successfully created house: in HouseSignUp")

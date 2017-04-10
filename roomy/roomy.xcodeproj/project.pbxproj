@@ -33,13 +33,10 @@
 /* Begin PBXFileReference section */
 		33F20C97F9F8B6C11B2AB8EC /* Pods-roomy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roomy.release.xcconfig"; path = "Pods/Target Support Files/Pods-roomy/Pods-roomy.release.xcconfig"; sourceTree = "<group>"; };
 		37E55EEA4792D224C573647F /* Pods_roomy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_roomy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-<<<<<<< HEAD
 		731F5DC41E95D2F40004277E /* America.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = America.gpx; sourceTree = "<group>"; };
 		731F5DC51E95D2F40004277E /* GoesHome.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GoesHome.gpx; sourceTree = "<group>"; };
 		731F5DC61E95D2F40004277E /* LeavesHome.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LeavesHome.gpx; sourceTree = "<group>"; };
-=======
 		4F4FB54C1E99995F003BB1B8 /* AddressValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressValidationViewController.swift; sourceTree = "<group>"; };
->>>>>>> validation
 		736DD9A61E933430008BAA2E /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		736DD9A81E9338AF008BAA2E /* Messaging.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messaging.storyboard; sourceTree = "<group>"; };
 		736DD9AC1E933998008BAA2E /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };

@@ -16,63 +16,63 @@ class MessagingViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     
-    var posts = [Post]
+//    var posts = [Post]
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        makeNetworkCall()
+//        makeNetworkCall()
     }
     
-    func makeNetworkCall() {
-        
-        let query = PFQuery(className: "Post")
-        query.whereKey("houseID", equalTo: House._currentHouse?.houseID)
-        
-        query.findObjectsInBackground { (postsReturned: [PFObject]?, error: Error?) in
-            
-            print(postsReturned?.count ?? "postsReturned.count failed")
-            
-            if let posts = postsReturned {
-                
-                self.posts = posts
-                
-            } else {
-                
-                print("MessagingViewController/makeNetworkCall() Error: \(String(describing: error?.localizedDescription))")
-            }
-            
-        }
-    }
+//    func makeNetworkCall() {
+//        
+//        let query = PFQuery(className: "Post")
+//        query.whereKey("houseID", equalTo: House._currentHouse?.houseID)
+//        
+//        query.findObjectsInBackground { (postsReturned: [PFObject]?, error: Error?) in
+//            
+//            print(postsReturned?.count ?? "postsReturned.count failed")
+//            
+//            if let posts = postsReturned {
+//                
+//                self.posts = posts
+//                
+//            } else {
+//                
+//                print("MessagingViewController/makeNetworkCall() Error: \(String(describing: error?.localizedDescription))")
+//            }
+//            
+//        }
+//    }
     
     
-    @IBAction func sendButtonPressed(_ sender: Any) {
-        
-        let message = textField.text
-        
-        
-        
-        let post = PFObject(className: "Post")
-        post["message"] = message
-        
-        post.saveInBackground { (success: Bool, error: Error?) in
-            
-            if success {
-                 //insert into table
-                self.textField.text = ""
-                
-                self.posts.append(post)
-                self.tableView.reloadData()
-                
-            } else {
-                
-                print("MessaginViewController/sendButtonPressed Error: \(String.init(describing: error?.localizedDescription))")
-                
-            }
-        }
-        
-    }
+//    @IBAction func sendButtonPressed(_ sender: Any) {
+//        
+//        let message = textField.text
+//        
+//        
+//        
+//        let post = PFObject(className: "Post")
+//        post["message"] = message
+//        
+//        post.saveInBackground { (success: Bool, error: Error?) in
+//            
+//            if success {
+//                 //insert into table
+//                self.textField.text = ""
+//                
+//                self.posts.append(post)
+//                self.tableView.reloadData()
+//                
+//            } else {
+//                
+//                print("MessaginViewController/sendButtonPressed Error: \(String.init(describing: error?.localizedDescription))")
+//                
+//            }
+//        }
+//        
+//    }
 
 
     
