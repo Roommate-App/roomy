@@ -24,12 +24,6 @@ class Roomy: PFUser {
 
 }
 
-//
-//extension Roomy: PFSubclassing {
-//    override static func parseClassName() -> String {
-//        return "Roomy"
-//    }
-//}
 
 extension Roomy {
     static func createUser(username: String, password: String, email: String, successful: @escaping (Bool) -> (), failure: @escaping (Error) -> () ) {
