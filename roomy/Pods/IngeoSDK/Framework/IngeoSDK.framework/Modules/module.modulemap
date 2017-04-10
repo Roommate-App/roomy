@@ -1,0 +1,18 @@
+framework module IngeoSDK {
+    umbrella header "IngeoSDK.h"
+
+    export *
+    module * { export * }
+    
+    link framework "CoreLocation"
+    link framework "CoreData"
+    link framework "SystemConfiguration"
+
+    header "IGNotification.h"
+    header "IGNotificationsManager.h"
+    header "IGLocationManagerDelegate.h"
+    header "IGRegion.h"
+    header "IGLocation.h"
+    header "IGLocationManager.h"
+    header "IngeoSDK.h"
+}

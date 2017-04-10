@@ -18,6 +18,7 @@ PODS:
   - GoogleMaps/Base (2.2.0)
   - GooglePlaces (2.2.0):
     - GoogleMaps/Base (= 2.2.0)
+  - IngeoSDK (1.4.1)
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
   - ParseUI (1.2.0):
@@ -27,6 +28,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - GooglePlaces
+  - IngeoSDK
   - Parse
   - ParseUI
 
@@ -35,9 +37,10 @@ SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
+  IngeoSDK: 4d064f6559c7f81bc908528de88ae1e5eaf134b5
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
 
-PODFILE CHECKSUM: 43f490729f1242b5813d38b627f10dad6dff9e06
+PODFILE CHECKSUM: faf5b5e0a6b29a1796ef4226cc8a8ca11308e7d4
 
 COCOAPODS: 1.2.0

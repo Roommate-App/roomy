@@ -77,12 +77,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                     print("AppDelegate/RetrievingHouse Error:  \(String(describing: error?.localizedDescription))")
                 }
             })
-            
         } else {
             let houseLoginViewController = mainStoryboard.instantiateViewController(withIdentifier: "HouseLoginViewController") as! HouseLoginViewController
             window?.rootViewController = houseLoginViewController
         }
-       
     }
     
     func configureParse() {

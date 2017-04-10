@@ -8,10 +8,8 @@
 
 import UIKit
 import Parse
-import CoreLocation
-import MapKit
 
-class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     let locationManager = CLLocationManager()
     
@@ -25,7 +23,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         
         LocationService.shared.setUpHouseFence()
         LocationService.shared.isRoomyHome()
