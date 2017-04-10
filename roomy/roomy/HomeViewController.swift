@@ -51,40 +51,17 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
     
     func getRoomies(){
-        let query = PFQuery(className: "User")
-        query.whereKey("house", equalTo: House._currentHouse?.houseID!)
-        query.findObjectsInBackground { (roomies: [PFObject]?, error: Error?) in
-          
-            
-            if roomies != nil {
-                for roomy in roomies! {
-                    self.roomies?.append(roomy as! Roomy)
+        for roomy in (House._currentHouse?.userIDs)! {
+            roomy.fetchInBackground(block: { (userReturned: PFObject?, error: Error?) in
+                if userReturned != nil {
+                    self.roomies?.append(userReturned as! Roomy)
+                } else {
+                    print("HomeTimelineViewController/ViewDidLoad() \(String(describing: error?.localizedDescription))")
                 }
                 self.collectionView.reloadData()
-                print(self.roomies)
-            } else {
-                print("ERROR: Couldn't get users")
-            }
+            })
         }
     }
-        
-        
-        
-        
-        
-        
-//        for roomy in (House._currentHouse?.userIDs)! {
-//            roomy.fetchInBackground(block: { (userReturned: PFObject?, error: Error?) in
-//                if userReturned != nil {
-//                    self.roomies?.append(userReturned as! PFUser)
-//                } else {
-//                    print("HomeTimelineViewController/ViewDidLoad() \(String(describing: error?.localizedDescription))")
-//                }
-//                self.collectionView.reloadData()
-//            })
-//        }
-    
-    
     
     //Logout button for test purposeses.
     @IBAction func onLogoutButtonTapped(_ sender: Any) {

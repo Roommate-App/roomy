@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         manager.requestAlwaysAuthorization()
         manager.startMonitoringSignificantLocationChanges()
         return manager
-        
     }()
     
     
@@ -54,17 +53,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         )
 //
 // Need to pass an NSDictionary to setCurrentHouse!
-        if PFUser.current() != nil {
+        if Roomy.current() != nil {
             
             print("There is a current user.")
-            let currentHouse = PFUser.current()?["house"] as? House
+            let currentHouse = Roomy.current()?["house"] as? House
             
             if currentHouse != nil {
                 
                 print("There is a HouseID")
-                currentHouse?.fetchInBackground(block: { (houseReturned: PFObject?, error: Error?) in
+                currentHouse?.fetchInBackground(block: { (house: PFObject?, error: Error?) in
                     
-                    if houseReturned != nil {
+                    if house != nil {
+                        
+                        House.setCurrentHouse(house: house as! House)
                         
                         let homeStoryBoard = UIStoryboard(name: "TabBar", bundle: nil)
                         let tabBar = homeStoryBoard.instantiateViewController(withIdentifier: "TabBarController")
@@ -124,7 +125,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.stopMonitoringSignificantLocationChanges()
+        locationManager.startUpdatingLocation()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
