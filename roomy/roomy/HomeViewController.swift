@@ -39,8 +39,14 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let coordinate = CLLocationCoordinate2D(latitude: Double((House._currentHouse?.latitude)!)!, longitude: Double((House._currentHouse?.longitude)!)!)
         let regionRadius = 100.0
         
+        
         region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: title)
         locationManager.startMonitoring(for: region)
+        
+        let home = region.contains((locationManager.location?.coordinate)!)
+        Roomy.current()?["is_home"] = home
+        Roomy.current()?.saveInBackground()
+        
         
         let circle = MKCircle(center: coordinate, radius: regionRadius)
         mapView.add(circle)
@@ -52,6 +58,14 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        for roomy in roomies! {
+            roomy.fetchInBackground()
+        }
+        collectionView.reloadData()
+    }
+    
     func getRoomies(){
         for roomy in (House._currentHouse?.userIDs)! {
             roomy.fetchInBackground(block: { (userReturned: PFObject?, error: Error?) in
@@ -60,7 +74,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 } else {
                     print("HomeTimelineViewController/ViewDidLoad() \(String(describing: error?.localizedDescription))")
                 }
-                self.isHome()
+                //self.isHome()
                 self.collectionView.reloadData()
             })
         }
@@ -93,10 +107,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoomyCell", for: indexPath) as! RoomyCollectionViewCell
         
         let roomy = roomies?[indexPath.row]
-        cell.roomyNameLabel.text = roomy?["username"] as? String
+        cell.roomyNameLabel.text = roomy?.username
         
-        let home = roomy?["is_home"] as? Bool
-        if(home)!{
+        let home = roomy?["is_home"] as! Bool
+        if(home){
             cell.isRoomyHomeControl.selectedSegmentIndex = 0
         } else {
             cell.isRoomyHomeControl.selectedSegmentIndex = 1
@@ -153,11 +167,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         return circleRenderer
     }
     
-    func isHome(){
-        let home = region.contains((locationManager.location?.coordinate)!)
-        Roomy.current()?["is_home"] = home
-        Roomy.current()?.saveInBackground()
-    }
+//    func isHome(){
+//        let home = region.contains((locationManager.location?.coordinate)!)
+//        Roomy.current()?["is_home"] = home
+//        Roomy.current()?.saveInBackground()
+//    }
     
     /*
     // MARK: - Navigation
