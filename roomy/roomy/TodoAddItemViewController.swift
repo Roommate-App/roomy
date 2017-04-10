@@ -26,12 +26,15 @@ class TodoAddItemViewController: UIViewController, UINavigationControllerDelegat
     }
     
     @IBAction func didTapAddItem(_ sender: Any) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "todoListViewController") as? TodoListViewController {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if let vc = viewController as? TodoListViewController {
             if !((self.todoItemTextField.text?.isEmpty)!) {
                 self.todoItem = TodoItem(name: self.todoItemTextField.text!)
                 vc.todoItems.add(self.todoItem!)
             }
-            self.navigationController?.popViewController(animated: true)
         }
     }
 
