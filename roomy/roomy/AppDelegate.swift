@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         manager.delegate = self
         manager.allowsBackgroundLocationUpdates = true
         manager.requestAlwaysAuthorization()
-        manager.startMonitoringSignificantLocationChanges()
+        manager.startUpdatingLocation()
         return manager
     }()
     
@@ -37,13 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if(launchOptions?[UIApplicationLaunchOptionsKey.location] != nil){
             locationManager.stopMonitoringSignificantLocationChanges()
             locationManager.requestAlwaysAuthorization()
-            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            locationManager.distanceFilter = 1000
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.distanceFilter = kCLDistanceFilterNone
             locationManager.allowsBackgroundLocationUpdates = true
             locationManager.startUpdatingLocation()
         }
         
-        // Setting up Parse with keys
         Parse.initialize(
             with: ParseClientConfiguration(block: { (configuration:ParseMutableClientConfiguration) -> Void in
                 configuration.applicationId = "roomy "
@@ -51,15 +50,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 configuration.server = "https://floating-oasis-68386.herokuapp.com/parse"
             })
         )
-//
-// Need to pass an NSDictionary to setCurrentHouse!
+
         if Roomy.current() != nil {
-            
             print("There is a current user.")
             let currentHouse = Roomy.current()?["house"] as? House
             
             if currentHouse != nil {
-                
                 print("There is a HouseID")
                 currentHouse?.fetchInBackground(block: { (house: PFObject?, error: Error?) in
                     
@@ -143,7 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let location = locations[0]
         PFUser.current()?["latitude"] = location.coordinate.latitude
         PFUser.current()?.saveInBackground()
-          self.locationManager.allowDeferredLocationUpdates(untilTraveled: CLLocationDistanceMax, timeout: 10)
+        self.locationManager.allowDeferredLocationUpdates(untilTraveled: CLLocationDistanceMax, timeout: 10)
     }
     
     func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
