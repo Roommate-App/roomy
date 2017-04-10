@@ -7,14 +7,23 @@
 //
 
 import UIKit
+import Parse
 
-class TodoItem: NSObject {
+class TodoItem: PFObject {
     
     var itemName: NSString = ""
     var completed: Bool = false
     
-    init(name:String){
+    convenience init(name: String){
+        self.init()
+        
         self.itemName = name as NSString
     }
     
+}
+
+extension TodoItem: PFSubclassing {
+    static func parseClassName() -> String {
+        return "TodoItem"
+    }
 }
