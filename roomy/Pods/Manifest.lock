@@ -18,6 +18,9 @@ PODS:
   - GoogleMaps/Base (2.2.0)
   - GooglePlaces (2.2.0):
     - GoogleMaps/Base (= 2.2.0)
+  - JSQMessagesViewController (7.3.4):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
   - ParseUI (1.2.0):
@@ -27,6 +30,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - GooglePlaces
+  - JSQMessagesViewController
   - Parse
   - ParseUI
 
@@ -35,9 +39,11 @@ SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
+  JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
 
-PODFILE CHECKSUM: 43f490729f1242b5813d38b627f10dad6dff9e06
+PODFILE CHECKSUM: 6495308a490529c6915d69976915e751b1c34d44
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.1.1

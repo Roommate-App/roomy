@@ -9,6 +9,7 @@ target 'roomy' do
   pod 'ParseUI'
   pod 'AFNetworking'
   pod 'GooglePlaces'
+  pod 'JSQMessagesViewController'
 
   # Pods for roomy
 

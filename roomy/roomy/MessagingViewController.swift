@@ -8,91 +8,56 @@
 
 import UIKit
 import Parse
+import JSQMessagesViewController
 
-class MessagingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MessagingViewController: JSQMessagesViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+
+    var messages = [JSQMessage]()
     
-    @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var sendButton: UIButton!
-    
-//    var posts = [Post]
-    
+    lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
+    lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Hello")
 
-//        makeNetworkCall()
+        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
+        collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
     }
     
-//    func makeNetworkCall() {
-//        
-//        let query = PFQuery(className: "Post")
-//        query.whereKey("houseID", equalTo: House._currentHouse?.houseID)
-//        
-//        query.findObjectsInBackground { (postsReturned: [PFObject]?, error: Error?) in
-//            
-//            print(postsReturned?.count ?? "postsReturned.count failed")
-//            
-//            if let posts = postsReturned {
-//                
-//                self.posts = posts
-//                
-//            } else {
-//                
-//                print("MessagingViewController/makeNetworkCall() Error: \(String(describing: error?.localizedDescription))")
-//            }
-//            
-//        }
-//    }
-    
-    
-//    @IBAction func sendButtonPressed(_ sender: Any) {
-//        
-//        let message = textField.text
-//        
-//        
-//        
-//        let post = PFObject(className: "Post")
-//        post["message"] = message
-//        
-//        post.saveInBackground { (success: Bool, error: Error?) in
-//            
-//            if success {
-//                 //insert into table
-//                self.textField.text = ""
-//                
-//                self.posts.append(post)
-//                self.tableView.reloadData()
-//                
-//            } else {
-//                
-//                print("MessaginViewController/sendButtonPressed Error: \(String.init(describing: error?.localizedDescription))")
-//                
-//            }
-//        }
-//        
-//    }
-
-
-    
-    
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 0
-        
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
+        return messages[indexPath.item]
     }
     
-    
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageTableViewCell") as! MessageTableViewCell
-        
-        return cell
-        
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return messages.count
     }
     
+    private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        return bubbleImageFactory!.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
+    }
+    
+    private func setupIncomingBubble() -> JSQMessagesBubbleImage {
+        let bubbleImageFactory = JSQMessagesBubbleImageFactory()
+        return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
+        let message = messages[indexPath.item] // 1
+        if message.senderId == senderId { // 2
+            return outgoingBubbleImageView
+        } else { // 3
+            return incomingBubbleImageView
+        }
+    }
+    
+    // Removes avatar
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
+        return nil
+    }
     
     
     override func didReceiveMemoryWarning() {
