@@ -87,7 +87,7 @@ class HouseSignUpViewController: UIViewController, UITextFieldDelegate {
 
 extension HouseSignUpViewController: GMSAutocompleteViewControllerDelegate {
     
-    // Handle the user's selection.
+    // Handle the user's selection. 
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         
         print("Place address: \(place.coordinate)") // // // For Ryan's use // // //
