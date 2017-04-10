@@ -8,18 +8,53 @@
 
 import UIKit
 import Parse
+<<<<<<< HEAD
 
 class HouseSignUpViewController: UIViewController {
+=======
+import GooglePlaces
+
+// Make sure only unique houseIDs are created (especially addresses)
+
+
+// HouseSignUpViewController: Creates a new house
+class HouseSignUpViewController: UIViewController, UITextFieldDelegate {
+>>>>>>> validation
     
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var houseIDTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+<<<<<<< HEAD
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addressTextField.becomeFirstResponder()
     }
 
+=======
+    
+    let autocompleteController = GMSAutocompleteViewController()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addressTextField.delegate = self
+        houseIDTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        autocompleteController.delegate = self
+    }
+
+    @IBAction func didTouchAddressTextField(_ sender: Any) {
+        present(autocompleteController, animated: true, completion: nil)
+    }
+    
+    // signUpButtonPressed Action: creates new house
+    // Extracts the address, houseID, and password
+    // array of "userIDs" is set to currentUser
+    // Create a newHouse of type PFObject and input appropriate keys for the object
+    // Save the object is background and then set the currentHouse and segue
+>>>>>>> validation
     @IBAction func signUpButtonPressed(_ sender: Any) {
         House.createHouse(address: addressTextField.text!, houseID: houseIDTextField.text!, password: passwordTextField.text!, userIDs: [Roomy.current()!], successful:  { (_ successful: Bool) in
                 print("Successfully created house: in HouseSignUp")
@@ -29,20 +64,41 @@ class HouseSignUpViewController: UIViewController {
         })
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+}
+
+extension HouseSignUpViewController: GMSAutocompleteViewControllerDelegate {
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Handle the user's selection. 
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        
+        print("Place address: \(place.coordinate)") // // // For Ryan's use // // //
+        
+        self.addressTextField.text = place.formattedAddress
+        self.houseIDTextField.becomeFirstResponder()
+        dismiss(animated: true, completion: nil)
     }
-    */
-
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
 }
