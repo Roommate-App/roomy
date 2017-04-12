@@ -33,7 +33,6 @@ class UserSignUpViewController: UIViewController {
     // Create new PFuser and populate the fields, then sign up the user and perform segue
     @IBAction func signUpButtonPressed(_ sender: Any) {
         
-        
         Roomy.createUser(username: usernameTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, successful: { (_ successful: Bool) in
                 print("Successful user creation: UserSignUpViewController")
                 self.performSegue(withIdentifier: "userSignUpToHouseLogin", sender: nil)

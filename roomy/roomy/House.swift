@@ -35,7 +35,7 @@ class House: PFObject {
     }
     
     class func setCurrentHouse (house: House) {
-        _currentHouse = house
+        House._currentHouse = house
     }
 }
 
@@ -50,14 +50,14 @@ extension House {
         
         let house = House(address: address, houseID: houseID, password: password, userIDs: userIDs, latitude: latitude, longitude: longitude)
         
-        house.saveInBackground { (_ success: Bool?, _ error: Error?) in
-            if success! {
-                setCurrentHouse(house: house)
-                successful(success!)
-            } else {
-                print("Error creating house!")
-                failure(error!)
-            }
+        do {
+            try house.save()
+            setCurrentHouse(house: house)
+            successful(true)
         }
+        catch let error as Error?{
+            failure(error!)
+        }
+        
     }
 }

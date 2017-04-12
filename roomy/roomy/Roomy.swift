@@ -21,30 +21,22 @@ class Roomy: PFUser {
         self.password = password
         self.email = email
     }
-
 }
-
-//
-//extension Roomy: PFSubclassing {
-//    override static func parseClassName() -> String {
-//        return "Roomy"
-//    }
-//}
 
 extension Roomy {
     static func createUser(username: String, password: String, email: String, successful: @escaping (Bool) -> (), failure: @escaping (Error) -> () ) {
         
         let roomy = Roomy(username: username, password: password, email: email)
         
-        roomy.signUpInBackground { (success: Bool, error: Error?) in
-            if success {
+            do {
+                try roomy.signUp()
                 print("Successfully signed up a user: User.swift")
-                successful(success)
-            } else {
+                successful(true)
+            }
+            catch let error as Error?{
                 print("Error signing up user: \(error?.localizedDescription) in User.swift")
                 failure(error!)
             }
-        }
     }
 }
 

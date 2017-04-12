@@ -10,6 +10,8 @@ target 'roomy' do
   pod 'AFNetworking'
   pod 'GooglePlaces'
   pod 'IngeoSDK'
+  pod ‘ParseLiveQuery’
+  pod 'MBProgressHUD'
 
   # Pods for roomy
 

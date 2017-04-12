@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import IngeoSDK
 
 
 class LocationService: NSObject, CLLocationManagerDelegate  {
@@ -29,7 +30,7 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
         startUpdatingLocation()
         let title = "Home"
         let coordinate = CLLocationCoordinate2D(latitude: Double((House._currentHouse?.latitude)!)!, longitude: Double((House._currentHouse?.longitude)!)!)
-        let regionRadius = 50.0
+        let regionRadius = 500.0
         region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: title)
         locationManager.startMonitoring(for: region)
     }
@@ -38,7 +39,12 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
         if let currentLocation = locationManager.location?.coordinate {
             let isHome = region.contains(currentLocation)
             Roomy.current()?["is_home"] = isHome
-            let result = try? Roomy.current()?.save()
+            do {
+                try Roomy.current()?.save()
+            }
+            catch let error as Error?{
+                    print(error!.localizedDescription)
+            }
         }
     }
     
