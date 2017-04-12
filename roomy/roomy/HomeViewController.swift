@@ -27,7 +27,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         LocationService.shared.setUpHouseFence()
         LocationService.shared.isRoomyHome()
         
-        
         homeTableView.dataSource = self
         homeTableView.delegate = self
         homeTableView.sizeToFit()
@@ -118,7 +117,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         let query: PFQuery<Roomy> = PFQuery(className: "_User")
         query.whereKey("house", equalTo: House._currentHouse!)
-        
         
         let roommies = try? query.findObjects()
         for roomy in roommies! {

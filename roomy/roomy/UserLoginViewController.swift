@@ -52,6 +52,7 @@ class UserLoginViewController: UIViewController {
                         })
                     } else {
                         self.performSegue(withIdentifier: "userLoginToHouseLogin", sender: nil)
+                        progress.hide(animated: true, afterDelay: 20.0)
                     }
                 } else {
                     print("UserLoginViewController/loginButtonPressed() Logging in Error: \(String(describing: error?.localizedDescription))")

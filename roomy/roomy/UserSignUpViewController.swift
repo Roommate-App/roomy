@@ -2,7 +2,7 @@
 //  UserSignUpViewController.swift
 //  roomy
 //
-//  Created by Poojan Dave on 3/18/17.
+//  Created by Ryan Liszewski and Dustyn August
 //  Copyright © 2017 Poojan Dave. All rights reserved.
 //
 
