@@ -24,8 +24,8 @@ class UserLoginViewController: UIViewController {
 
     @IBAction func loginButtonPressed(_ sender: Any) {
         
-        let progress = MBProgressHUD.showAdded(to: self.view, animated: true)
-        progress.mode = MBProgressHUDMode.indeterminate
+         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+         hud.mode = MBProgressHUDMode.indeterminate
         
         
         let username = userNameTextField.text!
@@ -45,14 +45,14 @@ class UserLoginViewController: UIViewController {
                             if houseReturned != nil {
                                 House.setCurrentHouse(house: houseReturned! as! House)
                                 self.performSegue(withIdentifier: "userLoginToTabBar", sender: nil)
-                                progress.hide(animated: true, afterDelay: 20.0)
+                                hud.hide(animated: true, afterDelay: 20.0)
                             } else {
                                 print("UserLoginViewController/loginButtonPressed() Retrieving House Error: \(String(describing: error?.localizedDescription))")
                             }
                         })
                     } else {
                         self.performSegue(withIdentifier: "userLoginToHouseLogin", sender: nil)
-                        progress.hide(animated: true, afterDelay: 20.0)
+                        hud.hide(animated: true, afterDelay: 20.0)
                     }
                 } else {
                     print("UserLoginViewController/loginButtonPressed() Logging in Error: \(String(describing: error?.localizedDescription))")

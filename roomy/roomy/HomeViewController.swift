@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseLiveQuery
+import MBProgressHUD
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -17,13 +18,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var homeTableView: UITableView!
 
     var region: CLCircularRegion!
+    
     var roomiesHome: [Roomy]? = []
     var roomiesNotHome: [Roomy]? = []
+    var roomies: [Roomy]? = []
+    var hud = MBProgressHUD()
     
     private var subscription: Subscription<Roomy>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         LocationService.shared.setUpHouseFence()
         LocationService.shared.isRoomyHome()
         
@@ -32,8 +37,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         homeTableView.sizeToFit()
         
         let roomyQuery = getRoomyQuery()
-        
-        homeTableView.reloadData()
+        addRoomiesToHome()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,14 +47,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-
-        let roomies = roomiesNotHome! + roomiesHome!
-        
-        for roomy in roomies {
-            let test = try? roomy.fetch()
-            checkIfRoomyIsHome(roomy: roomy)
-        }
-        homeTableView.reloadData()
+        showProgressHud()
+        updateRoomies()
     }
     
     //Logout button for test purposeses.
@@ -66,6 +64,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    func showProgressHud(){
+        hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.mode = MBProgressHUDMode.indeterminate
+        hud.animationType = .zoomIn
+    }
+    
+    func hideProgressHud(){
+        hud.hide(animated: true, afterDelay: 1)
+    }
+    
     //MARK: TABLE VIEW FUNCTIONS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 1
@@ -77,7 +85,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.Identifier.Cell.homeTableViewCell, for: indexPath)
-        
         return cell
     }
     
@@ -107,19 +114,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 30
     }
     
-    func getRoomyQuery() -> PFQuery<Roomy> {
-        
-        if(checkIfRoomyIsHome(roomy: Roomy.current()!)){
-            roomiesHome?.append(Roomy.current()!)
-        }else {
-            roomiesNotHome?.append(Roomy.current()!)
-        }
-
+    //MARK: PARSE QUERYING TO GET ROOMIES
+    func getRoomyQuery(){
+    
         let query: PFQuery<Roomy> = PFQuery(className: "_User")
         query.whereKey("house", equalTo: House._currentHouse!)
         
-        let roommies = try? query.findObjects()
-        for roomy in roommies! {
+        do {
+            let roomies = try query.findObjects()
+            self.roomies = roomies
+        } catch let error as Error? {
+            print(error?.localizedDescription ?? "ERROR")
+        }
+    }
+    
+    func addRoomiesToHome() {
+        addCurrentRoomyToHome()
+        for roomy in self.roomies! {
             if(roomy.objectId != Roomy.current()?.objectId){
                 if(self.checkIfRoomyIsHome(roomy: roomy)){
                     self.roomiesHome?.append(roomy)
@@ -129,11 +140,33 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
         }
-        return query
+        hideProgressHud()
+        self.homeTableView.reloadData()
     }
     
+    func addCurrentRoomyToHome(){
+        if(checkIfRoomyIsHome(roomy: Roomy.current()!)){
+            roomiesHome?.append(Roomy.current()!)
+        }else {
+            roomiesNotHome?.append(Roomy.current()!)
+        }
+    }
+
     func checkIfRoomyIsHome(roomy: Roomy) -> Bool{
         return roomy["is_home"] as? Bool ?? false
+    }
+    
+    func updateRoomies(){
+        roomiesHome = []
+        roomiesNotHome = []
+        for roomy in self.roomies! {
+            do {
+                try roomy.fetch()
+            } catch let error as Error? {
+                print(error?.localizedDescription ?? "ERROR")
+            }
+        }
+        addRoomiesToHome()
     }
 }
 
