@@ -9,6 +9,15 @@
 import UIKit
 import Parse
 import JSQMessagesViewController
+import ParseLiveQuery
+
+
+// TODO: using pfMessage senderName, not pfUserObject.username
+// TODO: fix doubble post error when sending too many meesages at one time.
+
+
+
+
 
 // Change the subclass from UIViewController to JSQMessagesViewController
 class MessagingViewController: JSQMessagesViewController {
@@ -19,10 +28,13 @@ class MessagingViewController: JSQMessagesViewController {
     
     // array of JSQMessage and instantiating it
     var messages = [JSQMessage]()
+    var houseID: House?
     
     // Sets the bubbles
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
+    private var subscription: Subscription<Message>!
+
 
     
     /*
@@ -44,9 +56,17 @@ class MessagingViewController: JSQMessagesViewController {
         self.senderId = Roomy.current()?.objectId
         self.senderDisplayName = Roomy.current()?.username
         
-        // Retrieving the messages from Parse
-        loadMessages()
         
+        let messageQuery = getMessageQuery()
+        subscription = ParseLiveQuery.Client.shared
+            .subscribe(messageQuery)
+            .handle(Event.created)  { query, pfMessage in
+                // Note: DO NOT call add(message:) directly -- Parse Live Query doesn't work well with includeKey yet
+                self.loadMessages(query: self.getMessageQuery())
+        }
+        
+        self.loadMessages(query: self.getMessageQuery())
+
     }
     
     
@@ -122,12 +142,11 @@ class MessagingViewController: JSQMessagesViewController {
             let messageObject = Message()
             messageObject.roomy = Roomy.current()
             messageObject.senderName = Roomy.current()?.username
+            messageObject.houseID = House._currentHouse
             messageObject.text = text
             
             messageObject.saveInBackground { succeeded, error in
                 if succeeded {
-                    
-                    // ?????
                     self.finishSendingMessage()
                 } else {
                     print("Error")
@@ -137,21 +156,34 @@ class MessagingViewController: JSQMessagesViewController {
     }
     
     
+    
+    
     /*
         Retrieving the messages
      */
-    
-    // retrieve messages from Parse
-    private func loadMessages() {
+
+    private func getMessageQuery() -> PFQuery<Message> {
+        let query: PFQuery<Message> = PFQuery(className: "Message")
         
-        // create query
-        let query = PFQuery(className: "Message")
-        query.order(byDescending: "_created_at")
+        query.whereKey("houseID", equalTo: House._currentHouse!)
+        
+        if let lastMessage = messages.last, let lastMessageDate = lastMessage.date {
+            query.whereKey("createdAt", greaterThan: lastMessageDate)
+        }
+        
+
+        
+        query.order(byDescending: "createdAt")
         query.limit = 50
         
+        return query
+    }
+    
+    // retrieve messages from Parse
+    private func loadMessages(query: PFQuery<Message>) {
         query.findObjectsInBackground { pfMessages, error in
             if let pfMessages = pfMessages {
-                self.add(pfMessages: pfMessages as! [Message])
+                self.add(pfMessages: pfMessages)
             } else {
                 print("Error")
             }
@@ -169,10 +201,6 @@ class MessagingViewController: JSQMessagesViewController {
                 // TODO: using pfMessage senderName, not pfUserObject.username
                 if let authorID = pfUserObject.objectId,
                     let authorFullName = pfMessage.senderName {
-                    
-                    print(authorFullName)
-                    print(authorID)
-                    
                     let jsqMessage: JSQMessage? = {
 
                         if let text = pfMessage["text"] as? String {
@@ -200,7 +228,7 @@ class MessagingViewController: JSQMessagesViewController {
         
         // ??????
         if pfMessages.count >= 1 {
-            self.scrollToBottom(animated: false)
+            self.scrollToBottom(animated: true)
             self.finishReceivingMessage()
             
         }
