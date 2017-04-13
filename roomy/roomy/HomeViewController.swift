@@ -36,8 +36,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         homeTableView.delegate = self
         homeTableView.sizeToFit()
         
-        let roomyQuery = getRoomyQuery()
         addRoomiesToHome()
+        let roomyQuery = getRoomyQuery()
+        subscription = ParseLiveQuery.Client.shared.subscribe(roomyQuery).handle(Event.updated) { (query, roomy) in
+            print("test")
+            print(roomy)
+            self.updateRoomies()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -115,7 +120,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     //MARK: PARSE QUERYING TO GET ROOMIES
-    func getRoomyQuery(){
+    
+    func getRoomyQuery() -> PFQuery<Roomy>{
     
         let query: PFQuery<Roomy> = PFQuery(className: "_User")
         query.whereKey("house", equalTo: House._currentHouse!)
@@ -126,6 +132,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } catch let error as Error? {
             print(error?.localizedDescription ?? "ERROR")
         }
+        return query
     }
     
     func addRoomiesToHome() {
@@ -141,19 +148,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         hideProgressHud()
+        print(roomiesNotHome!.count)
         self.homeTableView.reloadData()
     }
     
     func addCurrentRoomyToHome(){
+        print(Roomy.current()?["is_home"])
         if(checkIfRoomyIsHome(roomy: Roomy.current()!)){
             roomiesHome?.append(Roomy.current()!)
         }else {
             roomiesNotHome?.append(Roomy.current()!)
         }
+        homeTableView.reloadData()
     }
 
     func checkIfRoomyIsHome(roomy: Roomy) -> Bool{
-        return roomy["is_home"] as? Bool ?? false
+        return roomy["is_home"] as! Bool
     }
     
     func updateRoomies(){
