@@ -70,12 +70,20 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("User is home")
         Roomy.current()?["is_home"] = true
-        Roomy.current()?.saveInBackground()
+        do {
+            try Roomy.current()?.save()
+        } catch let error as Error? {
+            
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("User is not home")
         Roomy.current()?["is_home"] = false
-        Roomy.current()?.saveInBackground()
+        do {
+            try Roomy.current()?.save()
+        } catch let error as Error? {
+            
+        }
     }
 }

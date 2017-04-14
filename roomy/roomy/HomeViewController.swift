@@ -39,9 +39,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         addRoomiesToHome()
         let roomyQuery = getRoomyQuery()
         subscription = ParseLiveQuery.Client.shared.subscribe(roomyQuery).handle(Event.updated) { (query, roomy) in
-            print("test")
-            print(roomy)
-            self.updateRoomies()
+            self.roomyChangedHomeStatus(roomy: roomy)
         }
     }
 
@@ -73,6 +71,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.mode = MBProgressHUDMode.indeterminate
         hud.animationType = .zoomIn
+    }
+    
+    func reloadTableView(){
+        hud.hide(animated: true, afterDelay: 1)
+        homeTableView.reloadData()
     }
     
     func hideProgressHud(){
@@ -177,6 +180,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         addRoomiesToHome()
+    }
+    
+    func roomyChangedHomeStatus(roomy: Roomy){
+        let isRoomyHome = roomy["is_home"] as! Bool
+        
+        if(isRoomyHome){
+            roomiesNotHome = roomiesNotHome?.filter({$0.username != roomy.username})
+            roomiesHome?.append(roomy)
+        } else {
+            roomiesHome = roomiesHome?.filter({$0.username != roomy.username})
+            roomiesNotHome?.append(roomy)
+        }
+        reloadTableView()
     }
 }
 
