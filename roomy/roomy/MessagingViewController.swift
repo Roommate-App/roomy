@@ -14,32 +14,33 @@ import ParseLiveQuery
 
 // TODO: using pfMessage senderName, not pfUserObject.username
 // TODO: fix doubble post error when sending too many meesages at one time.
+// TODO: Add avatar after the profile picture is added
+// TODO: Ability to send pictures and videos
 
 
-
-
-
-// Change the subclass from UIViewController to JSQMessagesViewController
 class MessagingViewController: JSQMessagesViewController {
     
-    /*
+    /*===============================================================
         Initialization for the properties
-     */
+     ===============================================================*/
     
     // array of JSQMessage and instantiating it
     var messages = [JSQMessage]()
+    
+    // WHY?
     var houseID: House?
     
     // Sets the bubbles
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
+    
+    // WHAT?
     private var subscription: Subscription<Message>!
 
-
     
-    /*
+    /*===============================================================
         viewDidLoad and viewDidAppear
-     */
+     ===============================================================*/
     
     // viewDidLoad
     override func viewDidLoad() {
@@ -56,7 +57,8 @@ class MessagingViewController: JSQMessagesViewController {
         self.senderId = Roomy.current()?.objectId
         self.senderDisplayName = Roomy.current()?.username
         
-        
+        // liveQuery for Parse
+        // HOW DOES THIS WORK?
         let messageQuery = getMessageQuery()
         subscription = ParseLiveQuery.Client.shared
             .subscribe(messageQuery)
@@ -65,14 +67,15 @@ class MessagingViewController: JSQMessagesViewController {
                 self.loadMessages(query: self.getMessageQuery())
         }
         
+        // load messages
         self.loadMessages(query: self.getMessageQuery())
 
     }
     
     
-    /*
+    /*===============================================================
         Collection View Methods
-    */
+    ===============================================================*/
     
     // messageDataForItemAt: returns the appropriate message based upon the row
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
@@ -105,7 +108,6 @@ class MessagingViewController: JSQMessagesViewController {
         // creating a cell and casting it as a JSQMessagesCollectionViewCell
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         let message = messages[indexPath.item]
-        
         if message.senderId == senderId {
             cell.textView?.textColor = UIColor.white
         } else {
@@ -125,9 +127,9 @@ class MessagingViewController: JSQMessagesViewController {
     }
 
     
-    /*
+    /*===============================================================
         Sending/Creating the message
-     */
+     ===============================================================*/
     
     // Action: When the send button is pressed
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
@@ -156,12 +158,11 @@ class MessagingViewController: JSQMessagesViewController {
     }
     
     
-    
-    
-    /*
+    /*===============================================================
         Retrieving the messages
-     */
+     ===============================================================*/
 
+    // Makes the query
     private func getMessageQuery() -> PFQuery<Message> {
         let query: PFQuery<Message> = PFQuery(className: "Message")
         
@@ -170,9 +171,7 @@ class MessagingViewController: JSQMessagesViewController {
         if let lastMessage = messages.last, let lastMessageDate = lastMessage.date {
             query.whereKey("createdAt", greaterThan: lastMessageDate)
         }
-        
-
-        
+    
         query.order(byDescending: "createdAt")
         query.limit = 50
         
@@ -183,7 +182,7 @@ class MessagingViewController: JSQMessagesViewController {
     private func loadMessages(query: PFQuery<Message>) {
         query.findObjectsInBackground { pfMessages, error in
             if let pfMessages = pfMessages {
-                self.add(pfMessages: pfMessages)
+                self.add(pfMessages: pfMessages.reversed())
             } else {
                 print("Error")
             }
@@ -198,7 +197,6 @@ class MessagingViewController: JSQMessagesViewController {
             
             if let pfUserObject = pfMessage.roomy as? Roomy {
                 
-                // TODO: using pfMessage senderName, not pfUserObject.username
                 if let authorID = pfUserObject.objectId,
                     let authorFullName = pfMessage.senderName {
                     let jsqMessage: JSQMessage? = {
