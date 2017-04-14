@@ -8,20 +8,25 @@
 
 import UIKit
 import Parse
+import MBProgressHUD
 
 
 class UserLoginViewController: UIViewController {
     
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         userNameTextField.becomeFirstResponder()
     }
 
     @IBAction func loginButtonPressed(_ sender: Any) {
+        
+         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+         hud.mode = MBProgressHUDMode.indeterminate
+        
         
         let username = userNameTextField.text!
         let password = passwordTextField.text!
@@ -34,17 +39,20 @@ class UserLoginViewController: UIViewController {
             Roomy.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
                 if user != nil {
                     if user?["house"] != nil {
-                        let house = Roomy.current()?["house"] as! PFObject
+                        let house = Roomy.current()?["house"] as! House
+                        print(house)
                         house.fetchInBackground(block: { (houseReturned: PFObject?, error: Error?) in
                             if houseReturned != nil {
                                 House.setCurrentHouse(house: houseReturned! as! House)
                                 self.performSegue(withIdentifier: "userLoginToTabBar", sender: nil)
+                                hud.hide(animated: true, afterDelay: 20.0)
                             } else {
                                 print("UserLoginViewController/loginButtonPressed() Retrieving House Error: \(String(describing: error?.localizedDescription))")
                             }
                         })
                     } else {
                         self.performSegue(withIdentifier: "userLoginToHouseLogin", sender: nil)
+                        hud.hide(animated: true, afterDelay: 20.0)
                     }
                 } else {
                     print("UserLoginViewController/loginButtonPressed() Logging in Error: \(String(describing: error?.localizedDescription))")

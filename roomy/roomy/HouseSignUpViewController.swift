@@ -49,7 +49,6 @@ class HouseSignUpViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
 }
 
 extension HouseSignUpViewController: GMSAutocompleteViewControllerDelegate {

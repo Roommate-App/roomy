@@ -28,28 +28,14 @@ class HouseLoginViewController: UIViewController {
     }
 
 
-    // logInButtonPressed Action: 
-    // Extract the houseID and password
-    // Creates a query that retrieves the House based upon "houseID"
-    // The query returns an array of PFObjects, we confirm houses are not nil, 
-    // then we have a for loop where we traverse each house and confirm that each houseID equals the houseID the user entered
-    // If the houseID is a match, we then look to see if the password is a match
-    // Then, upon authentication, we set the current house to the authenticaed house
-    // update the House["userIDs"] and the PFUser["HouseID"]
-    // Finally we segue
     @IBAction func logInButtonPressed(_ sender: Any) {
         
-        // Extract the proper values
         let houseID = houseIDTextField.text!
         let password = passwordTextField.text!
         
-        // Makes the query and specifies the class
         let query = PFQuery(className: "House")
-        // orders the houses where the houseID mataches the key
         query.whereKey("houseID", equalTo: houseID)
         
-        // send query through built-in Parse method
-        // Returns the an array of Houses as PFObjects
         query.findObjectsInBackground { (housesReturned: [PFObject]?, error: Error?) in
             
             print(housesReturned?.count ?? "housesReturned.count failed")
