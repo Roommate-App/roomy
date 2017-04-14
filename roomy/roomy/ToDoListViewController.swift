@@ -11,6 +11,7 @@ import UIKit
 class TodoListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var checkboxView: UIView!
     
     var todoItems: NSMutableArray = []
     
@@ -42,6 +43,12 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         cell.textLabel?.text = todoitem.itemName as String
         
+        if todoitem.completed {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+        
         return cell
     }
     
@@ -50,6 +57,13 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         let tappedItem: TodoItem = self.todoItems.object(at: indexPath.row) as! TodoItem
         tappedItem.completed = !tappedItem.completed
         tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            todoItems.removeObject(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+        }
     }
     
     /*

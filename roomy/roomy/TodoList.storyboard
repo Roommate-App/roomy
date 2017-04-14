@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sXU-Xt-pWn" id="vWk-lE-5yB">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
