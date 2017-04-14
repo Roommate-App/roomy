@@ -86,6 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func configureParse() {
         House.registerSubclass()
+        TodoItem.registerSubclass()
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

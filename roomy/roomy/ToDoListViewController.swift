@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ParseLiveQuery
 
 class TodoListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -14,6 +15,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var checkboxView: UIView!
     
     var todoItems: NSMutableArray = []
+    private var subscription: Subscription<TodoItem>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,25 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        
+        let todoItemQuery = getTodosQuery()
+        subscription = ParseLiveQuery.Client.shared
+            .subscribe(todoItemQuery)
+            .handle(Event.created)  { query, pfMessage in
+                self.tableView.reloadData()
+        }
+        
+    }
+    
+    func getTodosQuery() -> PFQuery<TodoItem> {
+        let query : PFQuery<TodoItem> = PFQuery(className: "TodoItem")
+        
+        query.whereKey("HouseID", equalTo: House._currentHouse!)
+        
+        query.order(byDescending: "createdAt")
+        query.limit = 50
+        
+        return query
     }
 
     override func didReceiveMemoryWarning() {

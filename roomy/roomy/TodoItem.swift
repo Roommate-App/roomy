@@ -11,13 +11,16 @@ import Parse
 
 class TodoItem: PFObject {
     
-    var itemName: NSString = ""
-    var completed: Bool = false
+    @NSManaged var itemName: String
+    @NSManaged var completed: Bool
+    @NSManaged var houseID: House
     
-    convenience init(name: String){
+    convenience init(name: String, house: House){
         self.init()
         
-        self.itemName = name as NSString
+        self.itemName = name
+        self.completed = false
+        self.houseID = house
     }
     
 }
