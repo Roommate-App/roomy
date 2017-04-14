@@ -34,7 +34,7 @@ class TodoAddItemViewController: UIViewController, UINavigationControllerDelegat
         if let vc = viewController as? TodoListViewController {
             if !((self.todoItemTextField.text?.isEmpty)!) {
                 self.todoItem = TodoItem(name: self.todoItemTextField.text!, house: House._currentHouse!)
-                vc.newTodoItem = self.todoItem
+//                vc.newTodoItem = self.todoItem
 
                 self.todoItem?.saveInBackground(block: { (success, error) in
                     if success {

@@ -25,13 +25,6 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         
-        let todoItemQuery = getTodosQuery()
-        subscription = ParseLiveQuery.Client.shared
-            .subscribe(todoItemQuery)
-            .handle(Event.created)  { query, todoItem in
-                self.loadTodos(query: todoItemQuery)
-                self.tableView.reloadData()
-        }
         
 //        self.tableView.reloadData()
 
@@ -41,7 +34,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     func getTodosQuery() -> PFQuery<TodoItem> {
         let query : PFQuery<TodoItem> = PFQuery(className: "TodoItem")
         
-        query.whereKey("HouseID", equalTo: House._currentHouse!)
+        query.whereKey("houseID", equalTo: House._currentHouse!)
         
         query.order(byDescending: "createdAt")
         query.limit = 50
@@ -65,6 +58,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         for todoItem in todoItems {
             self.todoItems.append(todoItem)
         }
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,7 +67,20 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        todoItems.removeAll()
+        
+        
+        let todoItemQuery = getTodosQuery()
+        subscription = ParseLiveQuery.Client.shared
+            .subscribe(todoItemQuery)
+            .handle(Event.created)  { query, todoItem in
+                self.loadTodos(query: todoItemQuery)
+                self.tableView.reloadData()
+        }
+        loadTodos(query: todoItemQuery)
         tableView.reloadData()
+        print("")
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,8 +112,21 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            
+            let todoItemToDelete = todoItems[indexPath.row]
+            
             todoItems.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            
+            todoItemToDelete.deleteInBackground(block: { (success: Bool, error: Error?) in
+                if success {
+                    print("Deleted bro")
+                } else {
+                    print("There was an error")
+                }
+            })
+            
+            
         }
     }
     
