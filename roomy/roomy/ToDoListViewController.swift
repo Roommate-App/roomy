@@ -14,7 +14,8 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var checkboxView: UIView!
     
-    var todoItems: NSMutableArray = []
+    var todoItems = [TodoItem]()
+    var newTodoItem: TodoItem?
     private var subscription: Subscription<TodoItem>!
     
     override func viewDidLoad() {
@@ -27,9 +28,13 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         let todoItemQuery = getTodosQuery()
         subscription = ParseLiveQuery.Client.shared
             .subscribe(todoItemQuery)
-            .handle(Event.created)  { query, pfMessage in
+            .handle(Event.created)  { query, todoItem in
+                self.loadTodos(query: todoItemQuery)
                 self.tableView.reloadData()
         }
+        
+//        self.tableView.reloadData()
+
         
     }
     
@@ -42,6 +47,24 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         query.limit = 50
         
         return query
+    }
+    
+    private func loadTodos(query: PFQuery<TodoItem>) {
+        query.findObjectsInBackground { parseTodos, error in
+            if let parseTodos = parseTodos {
+                self.add(todoItems: parseTodos)
+                self.tableView.reloadData()
+            } else {
+                print("Error")
+            }
+        }
+    }
+    
+    private func add(todoItems: [TodoItem] ) {
+        
+        for todoItem in todoItems {
+            self.todoItems.append(todoItem)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,7 +83,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "todo-item-cell")! as UITableViewCell
         
-        let todoitem: TodoItem = self.todoItems.object(at: indexPath.row) as! TodoItem
+        let todoitem: TodoItem = self.todoItems[indexPath.row]
         
         cell.textLabel?.text = todoitem.itemName as String
         
@@ -75,14 +98,14 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        let tappedItem: TodoItem = self.todoItems.object(at: indexPath.row) as! TodoItem
+        let tappedItem: TodoItem = self.todoItems[indexPath.row]
         tappedItem.completed = !tappedItem.completed
         tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            todoItems.removeObject(at: indexPath.row)
+            todoItems.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }
     }
