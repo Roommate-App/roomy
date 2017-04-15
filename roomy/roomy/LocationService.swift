@@ -46,7 +46,6 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
             catch let error as Error?{
                     print(error!.localizedDescription)
             }
-            let result = try? Roomy.current()?.save()
         }
     }
     
