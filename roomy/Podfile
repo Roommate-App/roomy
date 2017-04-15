@@ -12,6 +12,7 @@ target 'roomy' do
   pod 'IngeoSDK'
   pod ‘ParseLiveQuery’
   pod 'MBProgressHUD'
+  pod 'JSQMessagesViewController'
 
   # Pods for roomy
 

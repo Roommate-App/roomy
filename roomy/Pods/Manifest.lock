@@ -20,6 +20,9 @@ PODS:
   - GooglePlaces (2.2.0):
     - GoogleMaps/Base (= 2.2.0)
   - IngeoSDK (1.4.1)
+  - JSQMessagesViewController (7.3.4):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
   - MBProgressHUD (1.0.0)
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
@@ -36,6 +39,7 @@ DEPENDENCIES:
   - AFNetworking
   - GooglePlaces
   - IngeoSDK
+  - JSQMessagesViewController
   - MBProgressHUD
   - Parse
   - ParseLiveQuery
@@ -48,12 +52,14 @@ SPEC CHECKSUMS:
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
   IngeoSDK: 4d064f6559c7f81bc908528de88ae1e5eaf134b5
+  JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   ParseLiveQuery: 38fb42e4b8611ecfcb199d47e48aeaf6879f8560
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   Starscream: 3fdd5c277e57cca6b5c406d274e3f34a7c88f2ce
 
-PODFILE CHECKSUM: 7cdc00d54deb64f20a77c657dd38f07e8a2b6b07
+PODFILE CHECKSUM: 8391ff8958e33767bb7fbd4d318a238a8685d120
 
 COCOAPODS: 1.1.1
