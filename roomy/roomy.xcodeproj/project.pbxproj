@@ -23,6 +23,7 @@
 		73BF27E31E9D8C340080841D /* RoomyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BF27E21E9D8C340080841D /* RoomyCollectionViewCell.swift */; };
 		A513C1791E987ED000F2B5D2 /* MessagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513C1781E987ED000F2B5D2 /* MessagingViewController.swift */; };
 		A513C17C1E98807600F2B5D2 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513C17B1E98807600F2B5D2 /* MessageTableViewCell.swift */; };
+		A513C17E1E9C7B2B00F2B5D2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513C17D1E9C7B2B00F2B5D2 /* Message.swift */; };
 		A51574FF1E7DB15B009F93F8 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51574FE1E7DB15B009F93F8 /* UserLoginViewController.swift */; };
 		A51575011E7DB195009F93F8 /* UserSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51575001E7DB195009F93F8 /* UserSignUpViewController.swift */; };
 		A51575031E7DB1A1009F93F8 /* HouseLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51575021E7DB1A1009F93F8 /* HouseLoginViewController.swift */; };
@@ -57,6 +58,7 @@
 		795B37CFD45F9F7F799C89E1 /* Pods-roomy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roomy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-roomy/Pods-roomy.debug.xcconfig"; sourceTree = "<group>"; };
 		A513C1781E987ED000F2B5D2 /* MessagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagingViewController.swift; sourceTree = "<group>"; };
 		A513C17B1E98807600F2B5D2 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		A513C17D1E9C7B2B00F2B5D2 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A51574FE1E7DB15B009F93F8 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		A51575001E7DB195009F93F8 /* UserSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignUpViewController.swift; sourceTree = "<group>"; };
 		A51575021E7DB1A1009F93F8 /* HouseLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseLoginViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				73713BA91E9994C000EF1923 /* Roomy.swift */,
 				A5800D641E7DE3C800FB35F4 /* House.swift */,
 				73BF27E01E9D5EA10080841D /* R.swift */,
+				A513C17D1E9C7B2B00F2B5D2 /* Message.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -359,6 +362,9 @@
 				4F2C400C1E9B16E700EBC693 /* TodoListViewController.swift in Sources */,
 				A51575011E7DB195009F93F8 /* UserSignUpViewController.swift in Sources */,
 				A569780B1E778E3200BC8378 /* AppDelegate.swift in Sources */,
+
+				73BEE3A71E9478E000353853 /* RoomyCollectionViewCell.swift in Sources */,
+				A513C17E1E9C7B2B00F2B5D2 /* Message.swift in Sources */,
 				A51575071E7DB4AB009F93F8 /* HomeTimelineViewController.swift in Sources */,
 				A51575051E7DB1AA009F93F8 /* HouseSignUpViewController.swift in Sources */,
 				73BF27E31E9D8C340080841D /* RoomyCollectionViewCell.swift in Sources */,

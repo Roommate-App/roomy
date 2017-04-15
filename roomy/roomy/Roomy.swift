@@ -13,7 +13,7 @@ class Roomy: PFUser {
     
 
     var house: House?
-    
+
     convenience init(username: String, password: String, email: String) {
         self.init()
         

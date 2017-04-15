@@ -1,5 +1,6 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
 FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/AFNetworking" "$PODS_CONFIGURATION_BUILD_DIR/Bolts" "$PODS_CONFIGURATION_BUILD_DIR/Bolts-Swift" "$PODS_CONFIGURATION_BUILD_DIR/MBProgressHUD" "$PODS_CONFIGURATION_BUILD_DIR/Parse" "$PODS_CONFIGURATION_BUILD_DIR/ParseLiveQuery" "$PODS_CONFIGURATION_BUILD_DIR/ParseUI" "$PODS_CONFIGURATION_BUILD_DIR/Starscream" "${PODS_ROOT}/GoogleMaps/Base/Frameworks" "${PODS_ROOT}/GooglePlaces/Frameworks" "${PODS_ROOT}/IngeoSDK/Framework"
+
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GoogleMaps" "${PODS_ROOT}/Headers/Public/GooglePlaces" "${PODS_ROOT}/Headers/Public/IngeoSDK"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
