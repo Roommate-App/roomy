@@ -11,7 +11,8 @@ import Parse
 
 class Roomy: PFUser {
     
-
+    var profileImage: PFFile?
+    var status: String?
     var house: House?
 
     convenience init(username: String, password: String, email: String) {

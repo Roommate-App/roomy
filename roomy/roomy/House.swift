@@ -53,6 +53,8 @@ extension House {
         do {
             try house.save()
             setCurrentHouse(house: house)
+            Roomy.current()?["house"] = house
+            try Roomy.current()?.save()
             successful(true)
         }
         catch let error as Error?{

@@ -10,16 +10,8 @@ import UIKit
 import Parse
 
 class TodoItem: PFObject {
-    
-<<<<<<< HEAD
-    var itemName: NSString = ""
-    var completed: Bool = false
-    
-    convenience init(name: String){
-        self.init()
-        
-        self.itemName = name as NSString
-=======
+
+
     @NSManaged var itemName: String
     @NSManaged var completed: Bool
     @NSManaged var houseID: House
@@ -30,7 +22,6 @@ class TodoItem: PFObject {
         self.itemName = name
         self.completed = false
         self.houseID = house
->>>>>>> todo-list
     }
     
 }

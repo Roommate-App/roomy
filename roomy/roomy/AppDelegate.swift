@@ -86,11 +86,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func configureParse() {
         House.registerSubclass()
-<<<<<<< HEAD
         Message.registerSubclass()
-=======
         TodoItem.registerSubclass()
->>>>>>> todo-list
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

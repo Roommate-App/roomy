@@ -64,7 +64,6 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
-        print(location)
     }
     
     //MARK: Location Manager region monitoring functions
