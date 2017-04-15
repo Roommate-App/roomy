@@ -33,8 +33,21 @@ class TodoAddItemViewController: UIViewController, UINavigationControllerDelegat
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if let vc = viewController as? TodoListViewController {
             if !((self.todoItemTextField.text?.isEmpty)!) {
+<<<<<<< HEAD
                 self.todoItem = TodoItem(name: self.todoItemTextField.text!)
                 vc.todoItems.add(self.todoItem!)
+=======
+                self.todoItem = TodoItem(name: self.todoItemTextField.text!, house: House._currentHouse!)
+//                vc.newTodoItem = self.todoItem
+
+                self.todoItem?.saveInBackground(block: { (success, error) in
+                    if success {
+                        vc.newTodoItem = self.todoItem
+                    } else {
+                        print(error?.localizedDescription)
+                    }
+                })
+>>>>>>> todo-list
             }
         }
     }
