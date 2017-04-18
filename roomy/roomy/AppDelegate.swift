@@ -8,10 +8,9 @@
 
 import UIKit
 import Parse
-import CoreLocation
-import MapKit
 import GooglePlaces
 import ParseFacebookUtilsV4
+import UserNotifications
 
 @UIApplicationMain
 
@@ -40,6 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             })
         )
         
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            // Enable or disable features based on authorization.
+        }
         
         
         if(userExist()){

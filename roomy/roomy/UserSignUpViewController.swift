@@ -35,19 +35,19 @@ class UserSignUpViewController: UIViewController {
     @IBAction func signUpButtonPressed(_ sender: Any) {
         
         
-        PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"]) { (user: PFUser?, error: Error? ) in
-            if let user = user {
-                print("LOGGED IN")
-            }
-        }
+//        PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"]) { (user: PFUser?, error: Error? ) in
+//            if let user = user {
+//                print("LOGGED IN")
+//            }
+//        }
         
-//        
-//        Roomy.createUser(username: usernameTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, successful: { (_ successful: Bool) in
-//                print("Successful user creation: UserSignUpViewController")
-//                self.performSegue(withIdentifier: "userSignUpToHouseLogin", sender: nil)
-//        }, failure: { (_ error: Error) in
-//                print("Error creating a user: UserSignUpViewController")
-//        })
+        
+        Roomy.createUser(username: usernameTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, successful: { (_ successful: Bool) in
+                print("Successful user creation: UserSignUpViewController")
+                self.performSegue(withIdentifier: "userSignUpToHouseLogin", sender: nil)
+        }, failure: { (_ error: Error) in
+                print("Error creating a user: UserSignUpViewController")
+        })
 
     }
     

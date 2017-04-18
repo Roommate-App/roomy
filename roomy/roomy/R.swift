@@ -17,6 +17,25 @@ struct R {
             static let homeTableViewCell = "HomeTableViewCell"
             static let homeCollectionViewCell = "HomeCollectionViewCell"
         }
+        struct Storyboard {
+            static let loginAndSignUp = "Main"
+            static let tabBar = "TabBar"
+            static let messaging = "messaging"
+        }
+        struct ViewController {
+            static let tabBarViewController = "TabBarController"
+        }
+    }
+    struct TabBarController {
+        struct SelectedIndex {
+            static let messagingViewController = 1 
+        }
+    }
+    
+    struct Notifications {
+        struct Messages {
+            static let title = "Messages"
+        }
     }
 }
 

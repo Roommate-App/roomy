@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4ag-Rp-b27">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4ag-Rp-b27">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="eag-W1-UEC">
             <objects>
-                <viewController id="Wtn-Te-uSo" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessagingController" id="Wtn-Te-uSo" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sPu-yq-mgu"/>
                         <viewControllerLayoutGuide type="bottom" id="f3N-jQ-40v"/>
@@ -60,6 +60,10 @@
         <scene sceneID="7fK-Me-7QS">
             <objects>
                 <viewController id="Wbg-Qm-Xfk" customClass="MessagingViewController" customModule="roomy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tls-12-EL0"/>
+                        <viewControllerLayoutGuide type="bottom" id="p9i-Qc-Yxq"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fu4-sH-FNK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

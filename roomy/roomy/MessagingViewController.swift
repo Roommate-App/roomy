@@ -25,6 +25,8 @@ class MessagingViewController: JSQMessagesViewController {
         Initialization for the properties
      ===============================================================*/
     
+    let requestIdentifier = "SampleRequest"
+    
     // array of JSQMessage and instantiating it
     var messages = [JSQMessage]()
     
@@ -60,20 +62,36 @@ class MessagingViewController: JSQMessagesViewController {
         
         // liveQuery for Parse
         // HOW DOES THIS WORK?
+        
+        UNUserNotificationCenter.current().delegate = self
         let messageQuery = getMessageQuery()
         subscription = ParseLiveQuery.Client.shared
             .subscribe(messageQuery)
             .handle(Event.created)  { query, pfMessage in
                 // Note: DO NOT call add(message:) directly -- Parse Live Query doesn't work well with includeKey yet
                 self.loadMessages(query: self.getMessageQuery())
+                
+                let content = UNMutableNotificationContent()
+                content.title = R.Notifications.Messages.title
+                content.body = pfMessage["text"] as! String
+                content.badge = 1
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
+                UNUserNotificationCenter.current().delegate = self
+                
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
+                    
+                    print("test")
+                   
+                    
+                })
+
+                
         }
         
         // load messages
         self.loadMessages(query: self.getMessageQuery())
         
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (success: Bool, error: Error?) in
-//            
-//        }
 //        
 //        let content = UNMutableNotificationContent()
 //        content.title = "Bruh, this worked"
@@ -266,4 +284,22 @@ class MessagingViewController: JSQMessagesViewController {
     }
     */
 
+}
+
+extension MessagingViewController: UNUserNotificationCenterDelegate{
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let storyboard = UIStoryboard(name: R.Identifier.Storyboard.tabBar, bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: R.Identifier.ViewController.tabBarViewController) as! UITabBarController
+        viewController.selectedIndex = R.TabBarController.SelectedIndex.messagingViewController
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        print("Notification being triggered")
+
+        completionHandler( [.alert,.sound,.badge])
+            
+        
+    }
 }
