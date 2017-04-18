@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import JSQMessagesViewController
 import ParseLiveQuery
+import UserNotifications
 
 
 // TODO: using pfMessage senderName, not pfUserObject.username
@@ -69,6 +70,21 @@ class MessagingViewController: JSQMessagesViewController {
         
         // load messages
         self.loadMessages(query: self.getMessageQuery())
+        
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (success: Bool, error: Error?) in
+//            
+//        }
+//        
+//        let content = UNMutableNotificationContent()
+//        content.title = "Bruh, this worked"
+//        content.subtitle = "Dude, this really worked"
+//        content.body = "Did this really work?"
+//        content.badge = 1
+//        
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//        let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
+//        
+//        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
 
     }
     

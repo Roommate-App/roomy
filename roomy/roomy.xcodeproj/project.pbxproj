@@ -205,9 +205,9 @@
 				A51575041E7DB1AA009F93F8 /* HouseSignUpViewController.swift */,
 				A51575061E7DB4AB009F93F8 /* HomeTimelineViewController.swift */,
 				736DD9AE1E940541008BAA2E /* HomeViewController.swift */,
+				A513C1781E987ED000F2B5D2 /* MessagingViewController.swift */,
 				4F2C400B1E9B16E700EBC693 /* TodoListViewController.swift */,
 				4FC8B1F61E9B1E8C00109093 /* TodoAddItemViewController.swift */,
-				A513C1781E987ED000F2B5D2 /* MessagingViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
