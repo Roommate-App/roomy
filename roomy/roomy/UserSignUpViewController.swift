@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseFacebookUtilsV4
 
 
 // Take logic of signing up user to the User class
@@ -33,12 +34,20 @@ class UserSignUpViewController: UIViewController {
     // Create new PFuser and populate the fields, then sign up the user and perform segue
     @IBAction func signUpButtonPressed(_ sender: Any) {
         
-        Roomy.createUser(username: usernameTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, successful: { (_ successful: Bool) in
-                print("Successful user creation: UserSignUpViewController")
-                self.performSegue(withIdentifier: "userSignUpToHouseLogin", sender: nil)
-        }, failure: { (_ error: Error) in
-                print("Error creating a user: UserSignUpViewController")
-        })
+        
+        PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"]) { (user: PFUser?, error: Error? ) in
+            if let user = user {
+                print("LOGGED IN")
+            }
+        }
+        
+//        
+//        Roomy.createUser(username: usernameTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, successful: { (_ successful: Bool) in
+//                print("Successful user creation: UserSignUpViewController")
+//                self.performSegue(withIdentifier: "userSignUpToHouseLogin", sender: nil)
+//        }, failure: { (_ error: Error) in
+//                print("Error creating a user: UserSignUpViewController")
+//        })
 
     }
     

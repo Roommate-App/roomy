@@ -11,8 +11,7 @@ import Parse
 import CoreLocation
 import MapKit
 import GooglePlaces
-
-var _isBackground: Bool = false
+import ParseFacebookUtilsV4
 
 @UIApplicationMain
 
@@ -24,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     // First method that is called when the program runs
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        
         
         LocationService.shared.startUpdatingLocation()
         
@@ -39,6 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             })
         )
         
+        
+        
         if(userExist()){
             userHasHouse()
         } else {
@@ -52,7 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Google Places API
         GMSPlacesClient.provideAPIKey("AIzaSyCeA-ugIfZ4hA1WpRuobEFMM8GciAYy6-o")
         
-        return true
+        PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
+        
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
     }
     
     func userExist() -> Bool {
@@ -88,6 +94,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         House.registerSubclass()
         Message.registerSubclass()
         TodoItem.registerSubclass()
+    }
+    
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
