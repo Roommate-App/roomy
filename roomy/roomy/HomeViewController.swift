@@ -194,6 +194,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         reloadTableView()
     }
+    
+    @IBAction func onDirectionsHomeButtonTapped(_ sender: Any) {
+        
+        
+        //LocationService.shared.locationManager.location
+        
+        if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+            UIApplication.shared.openURL(URL(string:
+                "comgooglemaps://?center=40.765819,-73.975866&zoom=14&views=traffic")!)
+        } else {
+            print("Can't use comgooglemaps://");
+        }
+        
+        
+    }
+    
+    
+    
+    
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
