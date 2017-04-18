@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseLiveQuery
 import MBProgressHUD
+import MapKit
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -195,23 +196,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         reloadTableView()
     }
     
+    //MARK: Displays directions home in Google Maps (If available) or in Maps. 
     @IBAction func onDirectionsHomeButtonTapped(_ sender: Any) {
+        let directionsURL = URL(string: "comgooglemaps://?&daddr=\((House._currentHouse?.latitude)!),\((House._currentHouse?.longitude)!)&zoom=10")
         
-        
-        //LocationService.shared.locationManager.location
-        
-        if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
-            UIApplication.shared.openURL(URL(string:
-                "comgooglemaps://?center=40.765819,-73.975866&zoom=14&views=traffic")!)
-        } else {
-            print("Can't use comgooglemaps://");
+        UIApplication.shared.open(directionsURL!) { (success: Bool) in
+            if success {
+                
+            } else {
+                let coordinate = CLLocationCoordinate2DMake(Double((House._currentHouse?.latitude)!)!, Double((House._currentHouse?.longitude)!)!)
+                let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
+                mapItem.name = "Home"
+                mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+            }
         }
-        
-        
     }
-    
-    
-    
     
 }
 

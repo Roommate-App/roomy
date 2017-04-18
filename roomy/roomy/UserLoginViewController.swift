@@ -56,6 +56,7 @@ class UserLoginViewController: UIViewController {
                     }
                 } else {
                     print("UserLoginViewController/loginButtonPressed() Logging in Error: \(String(describing: error?.localizedDescription))")
+                    hud.hide(animated: true, afterDelay: 20.0)
                 }
             }
         }
