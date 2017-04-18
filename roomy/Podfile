@@ -14,6 +14,7 @@ target 'roomy' do
   pod 'MBProgressHUD'
   pod 'JSQMessagesViewController'
   pod 'ParseFacebookUtilsV4'
+  pod 'pop', '~> 1.0'
   
 
   # Pods for roomy

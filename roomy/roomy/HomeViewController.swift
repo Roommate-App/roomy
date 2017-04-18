@@ -12,9 +12,7 @@ import ParseLiveQuery
 import MBProgressHUD
 import MapKit
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    let locationManager = CLLocationManager()
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
     
     @IBOutlet weak var homeTableView: UITableView!
 
@@ -202,7 +200,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         PFUser.logOutInBackground { (error: Error?) in
             if error == nil {
                 House._currentHouse = nil
-                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let mainStoryboard = UIStoryboard(name: R.Identifier.Storyboard.loginAndSignUp, bundle: nil)
                 let loginViewController = mainStoryboard.instantiateViewController(withIdentifier: "UserLoginViewController") as! UserLoginViewController
                 self.present(loginViewController, animated: true, completion: nil)
             }
@@ -210,8 +208,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func onChangedStatusButtonTapped(_ sender: Any) {
+        let storyboard = UIStoryboard(name: R.Identifier.Storyboard.Status, bundle: nil)
+        let updateStatusViewController = storyboard.instantiateViewController(withIdentifier: R.Identifier.ViewController.updateStatusViewController)
         
+        updateStatusViewController.transitioningDelegate = self
+        updateStatusViewController.modalPresentationStyle = .custom
+        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+        rootViewController?.present(updateStatusViewController, animated: true, completion: nil)
     }
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PopPresentingAnimationController()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PopDismissingAnimationController()
+    }
+    
+    
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {

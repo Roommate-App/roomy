@@ -20,10 +20,12 @@ struct R {
         struct Storyboard {
             static let loginAndSignUp = "Main"
             static let tabBar = "TabBar"
-            static let messaging = "messaging"
+            static let messaging = "Messaging"
+            static let Status = "Status"
         }
         struct ViewController {
             static let tabBarViewController = "TabBarController"
+            static let updateStatusViewController = "UpdateStatusViewController"
         }
     }
     struct TabBarController {

@@ -16,6 +16,10 @@
 		731E20F31EA5B04F003F1B2E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731E20F21EA5B04F003F1B2E /* FBSDKCoreKit.framework */; };
 		731E20F51EA5B059003F1B2E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731E20F41EA5B059003F1B2E /* FBSDKLoginKit.framework */; };
 		731E20F71EA5B0BE003F1B2E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731E20F61EA5B0BE003F1B2E /* Bolts.framework */; };
+		7355325A1EA6CCE7007815A8 /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 735532591EA6CCE7007815A8 /* Status.storyboard */; };
+		7355325C1EA6CD78007815A8 /* UpdateStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355325B1EA6CD78007815A8 /* UpdateStatusViewController.swift */; };
+		7355325E1EA6CF4F007815A8 /* PopPresentingAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355325D1EA6CF4E007815A8 /* PopPresentingAnimationController.swift */; };
+		735532601EA6D10B007815A8 /* PopDismissingAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355325F1EA6D10B007815A8 /* PopDismissingAnimationController.swift */; };
 		736DD9A71E933430008BAA2E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9A61E933430008BAA2E /* Home.storyboard */; };
 		736DD9A91E9338AF008BAA2E /* Messaging.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9A81E9338AF008BAA2E /* Messaging.storyboard */; };
 		736DD9AD1E933998008BAA2E /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9AC1E933998008BAA2E /* Profile.storyboard */; };
@@ -55,6 +59,10 @@
 		731F5DC41E95D2F40004277E /* America.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = America.gpx; sourceTree = "<group>"; };
 		731F5DC51E95D2F40004277E /* GoesHome.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GoesHome.gpx; sourceTree = "<group>"; };
 		731F5DC61E95D2F40004277E /* LeavesHome.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LeavesHome.gpx; sourceTree = "<group>"; };
+		735532591EA6CCE7007815A8 /* Status.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Status.storyboard; sourceTree = "<group>"; };
+		7355325B1EA6CD78007815A8 /* UpdateStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateStatusViewController.swift; sourceTree = "<group>"; };
+		7355325D1EA6CF4E007815A8 /* PopPresentingAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopPresentingAnimationController.swift; sourceTree = "<group>"; };
+		7355325F1EA6D10B007815A8 /* PopDismissingAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDismissingAnimationController.swift; sourceTree = "<group>"; };
 		736DD9A61E933430008BAA2E /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		736DD9A81E9338AF008BAA2E /* Messaging.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messaging.storyboard; sourceTree = "<group>"; };
 		736DD9AC1E933998008BAA2E /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -109,6 +117,15 @@
 			path = "../../GPS Simulations";
 			sourceTree = "<group>";
 		};
+		735532611EA6D249007815A8 /* Animation Controllers  */ = {
+			isa = PBXGroup;
+			children = (
+				7355325D1EA6CF4E007815A8 /* PopPresentingAnimationController.swift */,
+				7355325F1EA6D10B007815A8 /* PopDismissingAnimationController.swift */,
+			);
+			name = "Animation Controllers ";
+			sourceTree = "<group>";
+		};
 		737448851E92FE06001609B0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,12 +164,14 @@
 		A51574FD1E7DB085009F93F8 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				A56978161E778E3200BC8378 /* Info.plist */,
 				A569780E1E778E3200BC8378 /* Main.storyboard */,
 				736DD9B01E9405E4008BAA2E /* TabBar.storyboard */,
 				736DD9A61E933430008BAA2E /* Home.storyboard */,
 				736DD9A81E9338AF008BAA2E /* Messaging.storyboard */,
 				4F2C40091E9B160B00EBC693 /* TodoList.storyboard */,
 				736DD9AC1E933998008BAA2E /* Profile.storyboard */,
+				735532591EA6CCE7007815A8 /* Status.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -178,6 +197,7 @@
 		A56978091E778E3200BC8378 /* roomy */ = {
 			isa = PBXGroup;
 			children = (
+				735532611EA6D249007815A8 /* Animation Controllers  */,
 				739AC4861E9B4B1800CF8540 /* Service */,
 				731F5DC31E95D2F40004277E /* GPS Simulations */,
 				737448851E92FE06001609B0 /* Views */,
@@ -187,7 +207,6 @@
 				A51574FD1E7DB085009F93F8 /* Storyboard */,
 				A56978111E778E3200BC8378 /* Assets.xcassets */,
 				A56978131E778E3200BC8378 /* LaunchScreen.storyboard */,
-				A56978161E778E3200BC8378 /* Info.plist */,
 			);
 			path = roomy;
 			sourceTree = "<group>";
@@ -205,6 +224,7 @@
 				A513C1781E987ED000F2B5D2 /* MessagingViewController.swift */,
 				4F2C400B1E9B16E700EBC693 /* TodoListViewController.swift */,
 				4FC8B1F61E9B1E8C00109093 /* TodoAddItemViewController.swift */,
+				7355325B1EA6CD78007815A8 /* UpdateStatusViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -305,6 +325,7 @@
 				A56978121E778E3200BC8378 /* Assets.xcassets in Resources */,
 				A56978101E778E3200BC8378 /* Main.storyboard in Resources */,
 				4F2C400A1E9B160B00EBC693 /* TodoList.storyboard in Resources */,
+				7355325A1EA6CCE7007815A8 /* Status.storyboard in Resources */,
 				736DD9A71E933430008BAA2E /* Home.storyboard in Resources */,
 				736DD9B11E9405E4008BAA2E /* TabBar.storyboard in Resources */,
 				736DD9A91E9338AF008BAA2E /* Messaging.storyboard in Resources */,
@@ -377,6 +398,9 @@
 				A513C17C1E98807600F2B5D2 /* MessageTableViewCell.swift in Sources */,
 				4FC8B1F71E9B1E8C00109093 /* TodoAddItemViewController.swift in Sources */,
 				739AC4851E9B49A700CF8540 /* LocationService.swift in Sources */,
+				735532601EA6D10B007815A8 /* PopDismissingAnimationController.swift in Sources */,
+				7355325E1EA6CF4F007815A8 /* PopPresentingAnimationController.swift in Sources */,
+				7355325C1EA6CD78007815A8 /* UpdateStatusViewController.swift in Sources */,
 				736DD9AF1E940541008BAA2E /* HomeViewController.swift in Sources */,
 				4F2C400C1E9B16E700EBC693 /* TodoListViewController.swift in Sources */,
 				A51575011E7DB195009F93F8 /* UserSignUpViewController.swift in Sources */,
