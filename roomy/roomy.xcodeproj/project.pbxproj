@@ -13,6 +13,10 @@
 		4FC8B1F51E9B1B1100109093 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8B1F41E9B1B1100109093 /* TodoItem.swift */; };
 		4FC8B1F71E9B1E8C00109093 /* TodoAddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8B1F61E9B1E8C00109093 /* TodoAddItemViewController.swift */; };
 		5B746737D24F0C7CB6868BEC /* Pods_roomy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E55EEA4792D224C573647F /* Pods_roomy.framework */; };
+		731E20EB1EA5A0BB003F1B2E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731E20EA1EA5A0BB003F1B2E /* Bolts.framework */; };
+		731E20ED1EA5A0CE003F1B2E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731E20EC1EA5A0CE003F1B2E /* FBSDKCoreKit.framework */; };
+		731E20EF1EA5A0E3003F1B2E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731E20EE1EA5A0E3003F1B2E /* FBSDKLoginKit.framework */; };
+		731E20F11EA5A0F4003F1B2E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731E20F01EA5A0F4003F1B2E /* FBSDKShareKit.framework */; };
 		736DD9A71E933430008BAA2E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9A61E933430008BAA2E /* Home.storyboard */; };
 		736DD9A91E9338AF008BAA2E /* Messaging.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9A81E9338AF008BAA2E /* Messaging.storyboard */; };
 		736DD9AD1E933998008BAA2E /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9AC1E933998008BAA2E /* Profile.storyboard */; };
@@ -46,6 +50,10 @@
 		4F4FB54C1E99995F003BB1B8 /* AddressValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressValidationViewController.swift; sourceTree = "<group>"; };
 		4FC8B1F41E9B1B1100109093 /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		4FC8B1F61E9B1E8C00109093 /* TodoAddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoAddItemViewController.swift; sourceTree = "<group>"; };
+		731E20EA1EA5A0BB003F1B2E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		731E20EC1EA5A0CE003F1B2E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		731E20EE1EA5A0E3003F1B2E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		731E20F01EA5A0F4003F1B2E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		731F5DC41E95D2F40004277E /* America.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = America.gpx; sourceTree = "<group>"; };
 		731F5DC51E95D2F40004277E /* GoesHome.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GoesHome.gpx; sourceTree = "<group>"; };
 		731F5DC61E95D2F40004277E /* LeavesHome.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LeavesHome.gpx; sourceTree = "<group>"; };
@@ -83,6 +91,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B746737D24F0C7CB6868BEC /* Pods_roomy.framework in Frameworks */,
+				731E20ED1EA5A0CE003F1B2E /* FBSDKCoreKit.framework in Frameworks */,
+				731E20F11EA5A0F4003F1B2E /* FBSDKShareKit.framework in Frameworks */,
+				731E20EF1EA5A0E3003F1B2E /* FBSDKLoginKit.framework in Frameworks */,
+				731E20EB1EA5A0BB003F1B2E /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +227,10 @@
 		D03157F238AB5C7072527FBA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				731E20F01EA5A0F4003F1B2E /* FBSDKShareKit.framework */,
+				731E20EE1EA5A0E3003F1B2E /* FBSDKLoginKit.framework */,
+				731E20EC1EA5A0CE003F1B2E /* FBSDKCoreKit.framework */,
+				731E20EA1EA5A0BB003F1B2E /* Bolts.framework */,
 				37E55EEA4792D224C573647F /* Pods_roomy.framework */,
 			);
 			name = Frameworks;
@@ -370,8 +386,6 @@
 				A51575011E7DB195009F93F8 /* UserSignUpViewController.swift in Sources */,
 				4FC8B1F51E9B1B1100109093 /* TodoItem.swift in Sources */,
 				A569780B1E778E3200BC8378 /* AppDelegate.swift in Sources */,
-
-				73BEE3A71E9478E000353853 /* RoomyCollectionViewCell.swift in Sources */,
 				A513C17E1E9C7B2B00F2B5D2 /* Message.swift in Sources */,
 				A51575071E7DB4AB009F93F8 /* HomeTimelineViewController.swift in Sources */,
 				A51575051E7DB1AA009F93F8 /* HouseSignUpViewController.swift in Sources */,
@@ -500,6 +514,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 34WD9C788A;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = roomy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = RyanLiszewski.roomy;
@@ -514,6 +532,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 34WD9C788A;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = roomy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = RyanLiszewski.roomy;

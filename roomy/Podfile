@@ -13,6 +13,7 @@ target 'roomy' do
   pod ‘ParseLiveQuery’
   pod 'MBProgressHUD'
   pod 'JSQMessagesViewController'
+  pod 'ParseFacebookUtils'
 
   # Pods for roomy
 
