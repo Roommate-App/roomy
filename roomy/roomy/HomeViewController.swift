@@ -55,19 +55,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         updateRoomies()
     }
     
-    //Logout button for test purposeses.
-    @IBAction func onLogoutButtonTapped(_ sender: Any) {
-        
-        PFUser.logOutInBackground { (error: Error?) in
-            if error == nil {
-                House._currentHouse = nil
-                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let loginViewController = mainStoryboard.instantiateViewController(withIdentifier: "UserLoginViewController") as! UserLoginViewController
-                self.present(loginViewController, animated: true, completion: nil)
-            }
-        }
-    }
-    
     func showProgressHud(){
         hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.mode = MBProgressHUDMode.indeterminate
@@ -211,7 +198,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
+    @IBAction func onLogoutButtonTapped(_ sender: Any) {
+        PFUser.logOutInBackground { (error: Error?) in
+            if error == nil {
+                House._currentHouse = nil
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginViewController = mainStoryboard.instantiateViewController(withIdentifier: "UserLoginViewController") as! UserLoginViewController
+                self.present(loginViewController, animated: true, completion: nil)
+            }
+        }
+    }
     
+    @IBAction func onChangedStatusButtonTapped(_ sender: Any) {
+        
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
