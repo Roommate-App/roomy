@@ -23,7 +23,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var roomies: [Roomy]? = []
     var hud = MBProgressHUD()
     
-    private var subscription: Subscription<Roomy>
+    private var subscription: Subscription<Roomy>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
