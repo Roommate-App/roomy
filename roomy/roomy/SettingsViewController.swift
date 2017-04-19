@@ -1,5 +1,5 @@
 //
-//  UpdateStatusViewController.swift
+//  SettingsViewController.swift
 //  roomy
 //
 //  Created by Ryan Liszewski on 4/18/17.
@@ -8,12 +8,10 @@
 
 import UIKit
 
-class UpdateStatusViewController: UIViewController {
+class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.layer.cornerRadius = 9.0
 
         // Do any additional setup after loading the view.
     }
@@ -24,9 +22,6 @@ class UpdateStatusViewController: UIViewController {
     }
     
 
-    @IBAction func onCloseButtonTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     /*
     // MARK: - Navigation
 

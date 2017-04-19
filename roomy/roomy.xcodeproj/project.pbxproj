@@ -20,6 +20,8 @@
 		7355325C1EA6CD78007815A8 /* UpdateStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355325B1EA6CD78007815A8 /* UpdateStatusViewController.swift */; };
 		7355325E1EA6CF4F007815A8 /* PopPresentingAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355325D1EA6CF4E007815A8 /* PopPresentingAnimationController.swift */; };
 		735532601EA6D10B007815A8 /* PopDismissingAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355325F1EA6D10B007815A8 /* PopDismissingAnimationController.swift */; };
+		735532631EA6E1EA007815A8 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 735532621EA6E1EA007815A8 /* Settings.storyboard */; };
+		735532651EA6E212007815A8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735532641EA6E212007815A8 /* SettingsViewController.swift */; };
 		736DD9A71E933430008BAA2E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9A61E933430008BAA2E /* Home.storyboard */; };
 		736DD9A91E9338AF008BAA2E /* Messaging.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9A81E9338AF008BAA2E /* Messaging.storyboard */; };
 		736DD9AD1E933998008BAA2E /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9AC1E933998008BAA2E /* Profile.storyboard */; };
@@ -63,6 +65,8 @@
 		7355325B1EA6CD78007815A8 /* UpdateStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateStatusViewController.swift; sourceTree = "<group>"; };
 		7355325D1EA6CF4E007815A8 /* PopPresentingAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopPresentingAnimationController.swift; sourceTree = "<group>"; };
 		7355325F1EA6D10B007815A8 /* PopDismissingAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDismissingAnimationController.swift; sourceTree = "<group>"; };
+		735532621EA6E1EA007815A8 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		735532641EA6E212007815A8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		736DD9A61E933430008BAA2E /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		736DD9A81E9338AF008BAA2E /* Messaging.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messaging.storyboard; sourceTree = "<group>"; };
 		736DD9AC1E933998008BAA2E /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 				4F2C40091E9B160B00EBC693 /* TodoList.storyboard */,
 				736DD9AC1E933998008BAA2E /* Profile.storyboard */,
 				735532591EA6CCE7007815A8 /* Status.storyboard */,
+				735532621EA6E1EA007815A8 /* Settings.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 				4F2C400B1E9B16E700EBC693 /* TodoListViewController.swift */,
 				4FC8B1F61E9B1E8C00109093 /* TodoAddItemViewController.swift */,
 				7355325B1EA6CD78007815A8 /* UpdateStatusViewController.swift */,
+				735532641EA6E212007815A8 /* SettingsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -329,6 +335,7 @@
 				736DD9A71E933430008BAA2E /* Home.storyboard in Resources */,
 				736DD9B11E9405E4008BAA2E /* TabBar.storyboard in Resources */,
 				736DD9A91E9338AF008BAA2E /* Messaging.storyboard in Resources */,
+				735532631EA6E1EA007815A8 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +417,7 @@
 				A51575071E7DB4AB009F93F8 /* HomeTimelineViewController.swift in Sources */,
 				A51575051E7DB1AA009F93F8 /* HouseSignUpViewController.swift in Sources */,
 				73BF27E31E9D8C340080841D /* RoomyCollectionViewCell.swift in Sources */,
+				735532651EA6E212007815A8 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

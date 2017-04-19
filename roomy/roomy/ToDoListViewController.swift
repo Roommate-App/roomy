@@ -25,10 +25,6 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         
-        
-//        self.tableView.reloadData()
-
-        
     }
     
     func getTodosQuery() -> PFQuery<TodoItem> {

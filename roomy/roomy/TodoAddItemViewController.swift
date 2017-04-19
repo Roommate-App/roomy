@@ -43,6 +43,7 @@ class TodoAddItemViewController: UIViewController, UINavigationControllerDelegat
                 self.todoItem?.saveInBackground(block: { (success, error) in
                     if success {
                         vc.newTodoItem = self.todoItem
+                        
                     } else {
                         print(error?.localizedDescription)
                     }

@@ -108,6 +108,7 @@
                                 <action selector="onLogoutButtonTapped:" destination="BOz-Qg-GJO" id="mHG-qa-BEh"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="R9i-NI-Nss"/>
                     </navigationItem>
                     <connections>
                         <outlet property="homeTableView" destination="DOK-Hm-aXe" id="vMu-gV-1WY"/>
