@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dog-SC-Iih">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dog-SC-Iih">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,41 +13,31 @@
         <scene sceneID="J2n-5E-VEZ">
             <objects>
                 <viewControllerPlaceholder storyboardName="Home" id="a7q-R0-v7P" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Din-Yb-Wb4"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="home" selectedImage="home" id="Din-Yb-Wb4"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a0q-sf-cs7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-62" y="-394"/>
+            <point key="canvasLocation" x="-75" y="-394"/>
         </scene>
         <!--Messaging-->
         <scene sceneID="dH7-e1-Txk">
             <objects>
                 <viewControllerPlaceholder storyboardName="Messaging" id="sX8-N1-YVV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="K5p-JN-zQA"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="messaging" selectedImage="messaging" id="K5p-JN-zQA"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21S-1m-u9y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-62" y="-216"/>
-        </scene>
-        <!--Profile-->
-        <scene sceneID="qju-hE-X3i">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Profile" id="4vI-XK-GpX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="1jt-nI-28G"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VhA-n3-jZT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-62" y="181"/>
+            <point key="canvasLocation" x="-62" y="-107"/>
         </scene>
         <!--TodoList-->
         <scene sceneID="1xQ-f7-F6z">
             <objects>
                 <viewControllerPlaceholder storyboardName="TodoList" id="Bgc-7C-Rds" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="dZV-JX-WFN"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="todo" selectedImage="todo" id="dZV-JX-WFN"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jmc-uK-rnb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-62" y="-13"/>
+            <point key="canvasLocation" x="-62" y="181"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Ngw-AU-acj">
@@ -61,7 +51,6 @@
                     <connections>
                         <segue destination="a7q-R0-v7P" kind="relationship" relationship="viewControllers" id="wxG-PH-Zpr"/>
                         <segue destination="sX8-N1-YVV" kind="relationship" relationship="viewControllers" id="Cmv-8G-NjK"/>
-                        <segue destination="4vI-XK-GpX" kind="relationship" relationship="viewControllers" id="hWH-DL-owr"/>
                         <segue destination="Bgc-7C-Rds" kind="relationship" relationship="viewControllers" id="hgH-HA-fZl"/>
                     </connections>
                 </tabBarController>
@@ -70,4 +59,9 @@
             <point key="canvasLocation" x="-976" y="-106"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="home" width="24" height="24"/>
+        <image name="messaging" width="24" height="24"/>
+        <image name="todo" width="24" height="24"/>
+    </resources>
 </document>

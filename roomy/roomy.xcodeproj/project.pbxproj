@@ -24,7 +24,6 @@
 		735532651EA6E212007815A8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735532641EA6E212007815A8 /* SettingsViewController.swift */; };
 		736DD9A71E933430008BAA2E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9A61E933430008BAA2E /* Home.storyboard */; };
 		736DD9A91E9338AF008BAA2E /* Messaging.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9A81E9338AF008BAA2E /* Messaging.storyboard */; };
-		736DD9AD1E933998008BAA2E /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9AC1E933998008BAA2E /* Profile.storyboard */; };
 		736DD9AF1E940541008BAA2E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736DD9AE1E940541008BAA2E /* HomeViewController.swift */; };
 		736DD9B11E9405E4008BAA2E /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9B01E9405E4008BAA2E /* TabBar.storyboard */; };
 		73713BAA1E9994C000EF1923 /* Roomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73713BA91E9994C000EF1923 /* Roomy.swift */; };
@@ -69,7 +68,6 @@
 		735532641EA6E212007815A8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		736DD9A61E933430008BAA2E /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		736DD9A81E9338AF008BAA2E /* Messaging.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messaging.storyboard; sourceTree = "<group>"; };
-		736DD9AC1E933998008BAA2E /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		736DD9AE1E940541008BAA2E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		736DD9B01E9405E4008BAA2E /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		73713BA91E9994C000EF1923 /* Roomy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roomy.swift; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 				736DD9A61E933430008BAA2E /* Home.storyboard */,
 				736DD9A81E9338AF008BAA2E /* Messaging.storyboard */,
 				4F2C40091E9B160B00EBC693 /* TodoList.storyboard */,
-				736DD9AC1E933998008BAA2E /* Profile.storyboard */,
 				735532591EA6CCE7007815A8 /* Status.storyboard */,
 				735532621EA6E1EA007815A8 /* Settings.storyboard */,
 			);
@@ -326,7 +323,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				736DD9AD1E933998008BAA2E /* Profile.storyboard in Resources */,
 				A56978151E778E3200BC8378 /* LaunchScreen.storyboard in Resources */,
 				A56978121E778E3200BC8378 /* Assets.xcassets in Resources */,
 				A56978101E778E3200BC8378 /* Main.storyboard in Resources */,
