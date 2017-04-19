@@ -122,7 +122,7 @@
         <scene sceneID="q1y-ya-Ucg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YCH-oZ-oxI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="home" id="4xT-gg-BdL"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="compass" id="4xT-gg-BdL"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CaV-dX-qKq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -139,6 +139,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="home" width="24" height="24"/>
+        <image name="compass" width="24" height="24"/>
     </resources>
 </document>
