@@ -23,7 +23,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var roomies: [Roomy]? = []
     var hud = MBProgressHUD()
     
-    private var subscription: Subscription<Roomy>!
+    private var subscription: Subscription<Roomy>
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,7 +109,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     //MARK: PARSE QUERYING TO GET ROOMIES
-    
     func getRoomyQuery() -> PFQuery<Roomy>{
     
         let query: PFQuery<Roomy> = PFQuery(className: "_User")
@@ -218,10 +217,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    
-    
-    
-    
     //MARK: Pop Custom Animation Controller
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return PopPresentingAnimationController()
@@ -230,7 +225,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return PopDismissingAnimationController()
     }
-    
     
 }
 
