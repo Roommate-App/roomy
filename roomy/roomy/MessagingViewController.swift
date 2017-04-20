@@ -13,10 +13,7 @@ import ParseLiveQuery
 import UserNotifications
 
 
-// TODO: using pfMessage senderName, not pfUserObject.username
-// TODO: fix doubble post error when sending too many meesages at one time.
 // TODO: Add avatar after the profile picture is added
-// TODO: Ability to send pictures and videos
 
 
 class MessagingViewController: JSQMessagesViewController {
@@ -62,41 +59,29 @@ class MessagingViewController: JSQMessagesViewController {
         
         // liveQuery for Parse
         // HOW DOES THIS WORK?
-        
         UNUserNotificationCenter.current().delegate = self
         let messageQuery = getMessageQuery()
         subscription = ParseLiveQuery.Client.shared
             .subscribe(messageQuery)
             .handle(Event.created)  { query, pfMessage in
-                // Note: DO NOT call add(message:) directly -- Parse Live Query doesn't work well with includeKey yet
                 self.loadMessages(query: self.getMessageQuery())
                 
-                let content = UNMutableNotificationContent()
-                content.title = R.Notifications.Messages.title
-                content.body = pfMessage["text"] as! String
-                content.badge = 1
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
-                UNUserNotificationCenter.current().delegate = self
-                
-                UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
-            })
+                if pfMessage.roomy?.objectId != self.senderId {
+                    let content = UNMutableNotificationContent()
+                    content.title = pfMessage.senderName!
+                    content.body = pfMessage["text"] as! String
+                    content.badge = 1
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                    let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
+                    UNUserNotificationCenter.current().delegate = self
+                    
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
+                    })
+                }
         }
         
         // load messages
         self.loadMessages(query: self.getMessageQuery())
-        
-//        
-//        let content = UNMutableNotificationContent()
-//        content.title = "Bruh, this worked"
-//        content.subtitle = "Dude, this really worked"
-//        content.body = "Did this really work?"
-//        content.badge = 1
-//        
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-//        let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
-//        
-//        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
 
     }
     
@@ -125,6 +110,7 @@ class MessagingViewController: JSQMessagesViewController {
         return nil
     }
     
+    // attributedTextForMessageBubbleTopLabelAt: the username of the person that sent the message
     override func collectionView(_ collectionView: JSQMessagesCollectionView?, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString? {
         let message = messages[indexPath.item]
         switch message.senderId {
@@ -139,6 +125,7 @@ class MessagingViewController: JSQMessagesViewController {
         }
     }
     
+    // heightForMessageBubbleTopLabelAt: Increases the size of the cell
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
         return 15
     }
