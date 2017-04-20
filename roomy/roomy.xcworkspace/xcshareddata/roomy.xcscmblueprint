@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9BC43B528CC86C1D46BCFC6E4DB62C03A38E0ADA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "7DEAAB82C1001A697D3A79858EB89A1719C8E64B" : 9223372036854775807,
+    "9BC43B528CC86C1D46BCFC6E4DB62C03A38E0ADA" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D264A24F-2E0D-4E0A-95AF-D15F796E882C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "7DEAAB82C1001A697D3A79858EB89A1719C8E64B" : "",
+    "9BC43B528CC86C1D46BCFC6E4DB62C03A38E0ADA" : "roomy\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "roomy",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "roomy\/roomy.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ryanliszewski\/yelp.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7DEAAB82C1001A697D3A79858EB89A1719C8E64B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Roommate-App\/roomy.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9BC43B528CC86C1D46BCFC6E4DB62C03A38E0ADA"
+    }
+  ]
+}
