@@ -131,6 +131,24 @@ class MessagingViewController: JSQMessagesViewController {
         return nil
     }
     
+    override func collectionView(_ collectionView: JSQMessagesCollectionView?, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString? {
+        let message = messages[indexPath.item]
+        switch message.senderId {
+        case senderId:
+            return nil
+        default:
+            guard let senderDisplayName = message.senderDisplayName else {
+                assertionFailure()
+                return nil
+            }
+            return NSAttributedString(string: senderDisplayName)
+        }
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
+        return 15
+    }
+    
     // numberOfItemsInSection: Total cells
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
@@ -149,6 +167,7 @@ class MessagingViewController: JSQMessagesViewController {
         }
         return cell
     }
+
     
     // Sets the outoing and incoming bubbles
     private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
