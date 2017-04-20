@@ -103,6 +103,15 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.deselectRow(at: indexPath, animated: false)
         let tappedItem: TodoItem = self.todoItems[indexPath.row]
         tappedItem.completed = !tappedItem.completed
+        
+        tappedItem.saveInBackground { (success: Bool, error: Error?) in
+            if success {
+                print("Update checked")
+            } else {
+                print("There was an error")
+            }
+        }
+        
         tableView.reloadData()
     }
     
