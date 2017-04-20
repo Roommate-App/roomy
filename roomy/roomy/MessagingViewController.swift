@@ -80,13 +80,7 @@ class MessagingViewController: JSQMessagesViewController {
                 UNUserNotificationCenter.current().delegate = self
                 
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
-                    
-                    print("test")
-                   
-                    
-                })
-
-                
+            })
         }
         
         // load messages
