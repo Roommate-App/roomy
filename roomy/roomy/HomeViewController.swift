@@ -53,6 +53,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         updateRoomies()
     }
     
+    
     func showProgressHud(){
         hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.mode = MBProgressHUDMode.indeterminate
@@ -92,9 +93,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 30))
         
-        let homeTextLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+        let homeTextLabel = UILabel(frame: CGRect(x: 20, y: 5, width: 100, height: 20))
         homeTextLabel.adjustsFontSizeToFitWidth = true
+        homeTextLabel.font = UIFont (name: "HelveticaNeue-UltraLight", size: 20)
         
+        
+        let iconImage = UIImageView(frame: CGRect(x: 0, y: 5, width: 20, height: 20))
+    
         if(section == 0){
             homeTextLabel.text = R.Header.home
         } else {
@@ -246,6 +251,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else {
             cell.roomyUserNameLabel.text = roomiesNotHome?[indexPath.row].username
         }
+        cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
+        cell.roomyPosterView.layer.cornerRadius = cell.roomyPosterView.frame.size.width / 2
+        cell.roomyPosterView.clipsToBounds = true
+        
         return cell
     }
 }

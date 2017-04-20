@@ -45,10 +45,8 @@ class HomeTimelineViewController: UIViewController, CLLocationManagerDelegate{
                 }
             })
         }
-        
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-
     }
     
     @IBAction func logoutButtonPressed(_ sender: Any) {

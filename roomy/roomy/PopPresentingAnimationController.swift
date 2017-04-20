@@ -18,7 +18,7 @@ class PopPresentingAnimationController: NSObject, UIViewControllerAnimatedTransi
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let fromView = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!.view!
-        fromView.alpha = 0.3
+        fromView.alpha = 1.0
         fromView.isUserInteractionEnabled = false
         
         let toView = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!.view!
