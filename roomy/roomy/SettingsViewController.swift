@@ -9,30 +9,32 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
+    
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    
+    let currentUser = Roomy.current()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        usernameTextField.text = currentUser?.username
+        emailTextField.text = currentUser?.email
     }
     
-    @IBAction func didTapBack(_ sender: Any) {
+    @IBAction func didTapDone(_ sender: Any) {
+        currentUser?.username = usernameTextField.text
+        if passwordTextField.text != "123456" {
+            currentUser?.password = passwordTextField.text
+        }
+        currentUser?.email = emailTextField.text
+        currentUser?.saveInBackground()
         self.dismiss(animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func didTapCancel(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
-    */
 
 }
