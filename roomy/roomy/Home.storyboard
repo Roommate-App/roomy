@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YCH-oZ-oxI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YCH-oZ-oxI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -108,7 +108,11 @@
                                 <action selector="onLogoutButtonTapped:" destination="BOz-Qg-GJO" id="mHG-qa-BEh"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="R9i-NI-Nss"/>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="R9i-NI-Nss">
+                            <connections>
+                                <segue destination="YJo-l2-RX7" kind="show" id="hgg-GD-t6b"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="homeTableView" destination="DOK-Hm-aXe" id="vMu-gV-1WY"/>
@@ -116,7 +120,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGS-RQ-bGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-812" y="1876.9115442278862"/>
+            <point key="canvasLocation" x="-983" y="1877"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="XCJ-kd-7Dk">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="YJo-l2-RX7" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TTE-Le-9yh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-369" y="1771"/>
         </scene>
         <!--Home-->
         <scene sceneID="q1y-ya-Ucg">
