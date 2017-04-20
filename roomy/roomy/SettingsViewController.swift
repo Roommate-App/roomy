@@ -20,13 +20,14 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         usernameTextField.text = currentUser?.username
-        passwordTextField.text = currentUser?.password
         emailTextField.text = currentUser?.email
     }
     
     @IBAction func didTapDone(_ sender: Any) {
         currentUser?.username = usernameTextField.text
-        currentUser?.password = passwordTextField.text
+        if passwordTextField.text != "123456" {
+            currentUser?.password = passwordTextField.text
+        }
         currentUser?.email = emailTextField.text
         currentUser?.saveInBackground()
         self.dismiss(animated: true, completion: nil)
