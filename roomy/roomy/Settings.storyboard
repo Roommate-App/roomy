@@ -63,6 +63,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XAq-E0-se9">
+                                <rect key="frame" x="16" y="372" width="116" height="116"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yro-Af-Zz1">
+                                <rect key="frame" x="16" y="343" width="100" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qt1-MU-l3L">
+                                <rect key="frame" x="16" y="372" width="116" height="116"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.33333333329999998" green="0.67450980390000004" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="didTapProfileImageView:" destination="Uee-Lr-X2g" eventType="touchUpInside" id="hVA-0v-hVP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -81,6 +100,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="Y0E-7e-lQx" id="nDY-Dm-pax"/>
                         <outlet property="passwordTextField" destination="FG7-PT-6WD" id="6F2-CJ-rDy"/>
+                        <outlet property="profileImage" destination="XAq-E0-se9" id="XVr-Vf-BRi"/>
                         <outlet property="usernameTextField" destination="kRL-2Q-Z7O" id="i6l-sz-gCd"/>
                     </connections>
                 </viewController>

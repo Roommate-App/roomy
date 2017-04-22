@@ -8,19 +8,29 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var profileImage: UIImageView!
     
     let currentUser = Roomy.current()
+    let imgPicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        imgPicker.delegate = self
+        imgPicker.allowsEditing = true
+        
         usernameTextField.text = currentUser?.username
         emailTextField.text = currentUser?.email
+    }
+    
+    @IBAction func didTapProfileImageView(_ sender: Any) {
+        imgPicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        self.present(imgPicker, animated: true, completion: nil)
     }
     
     @IBAction func didTapDone(_ sender: Any) {
