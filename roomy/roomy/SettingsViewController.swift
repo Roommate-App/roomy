@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class SettingsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -22,10 +23,26 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         super.viewDidLoad()
         
         imgPicker.delegate = self
-        imgPicker.allowsEditing = true
+        //imgPicker.allowsEditing = true
         
+        // Load existing user settings
         usernameTextField.text = currentUser?.username
         emailTextField.text = currentUser?.email
+        if let imageFile = currentUser?.value(forKey: "profile_image") as? PFFile {
+            imageFile.getDataInBackground(block: { (imgData: Data?, error: Error?) in
+                if error == nil {
+                    let userImage = UIImage(data: imgData!)
+                    self.profileImage.image = userImage
+                } else {
+                    print(error?.localizedDescription)
+                }
+            })
+        }
+        profileImage.layer.cornerRadius = 3
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
     }
     
     @IBAction func didTapProfileImageView(_ sender: Any) {
@@ -38,6 +55,9 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         // Do something with the images (based on your use case)
+        let imageData = UIImagePNGRepresentation(image)
+        let imageFile: PFFile? = PFFile(data: imageData!)!
+        currentUser?.setObject(imageFile!, forKey: "profile_image")
         self.profileImage.image = image
         
         // Dismiss UIImagePickerController to go back to your original view controller
