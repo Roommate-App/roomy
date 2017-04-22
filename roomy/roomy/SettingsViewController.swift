@@ -33,6 +33,17 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         self.present(imgPicker, animated: true, completion: nil)
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        // Get the image captured by the UIImagePickerController
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        // Do something with the images (based on your use case)
+        self.profileImage.image = image
+        
+        // Dismiss UIImagePickerController to go back to your original view controller
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func didTapDone(_ sender: Any) {
         currentUser?.username = usernameTextField.text
         if passwordTextField.text != "123456" {
