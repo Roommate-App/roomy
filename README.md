@@ -11,28 +11,28 @@ The following **required** functionality is completed:
 
 - [X] Users can sign up as a "Roomy." 
 - [X] Users can create a "House" or join an already created "House."
-- [ ] User's location is always running in the background
-- [ ] Google Map API 
-- [ ] Roomy's can see wether the other roomies are home or not home.
+- [x] User's location is always running in the background
+- [x] Google Map API 
+- [x] Roomy's can see wether the other roomies are home or not home.
 
 The following **optional** features are implemented:
 
 - [ ] Users can sign up as a "Roomy" with a Facebook or Google third party authentication.  
-- [ ] A message board.
-    - [ ] Rommies can compose a message.
+- [x] A message board.
+    - [x] Rommies can compose a message.
     - [ ] Roomy can delete and edit their messages. 
     - [ ] Customized message. 
     - [ ] Filter for customized messages. 
-- [ ] To-Do / Shopping list. 
-    - [ ] A roomy can add an to do/shopping item. 
-    - [ ] A roomy can complete a task and remove it from the list. 
-- [ ] Roomy Profile 
+- [x] To-Do / Shopping list. 
+    - [x] A roomy can add an to do/shopping item. 
+    - [x] A roomy can complete a task and remove it from the list. 
+- [x] Roomy Profile 
     - [ ] Profile Picture (Default is from Facebook/Google)
     - [ ] Real name from Facebook/Google
-    - [ ] Custom username 
+    - [x] Custom username 
     - [ ] A status message 
-    - [ ] A house to belong too. 
-    - [ ] Can leave a house and join another house. 
+    - [x] A house to belong to. 
+    - [x] Can leave a house and join another house. 
 - [ ] House Profile 
     - [ ] Profile Picture 
     - [ ] House username 
