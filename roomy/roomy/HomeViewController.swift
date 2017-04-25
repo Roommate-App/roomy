@@ -213,7 +213,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func onChangedStatusButtonTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: R.Identifier.Storyboard.Status, bundle: nil)
-        let updateStatusViewController = storyboard.instantiateViewController(withIdentifier: R.Identifier.ViewController.updateStatusViewController)
+        let updateStatusViewController = storyboard.instantiateViewController(withIdentifier: R.Identifier.ViewController.updateStatusViewController) as! UpdateStatusViewController
         
         updateStatusViewController.transitioningDelegate = self
         updateStatusViewController.modalPresentationStyle = .custom
