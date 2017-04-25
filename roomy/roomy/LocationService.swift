@@ -30,7 +30,7 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
         startUpdatingLocation()
         let title = "Home"
         let coordinate = CLLocationCoordinate2D(latitude: Double((House._currentHouse?.latitude)!)!, longitude: Double((House._currentHouse?.longitude)!)!)
-        let regionRadius = 50.0
+        let regionRadius = 100.0
         region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: title)
         locationManager.startMonitoring(for: region)
     }
@@ -70,6 +70,7 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("User is home")
         Roomy.current()?["is_home"] = true
+    
         do {
             try Roomy.current()?.save()
         } catch let error as Error? {
@@ -80,6 +81,9 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("User is not home")
         Roomy.current()?["is_home"] = false
+        Roomy.current()?.saveInBackground(block: { (success: Bool? , error: Error?) in
+            print("test")
+        })
         do {
             try Roomy.current()?.save()
         } catch let error as Error? {

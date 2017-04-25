@@ -53,7 +53,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         updateRoomies()
     }
     
-    
     func showProgressHud(){
         hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.mode = MBProgressHUDMode.indeterminate
@@ -84,7 +83,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath){
-        
         guard let tableViewCell = cell as? RoomyTableViewCell else {return}
         tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.section)
     }
