@@ -127,7 +127,11 @@ class MessagingViewController: JSQMessagesViewController {
     
     // heightForMessageBubbleTopLabelAt: Increases the size of the cell
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
-        return 15
+        let message = messages[indexPath.item]
+        if message.senderId != senderId {
+            return 15
+        }
+        return 1
     }
     
     // numberOfItemsInSection: Total cells
