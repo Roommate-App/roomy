@@ -45,7 +45,34 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         subscription = ParseLiveQuery.Client.shared
             .subscribe(todoItemQuery)
-            .handle(Event.updated)  { query, todoItem in
+            .handle(Event.deleted)  { query, todoItem in
+                self.todoItems.removeAll()
+                
+                self.loadTodos(query: todoItemQuery)
+                self.tableView.reloadData()
+        }
+        
+        subscription = ParseLiveQuery.Client.shared
+            .subscribe(todoItemQuery)
+            .handle(Event.created)  { query, todoItem in
+                self.todoItems.removeAll()
+                
+                self.loadTodos(query: todoItemQuery)
+                self.tableView.reloadData()
+        }
+        
+        subscription = ParseLiveQuery.Client.shared
+            .subscribe(todoItemQuery)
+            .handle(Event.left)  { query, todoItem in
+                self.todoItems.removeAll()
+                
+                self.loadTodos(query: todoItemQuery)
+                self.tableView.reloadData()
+        }
+        
+        subscription = ParseLiveQuery.Client.shared
+            .subscribe(todoItemQuery)
+            .handle(Event.entered)  { query, todoItem in
                 self.todoItems.removeAll()
                 
                 self.loadTodos(query: todoItemQuery)
