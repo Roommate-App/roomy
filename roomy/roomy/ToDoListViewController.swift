@@ -9,8 +9,12 @@
 import UIKit
 import ParseLiveQuery
 
-class TodoListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+
+// TODO: Update te logic so that the creating of a todo list item happens here to trigger the live query
+
+class TodoListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var checkboxView: UIView!
     
@@ -20,10 +24,33 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        
+        
+        
+        let todoItemQuery = getTodosQuery()
+        
+        
+        subscription = ParseLiveQuery.Client.shared
+            .subscribe(todoItemQuery)
+            .handle(Event.updated)  { query, todoItem in
+                self.todoItems.removeAll()
+                
+                self.loadTodos(query: todoItemQuery)
+                self.tableView.reloadData()
+        }
+        
+        subscription = ParseLiveQuery.Client.shared
+            .subscribe(todoItemQuery)
+            .handle(Event.updated)  { query, todoItem in
+                self.todoItems.removeAll()
+                
+                self.loadTodos(query: todoItemQuery)
+                self.tableView.reloadData()
+        }
         
     }
     
@@ -56,7 +83,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         tableView.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -68,12 +95,25 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         
         let todoItemQuery = getTodosQuery()
-        subscription = ParseLiveQuery.Client.shared
-            .subscribe(todoItemQuery)
-            .handle(Event.created)  { query, todoItem in
-                self.loadTodos(query: todoItemQuery)
-                self.tableView.reloadData()
-        }
+//
+//        
+//        subscription = ParseLiveQuery.Client.shared
+//            .subscribe(todoItemQuery)
+//            .handle(Event.updated)  { query, todoItem in
+//                self.todoItems.removeAll()
+//                
+//                self.loadTodos(query: todoItemQuery)
+//                self.tableView.reloadData()
+//        }
+//        
+//        subscription = ParseLiveQuery.Client.shared
+//            .subscribe(todoItemQuery)
+//            .handle(Event.updated)  { query, todoItem in
+//                self.todoItems.removeAll()
+//                
+//                self.loadTodos(query: todoItemQuery)
+//                self.tableView.reloadData()
+//        }
         loadTodos(query: todoItemQuery)
         tableView.reloadData()
         print("")
@@ -134,13 +174,13 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
