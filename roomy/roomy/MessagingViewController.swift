@@ -135,7 +135,7 @@ class MessagingViewController: JSQMessagesViewController {
         if message.senderId != senderId {
             return 15
         }
-        return 1
+        return 0
     }
     
     // numberOfItemsInSection: Total cells
