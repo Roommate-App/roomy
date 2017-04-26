@@ -13,7 +13,7 @@ import ParseLiveQuery
 import UserNotifications
 
 
-// TODO: Add avatar after the profile picture is added
+// TODO
 
 
 class MessagingViewController: JSQMessagesViewController {
@@ -49,9 +49,9 @@ class MessagingViewController: JSQMessagesViewController {
         // Bringing up the keyboard for the textField
         inputToolbar.contentView.textView.becomeFirstResponder()
         
-        // removing the avatars
-        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
-        collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
+        // The avatars
+        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.init(width: 50, height: 50)
+        collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.init(width: 50, height: 50)
         
         // Setting the senderId to the currentUser id so that we can differentiate between incoming and outgoing messages
         self.senderId = Roomy.current()?.objectId
@@ -107,7 +107,11 @@ class MessagingViewController: JSQMessagesViewController {
     
     // avatarImageDataForItemat: returns the avatar
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        return nil
+
+        let batmanAvatarImage = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "batman-avatar"), diameter: 30)
+        
+        return batmanAvatarImage
+        
     }
     
     // attributedTextForMessageBubbleTopLabelAt: the username of the person that sent the message
