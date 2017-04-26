@@ -11,6 +11,7 @@ import Parse
 import ParseLiveQuery
 import MBProgressHUD
 import MapKit
+import UserNotifications
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
     
@@ -231,7 +232,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
 }
 
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 0 {
@@ -255,4 +256,27 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         return cell
     }
+    
+    
+}
+
+extension HomeViewController: UNUserNotificationCenterDelegate{
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let storyboard = UIStoryboard(name: R.Identifier.Storyboard.tabBar, bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: R.Identifier.ViewController.tabBarViewController) as! UITabBarController
+        viewController.selectedIndex = R.TabBarController.SelectedIndex.messagingViewController
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        print("Notification being triggered")
+        
+        completionHandler( [.alert,.sound,.badge])
+        
+        
+    }
+
+    
 }
