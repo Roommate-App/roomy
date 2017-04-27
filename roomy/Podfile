@@ -18,6 +18,7 @@ target 'roomy' do
   pod 'FBSDKLoginKit' 
   pod 'IBAnimatable'
   pod ‘JVFloatLabeledTextField'
+  pod 'SkyFloatingLabelTextField', '~> 3.0'
   
 
   # Pods for roomy
