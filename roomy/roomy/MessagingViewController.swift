@@ -29,6 +29,8 @@ class MessagingViewController: JSQMessagesViewController {
     
     // WHY?
     var houseID: House?
+    var userIDs = House._currentHouse?.userIDs
+    var userAvatars = [String: UIImage]()
     
     // Sets the bubbles
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
@@ -49,13 +51,36 @@ class MessagingViewController: JSQMessagesViewController {
         // Bringing up the keyboard for the textField
         inputToolbar.contentView.textView.becomeFirstResponder()
         
-        // The avatars
-        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.init(width: 50, height: 50)
-        collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.init(width: 50, height: 50)
-        
         // Setting the senderId to the currentUser id so that we can differentiate between incoming and outgoing messages
         self.senderId = Roomy.current()?.objectId
         self.senderDisplayName = Roomy.current()?.username
+        
+        // saving the user avatars
+        let query: PFQuery<Roomy> = PFQuery(className: "_User")
+        query.whereKey("house", equalTo: House._currentHouse!)
+        
+        do {
+            let roomies = try query.findObjects()
+            for roomy in roomies {
+                if let profilePicture = roomy["profile_image"] as? PFFile {
+                    // convert image from PFFile to UIImage
+                    profilePicture.getDataInBackground(block: { (imageData: Data?, error: Error?) in
+                        if (error == nil) {
+                            let image = UIImage(data: imageData!)
+                            // key for avatar is objectId
+                            self.userAvatars[roomy.objectId!] = image
+                        } else {
+                            print("Error: \(String(describing: error?.localizedDescription))")
+                        }
+                    })
+                } else {
+                    print("No profile picture for \(String(describing: roomy.username))")
+                }
+            }
+        } catch let error as Error? {
+            print(error?.localizedDescription ?? "ERROR")
+        }
+
         
         // liveQuery for Parse
         // HOW DOES THIS WORK?
@@ -107,10 +132,17 @@ class MessagingViewController: JSQMessagesViewController {
     
     // avatarImageDataForItemat: returns the avatar
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-
-        let batmanAvatarImage = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "batman-avatar"), diameter: 30)
         
-        return batmanAvatarImage
+        let message = messages[indexPath.item]
+        
+        if let profilePicture = userAvatars[message.senderId] {
+            // convert profilePicture from UIImage to JSQMessageSomething
+            let profilePictureWorking = JSQMessagesAvatarImageFactory.avatarImage(with: profilePicture, diameter: 30)
+            return profilePictureWorking
+        } else {
+            let batmanAvatarImage = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "batman-avatar"), diameter: 30)
+            return batmanAvatarImage
+        }
         
     }
     
@@ -260,9 +292,9 @@ class MessagingViewController: JSQMessagesViewController {
         }
         
         for pfMessage in pfMessages {
-            print("pfMesssage: ")
-            print(pfMessage)
-            print()
+//            print("pfMesssage: ")
+//            print(pfMessage)
+//            print()
             add(pfMessage: pfMessage)
         }
         
