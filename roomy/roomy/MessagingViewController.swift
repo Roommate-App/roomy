@@ -224,6 +224,7 @@ class MessagingViewController: JSQMessagesViewController {
             messageObject.saveInBackground { succeeded, error in
                 if succeeded {
                     self.finishSendingMessage()
+                    JSQSystemSoundPlayer.jsq_playMessageSentSound()
                 } else {
                     print("Error")
                 }
@@ -292,9 +293,6 @@ class MessagingViewController: JSQMessagesViewController {
         }
         
         for pfMessage in pfMessages {
-//            print("pfMesssage: ")
-//            print(pfMessage)
-//            print()
             add(pfMessage: pfMessage)
         }
         
