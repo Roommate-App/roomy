@@ -19,6 +19,7 @@ target 'roomy' do
   pod 'IBAnimatable'
   pod ‘JVFloatLabeledTextField'
   pod 'SkyFloatingLabelTextField', '~> 3.0'
+  pod 'FontAwesome-iOS'
   
 
   # Pods for roomy
