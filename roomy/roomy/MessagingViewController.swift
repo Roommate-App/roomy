@@ -249,7 +249,13 @@ class MessagingViewController: JSQMessagesViewController {
         present(alertVC, animated: true, completion: nil)
     }
 
-    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let picture = info[UIImagePickerControllerEditedImage] as? UIImage
+        let video = info[UIImagePickerControllerMediaURL] as? URL
+        self.sendMessage(text: "", video: video, picture: picture)
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
     
     
     /*===============================================================
@@ -263,6 +269,8 @@ class MessagingViewController: JSQMessagesViewController {
     
     // method to send the message to Parse
     private func sendMessage(text: String, video: URL?, picture: UIImage?) {
+        
+        
         
         // creates the messageObject
         if PFUser.current() != nil {
