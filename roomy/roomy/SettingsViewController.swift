@@ -38,7 +38,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
                 }
             })
         }
-        profileImage.layer.cornerRadius = 3
+        profileImage.layer.cornerRadius = 10
     }
     
     override func viewDidAppear(_ animated: Bool) {
