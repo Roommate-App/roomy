@@ -33,6 +33,7 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - JVFloatLabeledTextField (1.1.1)
   - MBProgressHUD (1.0.0)
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - IBAnimatable
   - IngeoSDK
   - JSQMessagesViewController
+  - JVFloatLabeledTextField
   - MBProgressHUD
   - Parse
   - ParseFacebookUtilsV4
@@ -78,6 +80,7 @@ SPEC CHECKSUMS:
   IngeoSDK: 4d064f6559c7f81bc908528de88ae1e5eaf134b5
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
@@ -86,6 +89,6 @@ SPEC CHECKSUMS:
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   Starscream: 3fdd5c277e57cca6b5c406d274e3f34a7c88f2ce
 
-PODFILE CHECKSUM: b9298b62025158d1ecc5a05615142be0cc8aa68a
+PODFILE CHECKSUM: 93468abf0445d8968869cc06f05f253e90d02987
 
 COCOAPODS: 1.2.0

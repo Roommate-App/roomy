@@ -9,17 +9,18 @@
 import UIKit
 import Parse
 import MBProgressHUD
+import IBAnimatable
 
 
 class UserLoginViewController: UIViewController {
     
-    @IBOutlet weak var userNameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+
+    @IBOutlet weak var usernameTextField: AnimatableTextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userNameTextField.becomeFirstResponder()
+        usernameTextField.becomeFirstResponder()
     }
 
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -28,15 +29,17 @@ class UserLoginViewController: UIViewController {
          hud.mode = MBProgressHUDMode.indeterminate
         
         
+        
+        
         let username = userNameTextField.text!
-        let password = passwordTextField.text!
+        //let password = passwordTextField.text!
         
         if username == "" {
             print("Username field is empty")
         } else if password == "" {
             print("Password field is empty")
         } else {
-            Roomy.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
+            Roomy.logInWithUsername(inBackground: username, password: "") { (user: PFUser?, error: Error?) in
                 if user != nil {
                     if user?["house"] != nil {
                         let house = Roomy.current()?["house"] as! House
