@@ -277,6 +277,10 @@ class MessagingViewController: JSQMessagesViewController {
                     let jsqMessage: JSQMessage? = {
 
                         if let text = pfMessage["text"] as? String {
+                            
+                            if authorID != self.senderId {
+                                JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+                            }
                             return JSQMessage(senderId: authorID, senderDisplayName: authorFullName, date: pfMessage.createdAt, text: text)
                         } else {
                             return nil
