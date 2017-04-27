@@ -393,7 +393,9 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
                                         self.collectionView.reloadData()
                                     }
                                 }
-                                
+                                if authorID != self.senderId {
+                                    JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+                                }
                                 return pictureDelayedJSQMessage
                             }
                         }
