@@ -11,6 +11,7 @@ import Parse
 import JSQMessagesViewController
 import ParseLiveQuery
 import UserNotifications
+import MobileCoreServices
 
 
 // TODO
@@ -221,7 +222,35 @@ class MessagingViewController: JSQMessagesViewController {
         let bubbleImageFactory = JSQMessagesBubbleImageFactory()
         return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     }
+    
+    
+    /*===============================================================
+     Adding Photos
+     ===============================================================*/
 
+    override func didPressAccessoryButton(_ sender: UIButton!) {
+        view.endEditing(true)
+        
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let takePhotoAction = UIAlertAction(title: "Take photo", style: .default) { _ in
+            _ = Camera.shouldStartCamera(target: self, canEdit: true, frontFacing: true)
+        }
+        alertVC.addAction(takePhotoAction)
+        
+        let chooseExistingPhotoAction = UIAlertAction(title: "Choose existing photo", style: .default) { _ in
+            _ = Camera.shouldStartPhotoLibrary(target: self, mediaType: .Photo, canEdit: true)
+        }
+        alertVC.addAction(chooseExistingPhotoAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertVC.addAction(cancelAction)
+        
+        present(alertVC, animated: true, completion: nil)
+    }
+
+    
+    
     
     /*===============================================================
         Sending/Creating the message
@@ -365,5 +394,94 @@ extension MessagingViewController: UNUserNotificationCenterDelegate{
         completionHandler( [.alert,.sound,.badge])
             
         
+    }
+}
+
+
+final class Camera {
+    
+    enum MediaType {
+        case Photo, Video
+    }
+    
+    class func shouldStartCamera(target: AnyObject, canEdit: Bool, frontFacing: Bool) -> Bool {
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            return false
+        }
+        
+        let type = kUTTypeImage as String
+        let cameraUI = UIImagePickerController()
+        
+        let available = UIImagePickerController.isSourceTypeAvailable(.camera) &&
+            (UIImagePickerController.availableMediaTypes(for: .camera)?.contains(type) ?? false)
+        
+        if available {
+            cameraUI.mediaTypes = [type]
+            cameraUI.sourceType = .camera
+            
+            if frontFacing {
+                if UIImagePickerController.isCameraDeviceAvailable(.front) {
+                    cameraUI.cameraDevice = .front
+                } else if UIImagePickerController.isCameraDeviceAvailable(.rear) {
+                    cameraUI.cameraDevice = .rear
+                }
+            } else {
+                if UIImagePickerController.isCameraDeviceAvailable(.rear) {
+                    cameraUI.cameraDevice = .rear
+                } else if UIImagePickerController.isCameraDeviceAvailable(.front) {
+                    cameraUI.cameraDevice = .front
+                }
+            }
+        } else {
+            return false
+        }
+        
+        cameraUI.allowsEditing = canEdit
+        cameraUI.showsCameraControls = true
+        if let target = target as? UINavigationControllerDelegate & UIImagePickerControllerDelegate {
+            cameraUI.delegate = target
+        }
+        
+        target.present(cameraUI, animated: true, completion: nil)
+        
+        return true
+    }
+    
+    class func shouldStartPhotoLibrary(target: AnyObject, mediaType: MediaType, canEdit: Bool) -> Bool {
+        if !UIImagePickerController.isSourceTypeAvailable(.photoLibrary) &&
+            !UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+            return false
+        }
+        
+        let type: String = {
+            switch mediaType {
+            case .Photo:
+                return kUTTypeImage as String
+            case .Video:
+                return kUTTypeMovie as String
+            }
+        }()
+        let imagePicker = UIImagePickerController()
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) &&
+            (UIImagePickerController.availableMediaTypes(for: .photoLibrary)?.contains(type) ?? false) {
+            imagePicker.mediaTypes = [type]
+            imagePicker.sourceType = .photoLibrary
+        } else if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) &&
+            (UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum)?.contains(type) ?? false) {
+            imagePicker.mediaTypes = [type]
+            imagePicker.sourceType = .savedPhotosAlbum
+        } else {
+            return false
+        }
+        
+        imagePicker.allowsEditing = canEdit
+        if let target = target as? UINavigationControllerDelegate & UIImagePickerControllerDelegate {
+            imagePicker.delegate = target
+        }
+        
+        target.present(imagePicker, animated: true, completion: nil)
+        
+        return true
     }
 }
