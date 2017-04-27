@@ -164,8 +164,30 @@ class MessagingViewController: JSQMessagesViewController {
     // heightForMessageBubbleTopLabelAt: Increases the size of the cell
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
         let message = messages[indexPath.item]
-        if message.senderId != senderId {
-            return 15
+        if indexPath.item >= 1 {
+            let previousMessage = messages[indexPath.item - 1]
+            if previousMessage.senderId == message.senderId {
+                return 0
+            } else {
+                return 15
+            }
+        }
+        return 0
+    }
+    
+    // attributedTextForCellTopLabelAt: Will show the time and date every 5 texts
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
+        if indexPath.item % 5 == 0 {
+            let message = messages[indexPath.item]
+            return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: message.date)
+        }
+        return nil
+    }
+    
+    // heightForCellTopLabelAt: Increases the size of the cell
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAt indexPath: IndexPath!) -> CGFloat {
+        if indexPath.item % 5 == 0 {
+            return kJSQMessagesCollectionViewCellLabelHeightDefault
         }
         return 0
     }
