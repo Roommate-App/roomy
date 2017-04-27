@@ -17,7 +17,7 @@ import MobileCoreServices
 // TODO
 
 
-class MessagingViewController: JSQMessagesViewController {
+class MessagingViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     /*===============================================================
         Initialization for the properties
@@ -239,7 +239,12 @@ class MessagingViewController: JSQMessagesViewController {
         alertVC.addAction(takePhotoAction)
         
         let chooseExistingPhotoAction = UIAlertAction(title: "Choose existing photo", style: .default) { _ in
-            _ = Camera.shouldStartPhotoLibrary(target: self, mediaType: .Photo, canEdit: true)
+            let vc = UIImagePickerController()
+            vc.delegate = self
+            vc.allowsEditing = true
+            vc.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            
+            self.present(vc, animated: true, completion: nil)
         }
         alertVC.addAction(chooseExistingPhotoAction)
         
@@ -250,9 +255,11 @@ class MessagingViewController: JSQMessagesViewController {
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let picture = info[UIImagePickerControllerEditedImage] as? UIImage
-        let video = info[UIImagePickerControllerMediaURL] as? URL
-        self.sendMessage(text: "", video: video, picture: picture)
+        
+        print("Try again")
+        
+        let picture = info[UIImagePickerControllerOriginalImage] as? UIImage
+        self.sendMessage(text: "", video: nil, picture: picture)
         
         picker.dismiss(animated: true, completion: nil)
     }
@@ -269,8 +276,26 @@ class MessagingViewController: JSQMessagesViewController {
     
     // method to send the message to Parse
     private func sendMessage(text: String, video: URL?, picture: UIImage?) {
+        var modifiedText = text
+        var pictureFile: PFFile?
         
+        print("Test")
         
+        if let picture = picture,
+            let data = UIImageJPEGRepresentation(picture, 0.6),
+            let file = PFFile(name: "picture.jpg", data: data) {
+            
+            modifiedText += "[Picture message]"
+            pictureFile = file
+            file.saveInBackground { succeed, error in
+                
+                if succeed {
+                    print ("This worked")
+                } else {
+                    print (error?.localizedDescription ?? "error")
+                }
+            }
+        }
         
         // creates the messageObject
         if PFUser.current() != nil {
@@ -278,7 +303,11 @@ class MessagingViewController: JSQMessagesViewController {
             messageObject.roomy = Roomy.current()
             messageObject.senderName = Roomy.current()?.username
             messageObject.houseID = House._currentHouse
-            messageObject.text = text
+            messageObject.text = modifiedText
+            
+            if let pictureFile = pictureFile {
+                messageObject["picture"] = pictureFile
+            }
             
             messageObject.saveInBackground { succeeded, error in
                 if succeeded {
@@ -470,6 +499,8 @@ final class Camera {
             }
         }()
         let imagePicker = UIImagePickerController()
+        
+        print("TEST!@#")
         
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) &&
             (UIImagePickerController.availableMediaTypes(for: .photoLibrary)?.contains(type) ?? false) {
