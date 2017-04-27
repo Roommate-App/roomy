@@ -363,16 +363,42 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
                 if let authorID = pfUserObject.objectId,
                     let authorFullName = pfMessage.senderName {
                     let jsqMessage: JSQMessage? = {
-
-                        if let text = pfMessage["text"] as? String {
+                        
+                        let pictureFile = pfMessage["picture"] as? PFFile
+                        
+                        if pictureFile == nil {
                             
-                            if authorID != self.senderId {
-                                JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+                            if let text = pfMessage["text"] as? String {
+                                
+                                if authorID != self.senderId {
+                                    JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+                                }
+                                return JSQMessage(senderId: authorID, senderDisplayName: authorFullName, date: pfMessage.createdAt, text: text)
+                            } else {
+                                return nil
                             }
-                            return JSQMessage(senderId: authorID, senderDisplayName: authorFullName, date: pfMessage.createdAt, text: text)
-                        } else {
-                            return nil
                         }
+                        
+                        if let pictureFile = pictureFile {
+                            if let mediaItem = JSQPhotoMediaItem(image: nil) {
+                                mediaItem.appliesMediaViewMaskAsOutgoing = (authorID == self.senderId)
+                                let pictureDelayedJSQMessage = JSQMessage(senderId: authorID,
+                                                                          senderDisplayName: authorFullName,
+                                                                          date: pfMessage.createdAt,
+                                                                          media: mediaItem)
+                                
+                                pictureFile.getDataInBackground { imageData, error in
+                                    if let imageData = imageData, let image = UIImage(data: imageData) {
+                                        mediaItem.image = image
+                                        self.collectionView.reloadData()
+                                    }
+                                }
+                                
+                                return pictureDelayedJSQMessage
+                            }
+                        }
+
+                        return nil
                     }()
                         
                     if let jsqMessage = jsqMessage {
