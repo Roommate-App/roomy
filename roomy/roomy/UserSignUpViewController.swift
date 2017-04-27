@@ -17,16 +17,12 @@ import ParseFacebookUtilsV4
 // UserSignUpViewController: Signs up the user
 class UserSignUpViewController: UIViewController {
     
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        emailTextField.becomeFirstResponder()
-
+        
     }
 
     // signUpButtonPressed Action:
@@ -41,14 +37,15 @@ class UserSignUpViewController: UIViewController {
 //            }
 //        }
         
-        
-        Roomy.createUser(username: usernameTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, successful: { (_ successful: Bool) in
-                print("Successful user creation: UserSignUpViewController")
-                self.performSegue(withIdentifier: "userSignUpToHouseLogin", sender: nil)
-        }, failure: { (_ error: Error) in
-                print("Error creating a user: UserSignUpViewController")
-        })
-
+//        
+//        Roomy.createUser(username: usernameTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, successful: { (_ successful: Bool) in
+//                print("Successful user creation: UserSignUpViewController")
+//                self.performSegue(withIdentifier: "userSignUpToHouseLogin", sender: nil)
+//        }, failure: { (_ error: Error) in
+//                print("Error creating a user: UserSignUpViewController")
+//        })
+//
+//    }
     }
     
     override func didReceiveMemoryWarning() {

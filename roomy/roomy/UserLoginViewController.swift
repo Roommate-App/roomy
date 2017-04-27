@@ -16,6 +16,7 @@ class UserLoginViewController: UIViewController {
     
 
     @IBOutlet weak var usernameTextField: AnimatableTextField!
+    @IBOutlet weak var passwordTextField: AnimatableTextField!
     
     
     override func viewDidLoad() {
@@ -28,11 +29,8 @@ class UserLoginViewController: UIViewController {
          let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
          hud.mode = MBProgressHUDMode.indeterminate
         
-        
-        
-        
-        let username = userNameTextField.text!
-        //let password = passwordTextField.text!
+        let username = usernameTextField.text!
+        let password = passwordTextField.text!
         
         if username == "" {
             print("Username field is empty")
@@ -64,6 +62,16 @@ class UserLoginViewController: UIViewController {
             }
         }
     }
+    
+    
+    @IBAction func onRoomySignUpBottonTapped(_ sender: Any) {
+        let storyboard = UIStoryboard(name: R.Identifier.Storyboard.loginAndSignUp, bundle: nil)
+        let userSignUpViewController = storyboard.instantiateViewController(withIdentifier: R.Identifier.ViewController.UserSignUpViewController) as! UserSignUpViewController
+        
+        self.present(userSignUpViewController, animated: true, completion: nil)
+    }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

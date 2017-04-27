@@ -26,6 +26,7 @@ struct R {
         struct ViewController {
             static let tabBarViewController = "TabBarController"
             static let updateStatusViewController = "UpdateStatusViewController"
+            static let UserSignUpViewController = "UserSignUpViewController"
         }
     }
     struct TabBarController {
