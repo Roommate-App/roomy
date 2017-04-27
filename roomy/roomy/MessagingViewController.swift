@@ -19,7 +19,7 @@ import UserNotifications
 class MessagingViewController: JSQMessagesViewController {
     
     /*===============================================================
-        Initialization for the properties
+     Initialization for the properties
      ===============================================================*/
     
     let requestIdentifier = "SampleRequest"
@@ -36,10 +36,10 @@ class MessagingViewController: JSQMessagesViewController {
     
     // WHAT?
     private var subscription: Subscription<Message>!
-
+    
     
     /*===============================================================
-        viewDidLoad and viewDidAppear
+     viewDidLoad and viewDidAppear
      ===============================================================*/
     
     // viewDidLoad
@@ -60,10 +60,13 @@ class MessagingViewController: JSQMessagesViewController {
         // liveQuery for Parse
         // HOW DOES THIS WORK?
         UNUserNotificationCenter.current().delegate = self
+        
+        
         let messageQuery = getMessageQuery()
         subscription = ParseLiveQuery.Client.shared
             .subscribe(messageQuery)
             .handle(Event.created)  { query, pfMessage in
+
                 self.loadMessages(query: self.getMessageQuery())
                 
                 if pfMessage.roomy?.objectId != self.senderId {
@@ -78,19 +81,32 @@ class MessagingViewController: JSQMessagesViewController {
                     UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
                     })
                 }
+                
+//                self.loadMessages(query: self.getMessageQuery())
+//                
+//                let content = UNMutableNotificationContent()
+//                content.title = R.Notifications.Messages.title
+//                content.body = pfMessage["text"] as! String
+//                content.badge = 1
+//                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//                let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
+//                UNUserNotificationCenter.current().delegate = self
+//                
+//                UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
+//                })
         }
         
-        // load messages
         self.loadMessages(query: self.getMessageQuery())
 
     }
     
     
     /*===============================================================
-        Collection View Methods
-    ===============================================================*/
+     Collection View Methods
+     =============================================================== */
     
-    // messageDataForItemAt: returns the appropriate message based upon the row
+// messageDataForItemAt: returns the appropriate message based upon the row
+
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
     }
@@ -132,6 +148,9 @@ class MessagingViewController: JSQMessagesViewController {
             return 15
         }
         return 1
+        
+//    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
+//        return 15
     }
     
     // numberOfItemsInSection: Total cells
@@ -154,6 +173,7 @@ class MessagingViewController: JSQMessagesViewController {
     }
 
     
+    
     // Sets the outoing and incoming bubbles
     private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
         let bubbleImageFactory = JSQMessagesBubbleImageFactory()
@@ -163,10 +183,10 @@ class MessagingViewController: JSQMessagesViewController {
         let bubbleImageFactory = JSQMessagesBubbleImageFactory()
         return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     }
-
+    
     
     /*===============================================================
-        Sending/Creating the message
+     Sending/Creating the message
      ===============================================================*/
     
     // Action: When the send button is pressed
@@ -197,9 +217,9 @@ class MessagingViewController: JSQMessagesViewController {
     
     
     /*===============================================================
-        Retrieving the messages
+     Retrieving the messages
      ===============================================================*/
-
+    
     // Makes the query
     private func getMessageQuery() -> PFQuery<Message> {
         let query: PFQuery<Message> = PFQuery(className: "Message")
@@ -209,7 +229,7 @@ class MessagingViewController: JSQMessagesViewController {
         if let lastMessage = messages.last, let lastMessageDate = lastMessage.date {
             query.whereKey("createdAt", greaterThan: lastMessageDate)
         }
-    
+        
         query.order(byDescending: "createdAt")
         query.limit = 50
         
@@ -238,18 +258,18 @@ class MessagingViewController: JSQMessagesViewController {
                 if let authorID = pfUserObject.objectId,
                     let authorFullName = pfMessage.senderName {
                     let jsqMessage: JSQMessage? = {
-
+                        
                         if let text = pfMessage["text"] as? String {
                             return JSQMessage(senderId: authorID, senderDisplayName: authorFullName, date: pfMessage.createdAt, text: text)
                         } else {
                             return nil
                         }
                     }()
-                        
+                    
                     if let jsqMessage = jsqMessage {
                         self.messages.append(jsqMessage)
                     }
-                        
+                    
                     self.collectionView.reloadData()
                 }
             }
@@ -269,7 +289,7 @@ class MessagingViewController: JSQMessagesViewController {
             
         }
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -277,17 +297,17 @@ class MessagingViewController: JSQMessagesViewController {
         
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension MessagingViewController: UNUserNotificationCenterDelegate{
@@ -301,9 +321,9 @@ extension MessagingViewController: UNUserNotificationCenterDelegate{
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         print("Notification being triggered")
-
+        
         completionHandler( [.alert,.sound,.badge])
-            
+        
         
     }
 }
