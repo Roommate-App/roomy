@@ -10,26 +10,68 @@ import UIKit
 import Parse
 import MBProgressHUD
 import IBAnimatable
+import SkyFloatingLabelTextField
 
 
 class UserLoginViewController: UIViewController {
     
 
-    @IBOutlet weak var usernameTextField: AnimatableTextField!
-    @IBOutlet weak var passwordTextField: AnimatableTextField!
+    var viewOriginalYPoint: CGFloat!
     
+    @IBOutlet var roomyNameTextField: SkyFloatingLabelTextFieldWithIcon!
+    
+    @IBOutlet var passwordTextField: SkyFloatingLabelTextFieldWithIcon!
+    @IBOutlet weak var loginStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        usernameTextField.becomeFirstResponder()
+        NotificationCenter.default.addObserver(self, selector: #selector(UserLoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(UserLoginViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    
+         self.hideKeyboardWhenTappedAround()
+        viewOriginalYPoint = view.frame.origin.y
+        
     }
+    
+    
+    @IBAction func onSignInButtonTapped(_ sender: Any) {
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.mode = MBProgressHUDMode.indeterminate
+        
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                
+                UIView.animate(withDuration: 1.0, animations: {
+                    self.view.frame.origin.y -= keyboardSize.height
+                })
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                
+                UIView.animate(withDuration: 1.0, animations: {
+                    self.view.frame.origin.y = self.viewOriginalYPoint
+                })
+                
+            }
+        }
+    
+    }
+    
 
     @IBAction func loginButtonPressed(_ sender: Any) {
         
          let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
          hud.mode = MBProgressHUDMode.indeterminate
         
-        let username = usernameTextField.text!
+        let username = roomyNameTextField.text!
         let password = passwordTextField.text!
         
         if username == "" {
@@ -87,4 +129,16 @@ class UserLoginViewController: UIViewController {
     }
     */
 
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
