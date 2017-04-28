@@ -11,6 +11,7 @@ import Parse
 import ParseFacebookUtilsV4
 import SkyFloatingLabelTextField
 import FontAwesome_iOS
+import IBAnimatable
 
 
 
@@ -19,14 +20,20 @@ import FontAwesome_iOS
 
 
 // UserSignUpViewController: Signs up the user
-class UserSignUpViewController: UIViewController, UITextFieldDelegate {
+class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var viewOriginalYPoint: CGFloat!
     
-    @IBOutlet weak var addPhotoButton: UIButton!
+
     @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var roomynameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
+    
+    @IBOutlet weak var roomyPosterView: AnimatableImageView!
+    @IBOutlet weak var addPhotoButton: AnimatableButton!
+ 
+    
+    let imagePicker = UIImagePickerController()
     
     
     override func viewDidLoad() {
@@ -38,6 +45,7 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate {
         viewOriginalYPoint = view.frame.origin.y
         
         emailTextField.delegate = self
+        imagePicker.delegate = self 
     }
 
     
@@ -128,8 +136,35 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate {
                 
             }
         }
-        
     }
+  
+    @IBAction func onAddPhotoButtonTapped(_ sender: Any) {
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        self.present(imagePicker, animated: true, completion: nil)
+
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        
+        // Get the image captured by the UIImagePickerController
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        
+        
+        // Do something with the images (based on your use case)
+        let imageData = UIImagePNGRepresentation(image)
+        let imageFile: PFFile? = PFFile(data: imageData!)!
+        //currentUser?.setObject(imageFile!, forKey: "profile_image")
+        //self.profileImage.image = image
+        
+        // Dismiss UIImagePickerController to go back to your original view controller
+        
+        addPhotoButton.isHidden = true
+        self.roomyPosterView.image = image
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

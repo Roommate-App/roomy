@@ -196,10 +196,20 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="301"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftr-2S-bYD">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CY6-Wu-WIP" customClass="AnimatableImageView" customModule="IBAnimatable">
+                                        <rect key="frame" x="67" y="86" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="_maskType" value="Circle"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftr-2S-bYD" customClass="AnimatableButton" customModule="IBAnimatable">
                                         <rect key="frame" x="157" y="121" width="60" height="59"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="add-photo"/>
+                                        <connections>
+                                            <action selector="onAddPhotoButtonTapped:" destination="98o-og-XfT" eventType="touchUpInside" id="jhf-Yt-yXz"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4C-BS-3iQ" customClass="AnimatableButton" customModule="IBAnimatable">
                                         <rect key="frame" x="8" y="28" width="21" height="22"/>
@@ -339,9 +349,10 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
-                        <outlet property="addPhotoButton" destination="ftr-2S-bYD" id="PsY-vN-vYk"/>
+                        <outlet property="addPhotoButton" destination="ftr-2S-bYD" id="Vnr-B8-r8x"/>
                         <outlet property="emailTextField" destination="xzz-Ia-Nag" id="XCr-86-Wli"/>
                         <outlet property="passwordTextField" destination="2XG-n3-Lgp" id="Esw-Pl-Nd4"/>
+                        <outlet property="roomyPosterView" destination="CY6-Wu-WIP" id="0qX-z0-dyW"/>
                         <outlet property="roomynameTextField" destination="QDO-Rv-faQ" id="BTS-IH-vIX"/>
                     </connections>
                 </viewController>
