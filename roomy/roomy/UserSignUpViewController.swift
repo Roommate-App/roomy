@@ -24,17 +24,18 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     var viewOriginalYPoint: CGFloat!
     
-
+    var profileImage: PFFile!
+    
     @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var roomynameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
     
     @IBOutlet weak var roomyPosterView: AnimatableImageView!
     @IBOutlet weak var addPhotoButton: AnimatableButton!
- 
     
     let imagePicker = UIImagePickerController()
     
+    let storyb = UIStoryboard(name: "Main", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,33 +51,40 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
 
     
     @IBAction func onBecomeARoomyButtonTapped(_ sender: Any) {
+        let roomyname = roomynameTextField.text!
+        let password = passwordTextField.text!
+        let email = emailTextField.errorMessage!
         
         switch "" {
-        case roomynameTextField.text!:
+        case roomyname:
             roomynameTextField.errorMessage = "Roomy Name requried"
             fallthrough
-        case emailTextField.text!:
+        case email:
             emailTextField.errorMessage = "Email Required"
             fallthrough
-        case passwordTextField.text!:
+        case password:
             passwordTextField.errorMessage = "Password required"
-        default: break
+        default:
+            createRoomy(roomyname, password, email)
         }
-        
-        
-        Roomy.createUser(username: roomynameTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, successful: { (_ successful: Bool) in
-            print("Successful user creation: UserSignUpViewController")
-            self.performSegue(withIdentifier: "userSignUpToHouseLogin", sender: nil)
+    }
+    
+    
+    private func createRoomy(_ roomyname: String,_ password: String ,_ email: String){
+        Roomy.createUser(username: roomyname, password: password, email: email, successful: { (_ successful: Bool) in
+            if(successful){
+                self.performSegue(withIdentifier: R.Identifier.Segue.WelcomeToRoomySegue, sender: nil)
+            }
         }, failure: { (_ error: Error) in
             if(error.localizedDescription.contains("Account already exists for this email address.")){
                 self.emailTextField.errorMessage = "Email already exists"
             }
         })
+        
     }
     
     @IBAction func onBackButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        
     }
     
     
@@ -90,19 +98,6 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
      return true
     }
     
-    
-    @IBAction func signUpButtonPressed(_ sender: Any) {
-        
-        
-//        PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"]) { (user: PFUser?, error: Error? ) in
-//            if let user = user {
-//                print("LOGGED IN")
-//            }
-//        }
-        
-    }
-    
-    
     func resetTextFieldErrorMessages(){
         //Error message only resets when we set it to nil or ""
         self.emailTextField.errorMessage = ""
@@ -113,7 +108,6 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
-                
                 
                 
                 UIView.animate(withDuration: 1.0, animations: {
@@ -141,25 +135,18 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBAction func onAddPhotoButtonTapped(_ sender: Any) {
         imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
         self.present(imagePicker, animated: true, completion: nil)
-
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        
         // Get the image captured by the UIImagePickerController
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-        
-        
         // Do something with the images (based on your use case)
         let imageData = UIImagePNGRepresentation(image)
-        let imageFile: PFFile? = PFFile(data: imageData!)!
-        //currentUser?.setObject(imageFile!, forKey: "profile_image")
-        //self.profileImage.image = image
+        profileImage = PFFile(data: imageData!)!
         
         // Dismiss UIImagePickerController to go back to your original view controller
-        
         addPhotoButton.isHidden = true
         self.roomyPosterView.image = image
         dismiss(animated: true, completion: nil)

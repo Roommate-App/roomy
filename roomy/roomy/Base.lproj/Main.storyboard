@@ -196,13 +196,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="301"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CY6-Wu-WIP" customClass="AnimatableImageView" customModule="IBAnimatable">
-                                        <rect key="frame" x="67" y="86" width="240" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="_maskType" value="Circle"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftr-2S-bYD" customClass="AnimatableButton" customModule="IBAnimatable">
                                         <rect key="frame" x="157" y="121" width="60" height="59"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -211,6 +204,13 @@
                                             <action selector="onAddPhotoButtonTapped:" destination="98o-og-XfT" eventType="touchUpInside" id="jhf-Yt-yXz"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CY6-Wu-WIP" customClass="AnimatableImageView" customModule="IBAnimatable">
+                                        <rect key="frame" x="67" y="86" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="_maskType" value="Circle"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4C-BS-3iQ" customClass="AnimatableButton" customModule="IBAnimatable">
                                         <rect key="frame" x="8" y="28" width="21" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -343,6 +343,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onBecomeARoomyButtonTapped:" destination="98o-og-XfT" eventType="touchUpInside" id="c0S-x5-0eL"/>
+                                    <segue destination="0jc-6q-eeR" kind="show" identifier="WelcomeToRoomySegue" id="bdM-MK-hhK"/>
                                 </connections>
                             </button>
                         </subviews>

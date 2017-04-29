@@ -27,6 +27,10 @@ struct R {
             static let tabBarViewController = "TabBarController"
             static let updateStatusViewController = "UpdateStatusViewController"
             static let UserSignUpViewController = "UserSignUpViewController"
+            static let UserLoginInViewController = "UserLoginViewController"
+        }
+        struct Segue {
+            static let WelcomeToRoomySegue = "WelcomeToRoomySegue"
         }
     }
     struct TabBarController {

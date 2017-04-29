@@ -13,15 +13,14 @@ import IBAnimatable
 import SkyFloatingLabelTextField
 
 
-class UserLoginViewController: UIViewController {
+class UserLoginViewController: UIViewController, UITextFieldDelegate {
     
 
     var viewOriginalYPoint: CGFloat!
     
     @IBOutlet var roomyNameTextField: SkyFloatingLabelTextFieldWithIcon!
-    
     @IBOutlet var passwordTextField: SkyFloatingLabelTextFieldWithIcon!
-    @IBOutlet weak var loginStackView: UIStackView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,17 +29,75 @@ class UserLoginViewController: UIViewController {
     
          self.hideKeyboardWhenTappedAround()
         viewOriginalYPoint = view.frame.origin.y
+        roomyNameTextField.delegate = self
+        //passwordTextField.delegate = self
+        
+    }
+    
+    @IBAction func onSignInButtonTapped(_ sender: Any) {
+        
+        self.dismissKeyboard()
+        
+        let roomyname = roomyNameTextField.text!
+        let password = passwordTextField.text!
+        
+        switch "" {
+        case roomyname:
+            roomyNameTextField.errorMessage = "Roomyname requried"
+            fallthrough
+        case password:
+            passwordTextField.errorMessage = "Password requried"
+        default:
+            loginRoomy(roomyname, password)
+        }
         
     }
     
     
-    @IBAction func onSignInButtonTapped(_ sender: Any) {
+    func loginRoomy(_ roomyname: String,_ password: String){
+        
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.mode = MBProgressHUDMode.indeterminate
         
+        Roomy.logInWithUsername(inBackground: roomyname, password: password) { (user: PFUser?, error: Error?) in
+            
+            if user != nil {
+                if user?["house"] != nil {
+                    let house = Roomy.current()?["house"] as! House
+                    print(house)
+                    house.fetchInBackground(block: { (houseReturned: PFObject?, error: Error?) in
+                        if houseReturned != nil {
+                            House.setCurrentHouse(house: houseReturned! as! House)
+                            
+                            let storyboard = UIStoryboard(name: R.Identifier.Storyboard.tabBar, bundle: nil)
+                            
+                            
+                            let tabBarController = storyboard.instantiateViewController(withIdentifier: R.Identifier.ViewController.tabBarViewController)
+                            
+                            
+                            self.present(tabBarController, animated: true, completion: { 
+                                hud.hide(animated: true, afterDelay: 20.0)
+                            })
+                            
+                        
+                        } else {
+                            print("UserLoginViewController/loginButtonPressed() Retrieving House Error: \(String(describing: error?.localizedDescription))")
+                        }
+                    })
+                } else {
+                    self.performSegue(withIdentifier: "userLoginToHouseLogin", sender: nil)
+                    hud.hide(animated: true, afterDelay: 20.0)
+                }
+            } else {
+                print("UserLoginViewController/loginButtonPressed() Logging in Error: \(String(describing: error?.localizedDescription))")
+                hud.hide(animated: true, afterDelay: 20.0)
+            }
+        }
     }
-    
+
+
     func keyboardWillShow(notification: NSNotification) {
+        clearTextFieldErrorMessages()
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
                 
@@ -62,47 +119,21 @@ class UserLoginViewController: UIViewController {
                 
             }
         }
-    
     }
     
-
-    @IBAction func loginButtonPressed(_ sender: Any) {
-        
-         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-         hud.mode = MBProgressHUDMode.indeterminate
-        
-        let username = roomyNameTextField.text!
-        let password = passwordTextField.text!
-        
-        if username == "" {
-            print("Username field is empty")
-        } else if password == "" {
-            print("Password field is empty")
-        } else {
-            Roomy.logInWithUsername(inBackground: username, password: "") { (user: PFUser?, error: Error?) in
-                if user != nil {
-                    if user?["house"] != nil {
-                        let house = Roomy.current()?["house"] as! House
-                        print(house)
-                        house.fetchInBackground(block: { (houseReturned: PFObject?, error: Error?) in
-                            if houseReturned != nil {
-                                House.setCurrentHouse(house: houseReturned! as! House)
-                                self.performSegue(withIdentifier: "userLoginToTabBar", sender: nil)
-                                hud.hide(animated: true, afterDelay: 20.0)
-                            } else {
-                                print("UserLoginViewController/loginButtonPressed() Retrieving House Error: \(String(describing: error?.localizedDescription))")
-                            }
-                        })
-                    } else {
-                        self.performSegue(withIdentifier: "userLoginToHouseLogin", sender: nil)
-                        hud.hide(animated: true, afterDelay: 20.0)
-                    }
-                } else {
-                    print("UserLoginViewController/loginButtonPressed() Logging in Error: \(String(describing: error?.localizedDescription))")
-                    hud.hide(animated: true, afterDelay: 20.0)
-                }
-            }
-        }
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        clearTextFieldErrorMessages()
+    }
+    
+    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool{
+        clearTextFieldErrorMessages()
+        return true
+    }
+    
+    private func clearTextFieldErrorMessages(){
+        //Have to set error message to nil or "" when clearing it
+        roomyNameTextField.errorMessage = ""
+        passwordTextField.errorMessage = ""
     }
     
     
@@ -134,7 +165,8 @@ class UserLoginViewController: UIViewController {
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
+
+        tap.cancelsTouchesInView = true
         view.addGestureRecognizer(tap)
     }
     

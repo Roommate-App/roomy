@@ -11,7 +11,7 @@ import Parse
 
 class Roomy: PFUser {
     
-    var profileImage: PFFile?
+    //var profileImage: PFFile?
     var status: String?
     var house: House?
 
@@ -21,6 +21,7 @@ class Roomy: PFUser {
         self.username = username
         self.password = password
         self.email = email
+        //self.profileImage = profileImage
     }
 }
 
@@ -28,7 +29,6 @@ extension Roomy {
     static func createUser(username: String, password: String, email: String, successful: @escaping (Bool) -> (), failure: @escaping (Error) -> () ) {
         
         let roomy = Roomy(username: username, password: password, email: email)
-        
             do {
                 try roomy.signUp()
                 print("Successfully signed up a user: User.swift")
