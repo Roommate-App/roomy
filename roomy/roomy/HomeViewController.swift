@@ -217,7 +217,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         updateStatusViewController.transitioningDelegate = self
         updateStatusViewController.modalPresentationStyle = .custom
         let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-        rootViewController?.present(updateStatusViewController, animated: true, completion: nil)
+        self.present(updateStatusViewController, animated: true, completion: nil)
     }
     
     
