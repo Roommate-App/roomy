@@ -12,6 +12,7 @@ import ParseFacebookUtilsV4
 import SkyFloatingLabelTextField
 import FontAwesome_iOS
 import IBAnimatable
+import MBProgressHUD
 
 
 
@@ -26,7 +27,10 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     var profileImage: PFFile!
     
+
     @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
+
+  
     @IBOutlet weak var roomynameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
     
@@ -34,6 +38,7 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBOutlet weak var addPhotoButton: AnimatableButton!
     
     let imagePicker = UIImagePickerController()
+    var hud = MBProgressHUD()
     
     let storyb = UIStoryboard(name: "Main", bundle: nil)
     
@@ -48,12 +53,25 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
         emailTextField.delegate = self
         imagePicker.delegate = self 
     }
+    
+    private func displayProgressHud(){
+        hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.mode = MBProgressHUDMode.indeterminate
+
+    }
+    
+    private func hideProgressHud(){
+        hud.hide(animated: true, afterDelay: 20)
+    }
 
     
     @IBAction func onBecomeARoomyButtonTapped(_ sender: Any) {
+        displayProgressHud()
+        
         let roomyname = roomynameTextField.text!
         let password = passwordTextField.text!
-        let email = emailTextField.errorMessage!
+        let email = emailTextField.text!
+        
         
         switch "" {
         case roomyname:
@@ -67,15 +85,18 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
         default:
             createRoomy(roomyname, password, email)
         }
+        
     }
     
-    
     private func createRoomy(_ roomyname: String,_ password: String ,_ email: String){
-        Roomy.createUser(username: roomyname, password: password, email: email, successful: { (_ successful: Bool) in
+        
+        Roomy.createUser(username: roomyname, password: password, email: email, profileImage: profileImage, successful: { (_ successful: Bool) in
             if(successful){
+                self.hideProgressHud()
                 self.performSegue(withIdentifier: R.Identifier.Segue.WelcomeToRoomySegue, sender: nil)
             }
         }, failure: { (_ error: Error) in
+            self.hideProgressHud()
             if(error.localizedDescription.contains("Account already exists for this email address.")){
                 self.emailTextField.errorMessage = "Email already exists"
             }
@@ -91,7 +112,6 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
     //MARK: TEXT FIELD DELEGATE FUNCTIONS
     func textFieldDidBeginEditing(_ textField: UITextField){
         resetTextFieldErrorMessages()
-        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
