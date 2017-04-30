@@ -70,6 +70,10 @@ class UpdateStatusViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Roomy.current()?.status = statuses[indexPath.row]
+    }
+    
     
     
     

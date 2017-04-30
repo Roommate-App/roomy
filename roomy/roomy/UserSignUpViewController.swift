@@ -42,7 +42,7 @@ class UserSignUpViewController: UIViewController {
 //        }
         
         
-        Roomy.createUser(username: usernameTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, statusNumber:  0, successful: { (_ successful: Bool) in
+        Roomy.createUser(username: usernameTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, successful: { (_ successful: Bool) in
                 print("Successful user creation: UserSignUpViewController")
                 self.performSegue(withIdentifier: "userSignUpToHouseLogin", sender: nil)
         }, failure: { (_ error: Error) in
