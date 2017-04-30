@@ -265,8 +265,13 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
 
     // send a message after picture has been taken
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let picture: UIImage
         
-        let picture = info[UIImagePickerControllerOriginalImage] as? UIImage
+        if info[UIImagePickerControllerEditedImage] == nil {
+            picture = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
+        } else {
+            picture = (info[UIImagePickerControllerEditedImage] as? UIImage)!
+        }
         self.sendMessage(text: "", video: nil, picture: picture)
         
         picker.dismiss(animated: true, completion: nil)
