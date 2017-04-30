@@ -380,16 +380,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to Roomy, " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmI-rR-wPk">
-                                        <rect key="frame" x="87" y="237" width="201" height="27"/>
+                                        <rect key="frame" x="87" y="218" width="201" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ryan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jb-bj-9Yd">
-                                        <rect key="frame" x="165" y="272" width="45" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -403,6 +396,13 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="_maskType" value="Circle"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ryan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jb-bj-9Yd">
+                                        <rect key="frame" x="165" y="253" width="45" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -413,6 +413,9 @@
                                 <state key="normal" title="Create a home">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onCreatHomeButtonTapped:" destination="0jc-6q-eeR" eventType="touchUpInside" id="GSR-uN-BFF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lke-vH-FqA">
                                 <rect key="frame" x="16" y="509" width="343" height="60"/>
@@ -421,6 +424,9 @@
                                 <state key="normal" title="Join a home">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onJoinHomeButtonTapped:" destination="0jc-6q-eeR" eventType="touchUpInside" id="ZRL-Mi-zSh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctf-Pj-FFV">
                                 <rect key="frame" x="84" y="617" width="206" height="30"/>
@@ -429,10 +435,18 @@
                                 <state key="normal" title="Made a mistake? Log out here">
                                     <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onLogoutButtonTapped:" destination="0jc-6q-eeR" eventType="touchUpInside" id="d19-9l-FkF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="onJoinHomeButtonTapped" destination="lke-vH-FqA" id="2nb-sI-pRv"/>
+                        <outlet property="profilePosterView" destination="f0Y-Un-1oK" id="Ncv-wB-6Tq"/>
+                        <outlet property="roomynameLabel" destination="2Jb-bj-9Yd" id="e8x-ch-CjU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVk-mU-sVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -441,7 +455,7 @@
         <!--House Login View Controller-->
         <scene sceneID="xah-U3-b63">
             <objects>
-                <viewController id="rYi-Ot-ksA" customClass="HouseLoginViewController" customModule="roomy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HouseLoginViewController" id="rYi-Ot-ksA" customClass="HouseLoginViewController" customModule="roomy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WHc-DY-Cox"/>
                         <viewControllerLayoutGuide type="bottom" id="9Cc-zC-Uxj"/>
@@ -563,7 +577,7 @@
         <!--House Sign Up View Controller-->
         <scene sceneID="CEo-ER-bpb">
             <objects>
-                <viewController id="Ehf-VX-Df0" customClass="HouseSignUpViewController" customModule="roomy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreatHouseViewController" id="Ehf-VX-Df0" customClass="HouseSignUpViewController" customModule="roomy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NLp-aO-5cu"/>
                         <viewControllerLayoutGuide type="bottom" id="PWP-3K-Zda"/>

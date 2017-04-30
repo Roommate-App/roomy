@@ -28,6 +28,8 @@ struct R {
             static let updateStatusViewController = "UpdateStatusViewController"
             static let UserSignUpViewController = "UserSignUpViewController"
             static let UserLoginInViewController = "UserLoginViewController"
+            static let HouseLoginViewController = "HouseLoginViewController"
+            static let CreatHouseViewController = "CreatHouseViewController"
         }
         struct Segue {
             static let WelcomeToRoomySegue = "WelcomeToRoomySegue"
