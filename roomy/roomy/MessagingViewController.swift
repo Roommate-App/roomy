@@ -19,6 +19,8 @@ import MobileCoreServices
 // Joker somehow got into the batcave is the story
 // to-do list (kick joker out)
 // Make password private
+// Can't create new house
+// Fix notifications for yourself
 
 class MessagingViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -189,7 +191,7 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
                 return 15
             }
         }
-        return 0
+        return 15
     }
     
     // attributedTextForCellTopLabelAt: Will show the time and date every 5 texts
