@@ -21,10 +21,20 @@ class WelcomeRoomyViewController: UIViewController {
         super.viewDidLoad()
 
         roomynameLabel.text = Roomy.current()?.username
+        setRoomyWelcomeImage()
         
         // Do any additional setup after loading the view.
     }
-
+    
+    private func setRoomyWelcomeImage(){
+        let roomy = Roomy.current()
+        roomy?.profileImage?.getDataInBackground(block: { (image: Data?, error: Error?) in
+            if error == nil {
+                self.profilePosterView.image = UIImage(data: image!)
+            }
+        })
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

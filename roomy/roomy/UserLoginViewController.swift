@@ -27,7 +27,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(UserLoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(UserLoginViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     
-         self.hideKeyboardWhenTappedAround()
+        self.hideKeyboardWhenTappedAround()
         viewOriginalYPoint = view.frame.origin.y
         roomyNameTextField.delegate = self
         //passwordTextField.delegate = self
@@ -85,7 +85,11 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
                         }
                     })
                 } else {
-                    self.performSegue(withIdentifier: "userLoginToHouseLogin", sender: nil)
+                    
+                    let storyBoard = UIStoryboard(name: R.Identifier.Storyboard.loginAndSignUp, bundle: nil)
+                    
+                    let houseSignInViewController = storyboard?.instantiateViewController(withIdentifier: R.Identifier.ViewController.HouseLoginViewController) as! HouseLoginViewController
+                    self.present(houseSignInViewController, animated: true, completion: nil)
                     hud.hide(animated: true, afterDelay: 20.0)
                 }
             } else {
