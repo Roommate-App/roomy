@@ -33,6 +33,7 @@ struct R {
         }
         struct Segue {
             static let WelcomeToRoomySegue = "WelcomeToRoomySegue"
+            static let TabBarController = "TabBarControllerSegue"
         }
     }
     struct TabBarController {

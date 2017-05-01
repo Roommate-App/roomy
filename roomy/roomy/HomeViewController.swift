@@ -39,6 +39,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         addRoomiesToHome()
         let roomyQuery = getRoomyQuery()
         subscription = ParseLiveQuery.Client.shared.subscribe(roomyQuery).handle(Event.updated) { (query, roomy) in
+            
+            print("test")
             self.roomyChangedHomeStatus(roomy: roomy)
         }
     }
@@ -62,7 +64,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func reloadTableView(){
         hud.hide(animated: true, afterDelay: 1)
-        homeTableView.reloadData()
+        homeTableView.
     }
     
     func hideProgressHud(){
@@ -245,8 +247,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifier.Cell.homeCollectionViewCell, for: indexPath) as! RoomyCollectionViewCell
         
+        print(collectionView.tag)
         if(collectionView.tag == 0) {
             cell.roomyUserNameLabel.text = roomiesHome?[indexPath.row].username
+            
         } else {
             cell.roomyUserNameLabel.text = roomiesNotHome?[indexPath.row].username
         }

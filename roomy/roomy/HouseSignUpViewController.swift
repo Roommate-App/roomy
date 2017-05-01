@@ -66,22 +66,25 @@ class HouseSignUpViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     func createHouse(_ housename: String,_ address: String, _ password: String){
         House.createHouse(address: address, houseID: housename, password: password, userIDs: [Roomy.current()!], latitude: latitude!, longitude: longitude!,  successful:  { (_ successful: Bool) in
-            print("Successfully created house: in HouseSignUp")
-            self.performSegue(withIdentifier: "houseSignUpToTabBar", sender: nil)
+            
+            self.performSegue(withIdentifier: R.Identifier.Segue.TabBarController, sender: nil)
         }, failure: { (_ error: Error) in
             print("Error creating house: in HouseSignUp")
         })
         
     }
     
-    @IBAction func onAddressTextLabelTapped(_ sender: Any) {
-        present(autocompleteController, animated: true, completion: nil)
+    @IBAction func onAddressTextLabelTapped(_ sender: Any)  {
+       
     }
     
     @IBAction func onAddHousePhotoButtonTapped(_ sender: Any) {
         imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
         self.present(imagePicker, animated: true, completion: nil)
         
+    }
+    @IBAction func onAddressButtonTouched(_ sender: Any) {
+        present(autocompleteController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

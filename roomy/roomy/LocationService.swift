@@ -30,7 +30,7 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
         startUpdatingLocation()
         let title = "Home"
         let coordinate = CLLocationCoordinate2D(latitude: Double((House._currentHouse?.latitude)!)!, longitude: Double((House._currentHouse?.longitude)!)!)
-        let regionRadius = 100.0
+        let regionRadius = 300.0
         region = CLCircularRegion(center: coordinate, radius: regionRadius, identifier: title)
         locationManager.startMonitoring(for: region)
     }
@@ -64,6 +64,7 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
+        print(location)
     }
     
     //MARK: Location Manager region monitoring functions
@@ -71,11 +72,14 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
         print("User is home")
         Roomy.current()?["is_home"] = true
     
-        do {
-            try Roomy.current()?.save()
-        } catch let error as Error? {
+        Roomy.current()?.saveInBackground(block: { (success: Bool?, error: Error?) in
             
-        }
+        })
+//        do {
+//            try Roomy.current()?.save()
+//        } catch let error as Error? {
+//            
+//        }
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
@@ -84,10 +88,10 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
         Roomy.current()?.saveInBackground(block: { (success: Bool? , error: Error?) in
             print("test")
         })
-        do {
-            try Roomy.current()?.save()
-        } catch let error as Error? {
-            
-        }
+//        do {
+//            try Roomy.current()?.save()
+//        } catch let error as Error? {
+//            
+//        }
     }
 }

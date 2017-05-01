@@ -50,9 +50,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         default:
             loginRoomy(roomyname, password)
         }
-        
     }
-    
     
     func loginRoomy(_ roomyname: String,_ password: String){
         
@@ -79,7 +77,6 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
                                 hud.hide(animated: true, afterDelay: 20.0)
                             })
                             
-                        
                         } else {
                             print("UserLoginViewController/loginButtonPressed() Retrieving House Error: \(String(describing: error?.localizedDescription))")
                         }
@@ -88,7 +85,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
                     
                     let storyBoard = UIStoryboard(name: R.Identifier.Storyboard.loginAndSignUp, bundle: nil)
                     
-                    let houseSignInViewController = storyboard?.instantiateViewController(withIdentifier: R.Identifier.ViewController.HouseLoginViewController) as! HouseLoginViewController
+                    let houseSignInViewController = storyBoard.instantiateViewController(withIdentifier: R.Identifier.ViewController.HouseLoginViewController) as! HouseLoginViewController
                     self.present(houseSignInViewController, animated: true, completion: nil)
                     hud.hide(animated: true, afterDelay: 20.0)
                 }
