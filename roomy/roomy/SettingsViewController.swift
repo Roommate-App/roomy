@@ -28,6 +28,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         // Load existing user settings
         usernameTextField.text = currentUser?.username
         emailTextField.text = currentUser?.email
+        
+        
         if let imageFile = currentUser?.value(forKey: "profile_image") as? PFFile {
             imageFile.getDataInBackground(block: { (imgData: Data?, error: Error?) in
                 if error == nil {

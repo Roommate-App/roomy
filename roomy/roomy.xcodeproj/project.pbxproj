@@ -28,6 +28,7 @@
 		736DD9AF1E940541008BAA2E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736DD9AE1E940541008BAA2E /* HomeViewController.swift */; };
 		736DD9B11E9405E4008BAA2E /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736DD9B01E9405E4008BAA2E /* TabBar.storyboard */; };
 		73713BAA1E9994C000EF1923 /* Roomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73713BA91E9994C000EF1923 /* Roomy.swift */; };
+		738B75561EB682EB007ACFAD /* WelcomeRoomyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738B75551EB682EB007ACFAD /* WelcomeRoomyViewController.swift */; };
 		739AC4851E9B49A700CF8540 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739AC4841E9B49A700CF8540 /* LocationService.swift */; };
 		73BF27DD1E9D51DE0080841D /* RoomyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BF27DC1E9D51DE0080841D /* RoomyTableViewCell.swift */; };
 		73BF27E11E9D5EA10080841D /* R.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BF27E01E9D5EA10080841D /* R.swift */; };
@@ -73,6 +74,7 @@
 		736DD9AE1E940541008BAA2E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		736DD9B01E9405E4008BAA2E /* TabBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		73713BA91E9994C000EF1923 /* Roomy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roomy.swift; sourceTree = "<group>"; };
+		738B75551EB682EB007ACFAD /* WelcomeRoomyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeRoomyViewController.swift; sourceTree = "<group>"; };
 		739AC4841E9B49A700CF8540 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		73BF27DC1E9D51DE0080841D /* RoomyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomyTableViewCell.swift; sourceTree = "<group>"; };
 		73BF27E01E9D5EA10080841D /* R.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				4FC8B1F61E9B1E8C00109093 /* TodoAddItemViewController.swift */,
 				7355325B1EA6CD78007815A8 /* UpdateStatusViewController.swift */,
 				735532641EA6E212007815A8 /* SettingsViewController.swift */,
+				738B75551EB682EB007ACFAD /* WelcomeRoomyViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				A51575051E7DB1AA009F93F8 /* HouseSignUpViewController.swift in Sources */,
 				73BF27E31E9D8C340080841D /* RoomyCollectionViewCell.swift in Sources */,
 				735532651EA6E212007815A8 /* SettingsViewController.swift in Sources */,
+				738B75561EB682EB007ACFAD /* WelcomeRoomyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

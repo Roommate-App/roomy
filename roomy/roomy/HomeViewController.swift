@@ -84,7 +84,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath){
-        guard let tableViewCell = cell as? RoomyTableViewCell else {return}
+        guard let tableViewCell = cell as? RoomyTableViewCell
+            else {
+            print("test")
+            return
+        }
         tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.section)
     }
     
@@ -140,7 +144,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         hideProgressHud()
-        print(roomiesNotHome!.count)
         self.homeTableView.reloadData()
     }
     
@@ -245,9 +248,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifier.Cell.homeCollectionViewCell, for: indexPath) as! RoomyCollectionViewCell
         
+        print(collectionView.tag)
         if(collectionView.tag == 0) {
             cell.roomyUserNameLabel.text = roomiesHome?[indexPath.row].username
+
+   
             cell.roomyStatusMessageLabel.text = roomiesHome?[indexPath.row].value(forKey: "status_message") as? String
+
         } else {
             cell.roomyUserNameLabel.text = roomiesNotHome?[indexPath.row].username
             cell.roomyStatusMessageLabel.text = roomiesNotHome?[indexPath.row].value(forKey: "status_message") as? String
