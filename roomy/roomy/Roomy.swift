@@ -16,9 +16,7 @@ class Roomy: PFUser {
     var house: House?
 
 
-    convenience init(username: String, password: String, email: String, profileImage: PFFile) {
-
-    convenience init(username: String, password: String, email: String, status: String?) {
+    convenience init(username: String, password: String, email: String, profileImage: PFFile, status: String) {
 
         self.init()
         
@@ -35,15 +33,18 @@ class Roomy: PFUser {
 
 extension Roomy {
 
-    static func createUser(username: String, password: String, email: String, profileImage: PFFile, successful: @escaping (Bool) -> (), failure: @escaping (Error) -> () ) {
 
-    static func createUser(username: String, password: String, email: String, status: String, successful: @escaping (Bool) -> (), failure: @escaping (Error) -> () ) {
+        static func createUser(username: String, password: String, email: String,profileImage: PFFile, status: String, successful: @escaping (Bool) -> (), failure: @escaping (Error) -> () ) {
         
-        let roomy = Roomy(username: username, password: password, email: email, status: status)
+        let roomy = Roomy(username: username, password: password, email: email,profileImage: profileImage, status: status)
         
-        let roomy = Roomy(username: username, password: password, email: email, profileImage: profileImage)
             do {
                 try roomy.signUp()
+                roomy.setObject(profileImage, forKey: "profile_image")
+                roomy.setObject(status, forKey: "status")
+                roomy.saveInBackground(block: { (successful: Bool?, error: Error?) in
+                    
+                })
                 
                 print("Successfully signed up a user: User.swift")
                 successful(true)

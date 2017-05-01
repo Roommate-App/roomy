@@ -50,6 +50,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        print("test")
         showProgressHud()
         updateRoomies()
     }
@@ -158,7 +159,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func checkIfRoomyIsHome(roomy: Roomy) -> Bool{
-        return roomy["is_home"] as! Bool
+        
+        
+        return roomy["is_home"] as? Bool ?? false
     }
     
     func updateRoomies(){
@@ -248,19 +251,37 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifier.Cell.homeCollectionViewCell, for: indexPath) as! RoomyCollectionViewCell
         
-        print(collectionView.tag)
         if(collectionView.tag == 0) {
-            cell.roomyUserNameLabel.text = roomiesHome?[indexPath.row].username
-
-   
-            cell.roomyStatusMessageLabel.text = roomiesHome?[indexPath.row].value(forKey: "status_message") as? String
-
+            
+            let roomy = roomiesHome?[indexPath.row]
+            
+            cell.roomyUserNameLabel.text = roomy?.username
+            cell.roomyStatusMessageLabel.text = roomy?.status
+            
+            roomy?.profileImage?.getDataInBackground(block: { (image: Data?, error: Error?) in
+                if error == nil {
+                    cell.roomyPosterView.image = UIImage(data: image!)
+                } else {
+                    cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
+                }
+            })
+            
         } else {
-            cell.roomyUserNameLabel.text = roomiesNotHome?[indexPath.row].username
-            cell.roomyStatusMessageLabel.text = roomiesNotHome?[indexPath.row].value(forKey: "status_message") as? String
-
+            
+            let roomy = roomiesNotHome?[indexPath.row]
+            
+            cell.roomyUserNameLabel.text = roomy?.username
+            cell.roomyStatusMessageLabel.text = roomy?.status
+            
+            roomy?.profileImage?.getDataInBackground(block: { (image: Data?, error: Error?) in
+                if error == nil {
+                    cell.roomyPosterView.image = UIImage(data: image!)
+                } else {
+                     cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
+                }
+            })
         }
-        cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
+       
         cell.roomyPosterView.layer.cornerRadius = cell.roomyPosterView.frame.size.width / 2
         cell.roomyPosterView.clipsToBounds = true
         
