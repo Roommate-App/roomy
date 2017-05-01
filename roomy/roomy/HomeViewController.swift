@@ -247,8 +247,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         if(collectionView.tag == 0) {
             cell.roomyUserNameLabel.text = roomiesHome?[indexPath.row].username
+            cell.roomyStatusMessageLabel.text = roomiesHome?[indexPath.row].value(forKey: "status_message") as? String
         } else {
             cell.roomyUserNameLabel.text = roomiesNotHome?[indexPath.row].username
+            cell.roomyStatusMessageLabel.text = roomiesNotHome?[indexPath.row].value(forKey: "status_message") as? String
+
         }
         cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
         cell.roomyPosterView.layer.cornerRadius = cell.roomyPosterView.frame.size.width / 2

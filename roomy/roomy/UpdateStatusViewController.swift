@@ -72,6 +72,9 @@ class UpdateStatusViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Roomy.current()?.status = statuses[indexPath.row]
+        
+        Roomy.current()?.setObject(Roomy.current()?.status!, forKey: "status_message")
+
         Roomy.current()?.saveInBackground(block: { (success, error) in
             if success {
                 print("Successfully updated status")
