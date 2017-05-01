@@ -19,9 +19,7 @@ class UpdateStatusViewController: UIViewController, UITableViewDelegate, UITable
                                "🌇Need to wake up early.",
                                "🎉Having some people over."]
     
-    
-    
-    
+
     @IBOutlet weak var statusTableView: UITableView!
     
 
@@ -54,11 +52,9 @@ class UpdateStatusViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return statuses.count
     }
-    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

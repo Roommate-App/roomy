@@ -21,6 +21,12 @@ class WelcomeRoomyViewController: UIViewController {
         super.viewDidLoad()
 
         roomynameLabel.text = Roomy.current()?.username
+        let currentRoomy = Roomy.current()
+        //currentRoomy?.setObject(currentRoomy?.profileImage, forKey: "profile_image")
+        //currentRoomy?.setObject(status, forKey: "status")
+        currentRoomy?["profile_image"] = currentRoomy?.profileImage
+        currentRoomy?.saveInBackground()
+
         setRoomyWelcomeImage()
         
         // Do any additional setup after loading the view.

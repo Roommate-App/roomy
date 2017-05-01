@@ -40,11 +40,7 @@ extension Roomy {
         
             do {
                 try roomy.signUp()
-                roomy.setObject(profileImage, forKey: "profile_image")
-                roomy.setObject(status, forKey: "status")
-                roomy.saveInBackground(block: { (successful: Bool?, error: Error?) in
-                    
-                })
+                
                 
                 print("Successfully signed up a user: User.swift")
                 successful(true)
@@ -53,6 +49,12 @@ extension Roomy {
                 print("Error signing up user: \(error?.localizedDescription) in User.swift")
                 failure(error!)
             }
+            
+            let currentRoomy = Roomy.current()
+            currentRoomy?.setObject(profileImage, forKey: "profile_image")
+            currentRoomy?.setObject(status, forKey: "status")
+            currentRoomy?.saveInBackground()
+
     }
 }
 

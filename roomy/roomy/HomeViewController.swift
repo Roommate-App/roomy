@@ -12,6 +12,7 @@ import ParseLiveQuery
 import MBProgressHUD
 import MapKit
 import UserNotifications
+import IBAnimatable
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
     
@@ -24,6 +25,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var roomies: [Roomy]? = []
     var hud = MBProgressHUD()
     
+    @IBOutlet weak var currentRoomyProfilePoster: AnimatableImageView!
+    @IBOutlet weak var currentRoomynameLabel: UILabel!
+    @IBOutlet weak var currentRoomyStatus: UILabel!
+    @IBOutlet weak var currentRoomyHomeStatusLabel: UILabel!
+    
     private var subscription: Subscription<Roomy>!
     
     override func viewDidLoad() {
@@ -35,6 +41,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         homeTableView.dataSource = self
         homeTableView.delegate = self
         homeTableView.sizeToFit()
+        
+        loadCurrentRoomyProfileView()
         
         addRoomiesToHome()
         let roomyQuery = getRoomyQuery()
@@ -54,6 +62,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         showProgressHud()
         updateRoomies()
     }
+    
+    func loadCurrentRoomyProfileView(){
+        let roomy = Roomy.current()
+        currentRoomynameLabel.text = roomy?.username
+        roomy?.profileImage?.getDataInBackground(block: { (image: Data?, error: Error?) in
+            if error == nil {
+                self.currentRoomyProfilePoster.image = UIImage(data: image!)
+            } else {
+                
+            }
+        })
+        
+        if(checkIfRoomyIsHome(roomy: Roomy.current()!)){
+            currentRoomyHomeStatusLabel.text = "Home"
+        } else {
+            currentRoomyHomeStatusLabel.text = "Not Home"
+        }
+    }
+    
     
     func showProgressHud(){
         hud = MBProgressHUD.showAdded(to: self.view, animated: true)

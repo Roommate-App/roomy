@@ -90,18 +90,11 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     private func createRoomy(_ roomyname: String,_ password: String ,_ email: String){
         
-
         Roomy.createUser(username: roomyname, password: password, email: email, profileImage: profileImage, status: "", successful: { (_ successful: Bool) in
             if(successful){
                 self.hideProgressHud()
                 self.performSegue(withIdentifier: R.Identifier.Segue.WelcomeToRoomySegue, sender: nil)
             }
-
-//        Roomy.createUser(username: usernameTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, status: "Just signed up for Roomy!", successful: { (_ successful: Bool) in
-//            Roomy.current()?.setObject(Roomy.current()?.status!, forKey: "status_mesage")
-//
-//                print("Successful user creation: UserSignUpViewController")
-//                self.performSegue(withIdentifier: "userSignUpToHouseLogin", sender: nil)
 
         }, failure: { (_ error: Error) in
             self.hideProgressHud()
