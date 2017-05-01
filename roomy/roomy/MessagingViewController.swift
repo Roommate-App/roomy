@@ -14,8 +14,7 @@ import UserNotifications
 import MobileCoreServices
 
 
-// TODO: Edited image
-
+// TODO:
 // Remove unnecessary print statements
 // Hardcode avatars
 
@@ -26,14 +25,10 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
         Initialization for the properties
      ===============================================================*/
     
-//    let requestIdentifier = "SampleRequest"
-    
     // array of JSQMessage and instantiating it
     var messages = [JSQMessage]()
     
-    // WHY?
-//    var houseID: House?
-//    var userIDs = House._currentHouse?.userIDs
+    // usreAvatars
     var userAvatars = [String: UIImage]()
     
     // Sets the bubbles
@@ -45,14 +40,12 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
 
     
     /*===============================================================
-        viewDidLoad and viewDidAppear
+        viewDidLoad
      ===============================================================*/
     
-    // viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Bringing up the keyboard for the textField
         inputToolbar.contentView.textView.becomeFirstResponder()
         
         // Setting the senderId to the currentUser id so that we can differentiate between incoming and outgoing messages
@@ -109,9 +102,7 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
                 }
         }
         
-        // load messages
         self.loadMessages(query: self.getMessageQuery())
-
     }
     
     
@@ -122,6 +113,11 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
     // messageDataForItemAt: returns the appropriate message based upon the row
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
+    }
+    
+    // numberOfItemsInSection: Total cells
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return messages.count
     }
     
     // messageBubbleImageDataForItemAt: determining the type of bubble (incoming or outgoing)
@@ -136,9 +132,7 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
     
     // avatarImageDataForItemat: returns the avatar
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        
         let message = messages[indexPath.item]
-        
         if let profilePicture = userAvatars[message.senderId] {
             // convert profilePicture from UIImage to JSQMessageSomething
             let profilePictureWorking = JSQMessagesAvatarImageFactory.avatarImage(with: profilePicture, diameter: 30)
@@ -196,10 +190,6 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
         return 0
     }
     
-    // numberOfItemsInSection: Total cells
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
-    }
     
     // cellForItemAt:
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -228,29 +218,27 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
     
     
     /*===============================================================
-     Adding Photos
+        Adding Photos
      ===============================================================*/
 
     // Paperclip button to add images
     override func didPressAccessoryButton(_ sender: UIButton!) {
         view.endEditing(true)
         
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.allowsEditing = true
+        
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let takePhotoAction = UIAlertAction(title: "Take photo", style: .default) { _ in
-            let vc = UIImagePickerController()
-            vc.delegate = self
-            vc.allowsEditing = true
+        let takePhotoAction = UIAlertAction(title: "Take Photo", style: .default) { _ in
             vc.sourceType = UIImagePickerControllerSourceType.camera
             
             self.present(vc, animated: true, completion: nil)
         }
         alertVC.addAction(takePhotoAction)
         
-        let chooseExistingPhotoAction = UIAlertAction(title: "Choose existing photo", style: .default) { _ in
-            let vc = UIImagePickerController()
-            vc.delegate = self
-            vc.allowsEditing = true
+        let chooseExistingPhotoAction = UIAlertAction(title: "Choose Photo", style: .default) { _ in
             vc.sourceType = UIImagePickerControllerSourceType.photoLibrary
             
             self.present(vc, animated: true, completion: nil)
@@ -287,8 +275,6 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
         sendMessage(text: text, video: nil, picture: nil)
     }
     
-    
-    // method to send the message to Parse
     private func sendMessage(text: String, video: URL?, picture: UIImage?) {
         var modifiedText = text
         var pictureFile: PFFile?
@@ -350,7 +336,7 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
     
     
     /*===============================================================
-        Retrieving the messages
+        Loading the messages
      ===============================================================*/
 
     // Makes the query
@@ -496,92 +482,90 @@ extension MessagingViewController: UNUserNotificationCenterDelegate{
 }
 
 
-final class Camera {
-    
-    enum MediaType {
-        case Photo, Video
-    }
-    
-    class func shouldStartCamera(target: AnyObject, canEdit: Bool, frontFacing: Bool) -> Bool {
-        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
-            return false
-        }
-        
-        let type = kUTTypeImage as String
-        let cameraUI = UIImagePickerController()
-        
-        let available = UIImagePickerController.isSourceTypeAvailable(.camera) &&
-            (UIImagePickerController.availableMediaTypes(for: .camera)?.contains(type) ?? false)
-        
-        if available {
-            cameraUI.mediaTypes = [type]
-            cameraUI.sourceType = .camera
-            
-            if frontFacing {
-                if UIImagePickerController.isCameraDeviceAvailable(.front) {
-                    cameraUI.cameraDevice = .front
-                } else if UIImagePickerController.isCameraDeviceAvailable(.rear) {
-                    cameraUI.cameraDevice = .rear
-                }
-            } else {
-                if UIImagePickerController.isCameraDeviceAvailable(.rear) {
-                    cameraUI.cameraDevice = .rear
-                } else if UIImagePickerController.isCameraDeviceAvailable(.front) {
-                    cameraUI.cameraDevice = .front
-                }
-            }
-        } else {
-            return false
-        }
-        
-        cameraUI.allowsEditing = canEdit
-        cameraUI.showsCameraControls = true
-        if let target = target as? UINavigationControllerDelegate & UIImagePickerControllerDelegate {
-            cameraUI.delegate = target
-        }
-        
-        target.present(cameraUI, animated: true, completion: nil)
-        
-        return true
-    }
-    
-    class func shouldStartPhotoLibrary(target: AnyObject, mediaType: MediaType, canEdit: Bool) -> Bool {
-        if !UIImagePickerController.isSourceTypeAvailable(.photoLibrary) &&
-            !UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-            return false
-        }
-        
-        let type: String = {
-            switch mediaType {
-            case .Photo:
-                return kUTTypeImage as String
-            case .Video:
-                return kUTTypeMovie as String
-            }
-        }()
-        let imagePicker = UIImagePickerController()
-        
-        print("TEST!@#")
-        
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) &&
-            (UIImagePickerController.availableMediaTypes(for: .photoLibrary)?.contains(type) ?? false) {
-            imagePicker.mediaTypes = [type]
-            imagePicker.sourceType = .photoLibrary
-        } else if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) &&
-            (UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum)?.contains(type) ?? false) {
-            imagePicker.mediaTypes = [type]
-            imagePicker.sourceType = .savedPhotosAlbum
-        } else {
-            return false
-        }
-        
-        imagePicker.allowsEditing = canEdit
-        if let target = target as? UINavigationControllerDelegate & UIImagePickerControllerDelegate {
-            imagePicker.delegate = target
-        }
-        
-        target.present(imagePicker, animated: true, completion: nil)
-        
-        return true
-    }
-}
+//final class Camera {
+//    
+//    enum MediaType {
+//        case Photo, Video
+//    }
+//    
+//    class func shouldStartCamera(target: AnyObject, canEdit: Bool, frontFacing: Bool) -> Bool {
+//        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+//            return false
+//        }
+//        
+//        let type = kUTTypeImage as String
+//        let cameraUI = UIImagePickerController()
+//        
+//        let available = UIImagePickerController.isSourceTypeAvailable(.camera) &&
+//            (UIImagePickerController.availableMediaTypes(for: .camera)?.contains(type) ?? false)
+//        
+//        if available {
+//            cameraUI.mediaTypes = [type]
+//            cameraUI.sourceType = .camera
+//            
+//            if frontFacing {
+//                if UIImagePickerController.isCameraDeviceAvailable(.front) {
+//                    cameraUI.cameraDevice = .front
+//                } else if UIImagePickerController.isCameraDeviceAvailable(.rear) {
+//                    cameraUI.cameraDevice = .rear
+//                }
+//            } else {
+//                if UIImagePickerController.isCameraDeviceAvailable(.rear) {
+//                    cameraUI.cameraDevice = .rear
+//                } else if UIImagePickerController.isCameraDeviceAvailable(.front) {
+//                    cameraUI.cameraDevice = .front
+//                }
+//            }
+//        } else {
+//            return false
+//        }
+//        
+//        cameraUI.allowsEditing = canEdit
+//        cameraUI.showsCameraControls = true
+//        if let target = target as? UINavigationControllerDelegate & UIImagePickerControllerDelegate {
+//            cameraUI.delegate = target
+//        }
+//        
+//        target.present(cameraUI, animated: true, completion: nil)
+//        
+//        return true
+//    }
+//    
+//    class func shouldStartPhotoLibrary(target: AnyObject, mediaType: MediaType, canEdit: Bool) -> Bool {
+//        if !UIImagePickerController.isSourceTypeAvailable(.photoLibrary) &&
+//            !UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+//            return false
+//        }
+//        
+//        let type: String = {
+//            switch mediaType {
+//            case .Photo:
+//                return kUTTypeImage as String
+//            case .Video:
+//                return kUTTypeMovie as String
+//            }
+//        }()
+//        let imagePicker = UIImagePickerController()
+//        
+//        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) &&
+//            (UIImagePickerController.availableMediaTypes(for: .photoLibrary)?.contains(type) ?? false) {
+//            imagePicker.mediaTypes = [type]
+//            imagePicker.sourceType = .photoLibrary
+//        } else if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) &&
+//            (UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum)?.contains(type) ?? false) {
+//            imagePicker.mediaTypes = [type]
+//            imagePicker.sourceType = .savedPhotosAlbum
+//        } else {
+//            return false
+//        }
+//        
+//        imagePicker.allowsEditing = canEdit
+//        if let target = target as? UINavigationControllerDelegate & UIImagePickerControllerDelegate {
+//            imagePicker.delegate = target
+//        }
+//        
+//        target.present(imagePicker, animated: true, completion: nil)
+//        
+//        return true
+//    }
+//}
