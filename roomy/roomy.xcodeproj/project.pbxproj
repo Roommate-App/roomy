@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E88E3451EB1913E00C9D89A /* StatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E88E3441EB1913E00C9D89A /* StatusTableViewCell.swift */; };
 		4F2C400A1E9B160B00EBC693 /* TodoList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C40091E9B160B00EBC693 /* TodoList.storyboard */; };
 		4F2C400C1E9B16E700EBC693 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C400B1E9B16E700EBC693 /* TodoListViewController.swift */; };
 		4F4FB54D1E99995F003BB1B8 /* AddressValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FB54C1E99995F003BB1B8 /* AddressValidationViewController.swift */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		33F20C97F9F8B6C11B2AB8EC /* Pods-roomy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roomy.release.xcconfig"; path = "Pods/Target Support Files/Pods-roomy/Pods-roomy.release.xcconfig"; sourceTree = "<group>"; };
 		37E55EEA4792D224C573647F /* Pods_roomy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_roomy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E88E3441EB1913E00C9D89A /* StatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusTableViewCell.swift; sourceTree = "<group>"; };
 		4F2C40091E9B160B00EBC693 /* TodoList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TodoList.storyboard; sourceTree = "<group>"; };
 		4F2C400B1E9B16E700EBC693 /* TodoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		4F4FB54C1E99995F003BB1B8 /* AddressValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressValidationViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				A513C17B1E98807600F2B5D2 /* MessageTableViewCell.swift */,
 				73BF27DC1E9D51DE0080841D /* RoomyTableViewCell.swift */,
 				73BF27E21E9D8C340080841D /* RoomyCollectionViewCell.swift */,
+				3E88E3441EB1913E00C9D89A /* StatusTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73713BAA1E9994C000EF1923 /* Roomy.swift in Sources */,
+				3E88E3451EB1913E00C9D89A /* StatusTableViewCell.swift in Sources */,
 				73BF27DD1E9D51DE0080841D /* RoomyTableViewCell.swift in Sources */,
 				A5800D651E7DE3C800FB35F4 /* House.swift in Sources */,
 				A51574FF1E7DB15B009F93F8 /* UserLoginViewController.swift in Sources */,
