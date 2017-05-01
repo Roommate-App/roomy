@@ -18,6 +18,7 @@ import MobileCoreServices
 // Hardcode avatars
 // Joker somehow got into the batcave is the story
 // to-do list (kick joker out)
+// Make password private
 
 class MessagingViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -28,7 +29,7 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
     // array of JSQMessage and instantiating it
     var messages = [JSQMessage]()
     
-    // usreAvatars
+    // userAvatars
     var userAvatars = [String: UIImage]()
     
     // Sets the bubbles
@@ -51,6 +52,15 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
         // Setting the senderId to the currentUser id so that we can differentiate between incoming and outgoing messages
         self.senderId = Roomy.current()?.objectId
         self.senderDisplayName = Roomy.current()?.username
+        
+        userAvatars["Alfred Pennyworth"] = UIImage(named: "avatar-alfred")
+        userAvatars["Bruce Wayne"] = UIImage(named: "avatar-brucewayne")
+        userAvatars["Catwoman"] = UIImage(named: "avatar-catwoman")
+        userAvatars["Harley Quinn"] = UIImage(named: "avatar-harleyquinn")
+        userAvatars["Joker"] = UIImage(named: "avatar-joker")
+        userAvatars["Poison Ivy"] = UIImage(named: "avatar-poisonivy")
+        userAvatars["Robin"] = UIImage(named: "avatar-robin")
+        userAvatars["Wonder Woman"] = UIImage(named: "avatar-wonderwoman")
         
         // saving the user avatars
 //        let query: PFQuery<Roomy> = PFQuery(className: "_User")
@@ -133,7 +143,16 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
     // avatarImageDataForItemat: returns the avatar
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         let message = messages[indexPath.item]
-        if let profilePicture = userAvatars[message.senderId] {
+//        if let profilePicture = userAvatars[message.senderId] {
+//            // convert profilePicture from UIImage to JSQMessageSomething
+//            let profilePictureWorking = JSQMessagesAvatarImageFactory.avatarImage(with: profilePicture, diameter: 30)
+//            return profilePictureWorking
+//        } else {
+//            let batmanAvatarImage = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "avatar-batman"), diameter: 30)
+//            return batmanAvatarImage
+//        }
+        
+        if let profilePicture = userAvatars[message.senderDisplayName] {
             // convert profilePicture from UIImage to JSQMessageSomething
             let profilePictureWorking = JSQMessagesAvatarImageFactory.avatarImage(with: profilePicture, diameter: 30)
             return profilePictureWorking
