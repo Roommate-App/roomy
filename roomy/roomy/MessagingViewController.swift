@@ -16,9 +16,8 @@ import MobileCoreServices
 
 // TODO:
 // Hardcode avatars
-// add a header for the navigation bar (address of house or house name?)
-// Go through the other two apps to see what they are doing
-
+// Joker somehow got into the batcave is the story
+// to-do list (kick joker out)
 
 class MessagingViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -139,7 +138,7 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
             let profilePictureWorking = JSQMessagesAvatarImageFactory.avatarImage(with: profilePicture, diameter: 30)
             return profilePictureWorking
         } else {
-            let batmanAvatarImage = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "batman-avatar"), diameter: 30)
+            let batmanAvatarImage = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "avatar-batman"), diameter: 30)
             return batmanAvatarImage
         }
         
