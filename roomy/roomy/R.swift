@@ -16,6 +16,7 @@ struct R {
         struct Cell {
             static let homeTableViewCell = "HomeTableViewCell"
             static let homeCollectionViewCell = "HomeCollectionViewCell"
+            static let StatusTableViewCell = "StatusTableViewCell"
         }
         struct Storyboard {
             static let loginAndSignUp = "Main"
