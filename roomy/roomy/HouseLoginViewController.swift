@@ -24,8 +24,8 @@ class HouseLoginViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(UserLoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(UserLoginViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HouseLoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HouseLoginViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         housenameTextField.delegate = self
         viewOriginalYPoint = self.view.frame.origin.y
@@ -130,7 +130,6 @@ class HouseLoginViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
     
     func clearTextFieldErrorMessages(){
         housenameTextField.errorMessage = ""

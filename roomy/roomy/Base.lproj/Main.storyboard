@@ -642,12 +642,25 @@
                                         <rect key="frame" x="135" y="147" width="104" height="51"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="add-photo"/>
+                                        <connections>
+                                            <action selector="onAddHousePhotoButtonTapped:" destination="Ehf-VX-Df0" eventType="touchUpInside" id="5Kc-6t-Yum"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbs-7o-3yZ" customClass="AnimatableButton" customModule="IBAnimatable">
                                         <rect key="frame" x="8" y="16" width="21" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="back"/>
+                                        <connections>
+                                            <action selector="onBackButtonTapped:" destination="Ehf-VX-Df0" eventType="touchUpInside" id="m7q-hq-yn9"/>
+                                        </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fkb-gD-cxx" customClass="AnimatableImageView" customModule="IBAnimatable">
+                                        <rect key="frame" x="67" y="91" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="_maskType" value="Circle"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -719,16 +732,19 @@
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onCreateAHomeButtonTapped:" destination="Ehf-VX-Df0" eventType="touchUpInside" id="uGr-i2-cNv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="addHousePhotoButton" destination="ddL-qE-Hb6" id="87S-Pw-0Vn"/>
                         <outlet property="addressTextField" destination="2J6-WI-uTP" id="e0h-jC-fSe"/>
+                        <outlet property="housePosterView" destination="fkb-gD-cxx" id="wDV-aS-WTW"/>
                         <outlet property="housenameTextField" destination="AF9-F1-WUr" id="M4R-Q8-Vnm"/>
                         <outlet property="passwordTextField" destination="45T-c9-2dY" id="c7O-Xe-l3V"/>
-                        <segue destination="mmx-QW-oNT" kind="show" identifier="houseSignUpToTabBar" id="pFi-gQ-5SJ"/>
-                        <segue destination="jvM-lQ-pI9" kind="presentation" identifier="select-address" id="mCf-B7-fGY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="alO-Pl-57A" userLabel="First Responder" sceneMemberID="firstResponder"/>
