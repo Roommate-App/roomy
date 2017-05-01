@@ -15,8 +15,9 @@ import MobileCoreServices
 
 
 // TODO:
-// Remove unnecessary print statements
 // Hardcode avatars
+// add a header for the navigation bar (address of house or house name?)
+// Go through the other two apps to see what they are doing
 
 
 class MessagingViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
