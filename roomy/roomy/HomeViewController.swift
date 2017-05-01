@@ -39,8 +39,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         addRoomiesToHome()
         let roomyQuery = getRoomyQuery()
         subscription = ParseLiveQuery.Client.shared.subscribe(roomyQuery).handle(Event.updated) { (query, roomy) in
-            
-            print("test")
             self.roomyChangedHomeStatus(roomy: roomy)
         }
     }
@@ -64,7 +62,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func reloadTableView(){
         hud.hide(animated: true, afterDelay: 1)
-        homeTableView.
+        homeTableView.reloadData()
     }
     
     func hideProgressHud(){
@@ -86,7 +84,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath){
-        guard let tableViewCell = cell as? RoomyTableViewCell else {return}
+        guard let tableViewCell = cell as? RoomyTableViewCell
+            else {
+            print("test")
+            return
+        }
         tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.section)
     }
     
@@ -142,7 +144,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         hideProgressHud()
-        print(roomiesNotHome!.count)
         self.homeTableView.reloadData()
     }
     
