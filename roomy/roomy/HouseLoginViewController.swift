@@ -127,7 +127,6 @@ class HouseLoginViewController: UIViewController, UITextFieldDelegate {
                 UIView.animate(withDuration: 1.0, animations: {
                     self.view.frame.origin.y = self.viewOriginalYPoint
                 })
-                
             }
         }
     }

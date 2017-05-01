@@ -9,14 +9,17 @@
 import UIKit
 import Parse
 import GooglePlaces
+import SkyFloatingLabelTextField
 
 
 // Make sure only unique houseIDs are created (especially addresses)
 // HouseSignUpViewController: Creates a new house
 class HouseSignUpViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var addressTextField: UITextField!
-    @IBOutlet weak var houseIDTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+   
+    
+    @IBOutlet weak var housenameTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var addressTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
     
     var latitude: String?
     var longitude: String?
@@ -26,18 +29,20 @@ class HouseSignUpViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addressTextField.delegate = self
-        houseIDTextField.delegate = self
-        passwordTextField.delegate = self
-        
         autocompleteController.delegate = self
     }
-
-    @IBAction func didTouchAddressTextField(_ sender: Any) {
+    
+    
+    
+    @IBAction func onAddressTextLabelTapped(_ sender: Any) {
         present(autocompleteController, animated: true, completion: nil)
     }
     
+
     @IBAction func signUpButtonPressed(_ sender: Any) {
+        
+        
+        
         House.createHouse(address: addressTextField.text!, houseID: houseIDTextField.text!, password: passwordTextField.text!, userIDs: [Roomy.current()!], latitude: latitude!, longitude: longitude!,  successful:  { (_ successful: Bool) in
                 print("Successfully created house: in HouseSignUp")
                 self.performSegue(withIdentifier: "houseSignUpToTabBar", sender: nil)

@@ -684,6 +684,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="title" value="Address"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onAddressTextLabelTapped:" destination="Ehf-VX-Df0" eventType="touchUpInside" id="kzg-gc-BoZ"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="45T-c9-2dY" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                 <rect key="frame" x="16" y="455" width="343" height="60"/>
@@ -721,6 +724,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="addressTextField" destination="2J6-WI-uTP" id="e0h-jC-fSe"/>
+                        <outlet property="housenameTextField" destination="AF9-F1-WUr" id="M4R-Q8-Vnm"/>
+                        <outlet property="passwordTextField" destination="45T-c9-2dY" id="c7O-Xe-l3V"/>
                         <segue destination="mmx-QW-oNT" kind="show" identifier="houseSignUpToTabBar" id="pFi-gQ-5SJ"/>
                         <segue destination="jvM-lQ-pI9" kind="presentation" identifier="select-address" id="mCf-B7-fGY"/>
                     </connections>
