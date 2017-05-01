@@ -15,12 +15,7 @@ import MobileCoreServices
 
 
 // TODO:
-// Hardcode avatars
-// Joker somehow got into the batcave is the story
-// to-do list (kick joker out)
-// Make password private
-// Can't create new house
-// Fix notifications for yourself
+
 
 class MessagingViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
