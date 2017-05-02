@@ -40,7 +40,7 @@ class PopPresentingAnimationController: NSObject, UIViewControllerAnimatedTransi
         }
         
         let scaleAnimation = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)!
-        scaleAnimation.springBounciness = 20
+        scaleAnimation.springBounciness = 5
         scaleAnimation.fromValue = NSValue(cgPoint: CGPoint(x: 1.2, y: 1.4))
         
         toView.layer.pop_add(positionAnimation, forKey: "positionAnimation")

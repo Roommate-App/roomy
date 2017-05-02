@@ -9,62 +9,192 @@
 import UIKit
 import Parse
 import ParseFacebookUtilsV4
+import SkyFloatingLabelTextField
+import FontAwesome_iOS
+import IBAnimatable
+import MBProgressHUD
+
+
 
 
 // Take logic of signing up user to the User class
 
 
 // UserSignUpViewController: Signs up the user
-class UserSignUpViewController: UIViewController {
+class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
+    var viewOriginalYPoint: CGFloat!
+    
+    var profileImage: PFFile!
     
 
+    @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
+
+  
+    @IBOutlet weak var roomynameTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
+    
+    @IBOutlet weak var roomyPosterView: AnimatableImageView!
+    @IBOutlet weak var addPhotoButton: AnimatableButton!
+    
+    let imagePicker = UIImagePickerController()
+    var hud = MBProgressHUD()
+    
+    let storyb = UIStoryboard(name: "Main", bundle: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(UserSignUpViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(UserSignUpViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        self.hideKeyboardWhenTappedAround()
         
-        emailTextField.becomeFirstResponder()
+        viewOriginalYPoint = view.frame.origin.y
+        
+        emailTextField.delegate = self
+        imagePicker.delegate = self 
+    }
+    
+    private func displayProgressHud(){
+        hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.mode = MBProgressHUDMode.indeterminate
 
     }
+    
+    private func hideProgressHud(){
+        hud.hide(animated: true, afterDelay: 20)
+    }
 
-    // signUpButtonPressed Action:
-    // Extract the username, password, and email
-    // Create new PFuser and populate the fields, then sign up the user and perform segue
-    @IBAction func signUpButtonPressed(_ sender: Any) {
+    
+    @IBAction func onBecomeARoomyButtonTapped(_ sender: Any) {
+        displayProgressHud()
+        
+        let roomyname = roomynameTextField.text!
+        let password = passwordTextField.text!
+        let email = emailTextField.text!
         
         
-//        PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"]) { (user: PFUser?, error: Error? ) in
-//            if let user = user {
-//                print("LOGGED IN")
-//            }
-//        }
+        switch "" {
+        case roomyname:
+            roomynameTextField.errorMessage = "Roomy Name requried"
+            fallthrough
+        case email:
+            emailTextField.errorMessage = "Email Required"
+            fallthrough
+        case password:
+            passwordTextField.errorMessage = "Password required"
+        default:
+            createRoomy(roomyname, password, email)
+        }
         
+    }
+    
+    private func createRoomy(_ roomyname: String,_ password: String ,_ email: String){
         
-        Roomy.createUser(username: usernameTextField.text!, password: passwordTextField.text!, email: emailTextField.text!, successful: { (_ successful: Bool) in
-                print("Successful user creation: UserSignUpViewController")
-                self.performSegue(withIdentifier: "userSignUpToHouseLogin", sender: nil)
+        Roomy.createUser(username: roomyname, password: password, email: email, profileImage: profileImage, status: "", successful: { (_ successful: Bool) in
+            if(successful){
+                self.hideProgressHud()
+                self.performSegue(withIdentifier: R.Identifier.Segue.WelcomeToRoomySegue, sender: nil)
+            }
+
         }, failure: { (_ error: Error) in
-                print("Error creating a user: UserSignUpViewController")
+            self.hideProgressHud()
+            if(error.localizedDescription.contains("Account already exists for this email address.")){
+                self.emailTextField.errorMessage = "Email already exists"
+            }
         })
-
+        
     }
+    
+    @IBAction func onBackButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    //MARK: TEXT FIELD DELEGATE FUNCTIONS
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        resetTextFieldErrorMessages()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+     return true
+    }
+    
+    func resetTextFieldErrorMessages(){
+        //Error message only resets when we set it to nil or ""
+        self.emailTextField.errorMessage = ""
+        self.passwordTextField.errorMessage = ""
+        self.roomynameTextField.errorMessage = ""
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                
+                UIView.animate(withDuration: 1.0, animations: {
+                    self.view.frame.origin.y -= keyboardSize.height / 2
+                    self.addPhotoButton.frame.origin.y += keyboardSize.height / 4
+                })
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                
+                UIView.animate(withDuration: 1.0, animations: {
+                    self.view.frame.origin.y = self.viewOriginalYPoint
+                    self.addPhotoButton.frame.origin.y -= keyboardSize.height / 4
+                })
+            }
+        }
+    }
+  
+    @IBAction func onAddPhotoButtonTapped(_ sender: Any) {
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        // Get the image captured by the UIImagePickerController
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        let resizedImage = image.resized(withPercentage: 0.1)
+        
+        // Do something with the images (based on your use case)
+        let imageData = UIImagePNGRepresentation(resizedImage!)
+        
+        profileImage = PFFile(name: "image.png", data: imageData!)!
+        
+        // Dismiss UIImagePickerController to go back to your original view controller
+        addPhotoButton.isHidden = true
+        self.roomyPosterView.image = image
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension UIImage {
+    func resized(withPercentage percentage: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: size.width * percentage, height: size.height * percentage)
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
-    */
-
+    func resized(toWidth width: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
 }

@@ -16,6 +16,7 @@ struct R {
         struct Cell {
             static let homeTableViewCell = "HomeTableViewCell"
             static let homeCollectionViewCell = "HomeCollectionViewCell"
+            static let StatusTableViewCell = "StatusTableViewCell"
         }
         struct Storyboard {
             static let loginAndSignUp = "Main"
@@ -26,6 +27,14 @@ struct R {
         struct ViewController {
             static let tabBarViewController = "TabBarController"
             static let updateStatusViewController = "UpdateStatusViewController"
+            static let UserSignUpViewController = "UserSignUpViewController"
+            static let UserLoginInViewController = "UserLoginViewController"
+            static let HouseLoginViewController = "HouseLoginViewController"
+            static let CreatHouseViewController = "CreatHouseViewController"
+        }
+        struct Segue {
+            static let WelcomeToRoomySegue = "WelcomeToRoomySegue"
+            static let TabBarController = "TabBarControllerSegue"
         }
     }
     struct TabBarController {

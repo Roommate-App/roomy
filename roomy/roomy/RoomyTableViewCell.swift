@@ -35,6 +35,10 @@ extension RoomyTableViewCell {
         collectionView.reloadData()
     }
     
+    func reloadCollectionViewData(){
+        collectionView.reloadData()
+    }
+    
     var collectionViewOffset: CGFloat {
         set { collectionView.contentOffset.x = newValue }
         get { return collectionView.contentOffset.x }

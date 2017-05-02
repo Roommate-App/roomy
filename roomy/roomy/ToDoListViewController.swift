@@ -9,26 +9,69 @@
 import UIKit
 import ParseLiveQuery
 
-class TodoListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+
+// TODO: Update te logic so that the creating of a todo list item happens here to trigger the live query
+
+class TodoListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var checkboxView: UIView!
     
     var todoItems = [TodoItem]()
     var newTodoItem: TodoItem?
-    private var subscription: Subscription<TodoItem>!
+    private var subscription1: Subscription<TodoItem>!
+    private var subscription2: Subscription<TodoItem>!
+    private var subscription3: Subscription<TodoItem>!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        
+        
+        
+        let todoItemQuery = getTodosQuery()
+        
+        
+        subscription1 = ParseLiveQuery.Client.shared
+            .subscribe(todoItemQuery)
+            .handle(Event.updated)  { query, todoItem in
+                self.todoItems.removeAll()
+                
+                self.loadTodos(query: todoItemQuery)
+                self.tableView.reloadData()
+        }
+        
+        subscription2 = ParseLiveQuery.Client.shared
+            .subscribe(todoItemQuery)
+            .handle(Event.deleted)  { _, _ in
+                self.todoItems.removeAll()
+                
+                self.loadTodos(query: todoItemQuery)
+                self.tableView.reloadData()
+        }
+
+        // Sometimes adds multiples. Maybe Parse bug?
+        // Adds multiples if a breakpoint is placed inside the closure thingy.
+        subscription3 = ParseLiveQuery.Client.shared
+            .subscribe(todoItemQuery)
+            .handle(Event.created)  { query, todoItem in
+                self.todoItems.removeAll()
+                
+                self.loadTodos(query: todoItemQuery)
+                self.tableView.reloadData()
+        }
+        
         
     }
     
     func getTodosQuery() -> PFQuery<TodoItem> {
         let query : PFQuery<TodoItem> = PFQuery(className: "TodoItem")
+        
         
         query.whereKey("houseID", equalTo: House._currentHouse!)
         
@@ -39,6 +82,9 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     private func loadTodos(query: PFQuery<TodoItem>) {
+        
+        
+        
         query.findObjectsInBackground { parseTodos, error in
             if let parseTodos = parseTodos {
                 self.add(todoItems: parseTodos)
@@ -56,7 +102,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         tableView.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -68,12 +114,25 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         
         
         let todoItemQuery = getTodosQuery()
-        subscription = ParseLiveQuery.Client.shared
-            .subscribe(todoItemQuery)
-            .handle(Event.created)  { query, todoItem in
-                self.loadTodos(query: todoItemQuery)
-                self.tableView.reloadData()
-        }
+//
+//        
+//        subscription = ParseLiveQuery.Client.shared
+//            .subscribe(todoItemQuery)
+//            .handle(Event.updated)  { query, todoItem in
+//                self.todoItems.removeAll()
+//                
+//                self.loadTodos(query: todoItemQuery)
+//                self.tableView.reloadData()
+//        }
+//        
+//        subscription = ParseLiveQuery.Client.shared
+//            .subscribe(todoItemQuery)
+//            .handle(Event.updated)  { query, todoItem in
+//                self.todoItems.removeAll()
+//                
+//                self.loadTodos(query: todoItemQuery)
+//                self.tableView.reloadData()
+//        }
         loadTodos(query: todoItemQuery)
         tableView.reloadData()
         print("")
@@ -134,13 +193,13 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -11,5 +11,6 @@ import UIKit
 class RoomyCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var roomyUserNameLabel: UILabel!
     
+    @IBOutlet weak var roomyStatusMessageLabel: UILabel!
     @IBOutlet weak var roomyPosterView: UIImageView!
 }

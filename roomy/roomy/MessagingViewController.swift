@@ -20,7 +20,7 @@ import MobileCoreServices
 class MessagingViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     /*===============================================================
-        Initialization for the properties
+     Initialization for the properties
      ===============================================================*/
     
     // array of JSQMessage and instantiating it
@@ -35,7 +35,7 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
     
     // WHAT?
     private var subscription: Subscription<Message>!
-
+    
     
     /*===============================================================
         viewDidLoad
@@ -89,10 +89,13 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
         // liveQuery for Parse
         // HOW DOES THIS WORK?
         UNUserNotificationCenter.current().delegate = self
+        
+        
         let messageQuery = getMessageQuery()
         subscription = ParseLiveQuery.Client.shared
             .subscribe(messageQuery)
             .handle(Event.created)  { query, pfMessage in
+
                 self.loadMessages(query: self.getMessageQuery())
                 
                 if pfMessage.roomy?.objectId != self.senderId {
@@ -107,6 +110,19 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
                     UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
                     })
                 }
+                
+//                self.loadMessages(query: self.getMessageQuery())
+//                
+//                let content = UNMutableNotificationContent()
+//                content.title = R.Notifications.Messages.title
+//                content.body = pfMessage["text"] as! String
+//                content.badge = 1
+//                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//                let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
+//                UNUserNotificationCenter.current().delegate = self
+//                
+//                UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
+//                })
         }
         
         self.loadMessages(query: self.getMessageQuery())
@@ -114,10 +130,11 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
     
     
     /*===============================================================
-        Collection View Methods
-    ===============================================================*/
+     Collection View Methods
+     =============================================================== */
     
-    // messageDataForItemAt: returns the appropriate message based upon the row
+// messageDataForItemAt: returns the appropriate message based upon the row
+
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
     }
@@ -222,6 +239,7 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
     }
 
     
+    
     // Sets the outoing and incoming bubbles
     private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
         let bubbleImageFactory = JSQMessagesBubbleImageFactory()
@@ -231,7 +249,6 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
         let bubbleImageFactory = JSQMessagesBubbleImageFactory()
         return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     }
-    
     
     /*===============================================================
         Adding Photos
@@ -281,9 +298,8 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
         picker.dismiss(animated: true, completion: nil)
     }
     
-    
     /*===============================================================
-        Sending/Creating the message
+     Sending/Creating the message
      ===============================================================*/
     
     // Action: When the send button is pressed
@@ -354,7 +370,7 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
     /*===============================================================
         Loading the messages
      ===============================================================*/
-
+    
     // Makes the query
     private func getMessageQuery() -> PFQuery<Message> {
         let query: PFQuery<Message> = PFQuery(className: "Message")
@@ -364,7 +380,7 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
         if let lastMessage = messages.last, let lastMessageDate = lastMessage.date {
             query.whereKey("createdAt", greaterThan: lastMessageDate)
         }
-    
+        
         query.order(byDescending: "createdAt")
         query.limit = 50
         
@@ -433,16 +449,15 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
                                 
                                 return pictureDelayedJSQMessage
                             }
-
                         }
 
                         return nil
                     }()
-                        
+                    
                     if let jsqMessage = jsqMessage {
                         self.messages.append(jsqMessage)
                     }
-                        
+                    
                     self.collectionView.reloadData()
                 }
             }
@@ -459,7 +474,7 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
             
         }
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -467,17 +482,17 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
         
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 // Notfications
@@ -492,7 +507,7 @@ extension MessagingViewController: UNUserNotificationCenterDelegate{
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         print("Notification being triggered")
-
+        
         completionHandler( [.alert,.sound,.badge])
     }
 }
