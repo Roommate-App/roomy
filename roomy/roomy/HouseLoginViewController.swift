@@ -76,7 +76,6 @@ class HouseLoginViewController: UIViewController, UITextFieldDelegate {
                             
                             print("Password match")
                             
-                            
                             var userIDs = house["userIDs"] as! [PFUser]
                             userIDs.append(PFUser.current()!)
                             house["userIDs"] = userIDs

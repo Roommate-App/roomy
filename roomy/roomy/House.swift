@@ -49,7 +49,7 @@ extension House {
     static func createHouse(address: String, houseID: String, password: String, userIDs: [Roomy], latitude: String, longitude: String, successful: @escaping (Bool) -> () , failure: @escaping (Error) ->()) {
         
         let house = House(address: address, houseID: houseID, password: password, userIDs: userIDs, latitude: latitude, longitude: longitude)
-        
+                
         do {
             try house.save()
             setCurrentHouse(house: house)

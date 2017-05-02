@@ -48,6 +48,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let roomyQuery = getRoomyQuery()
         subscription = ParseLiveQuery.Client.shared.subscribe(roomyQuery).handle(Event.updated) { (query, roomy) in
             self.roomyChangedHomeStatus(roomy: roomy)
+            let content = UNMutableNotificationContent()
+            content.title = roomy.username!
+            let roomyIsHome = roomy["is_home"] as! Bool
+            
+            if(roomyIsHome) {
+                content.body = "Came Home!"
+            } else {
+                content.body = "Left Home!"
+            }
+            
+            content.badge = 1
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+            let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
+            UNUserNotificationCenter.current().delegate = self
+            
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
+            })
         }
     }
 
@@ -56,17 +73,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        loadCurrentRoomyProfileView()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         print("test")
         showProgressHud()
         updateRoomies()
+        loadCurrentRoomyProfileView()
     }
     
     func loadCurrentRoomyProfileView(){
         let roomy = Roomy.current()
         currentRoomynameLabel.text = roomy?.username
-        roomy?.profileImage?.getDataInBackground(block: { (image: Data?, error: Error?) in
+        currentRoomyProfilePoster.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
+        
+        let pfImage = roomy?["profile_image"] as! PFFile
+        currentRoomyStatus.text = roomy?["status_message"] as? String ?? ""
+        print(roomy)
+        
+        pfImage.getDataInBackground(block: { (image: Data?, error: Error?) in
             if error == nil {
                 self.currentRoomyProfilePoster.image = UIImage(data: image!)
             } else {
@@ -128,7 +157,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         homeTextLabel.adjustsFontSizeToFitWidth = true
         homeTextLabel.font = UIFont (name: "HelveticaNeue-UltraLight", size: 20)
         
-        
         let iconImage = UIImageView(frame: CGRect(x: 0, y: 5, width: 20, height: 20))
     
         if(section == 0){
@@ -160,7 +188,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func addRoomiesToHome() {
-        addCurrentRoomyToHome()
+        //addCurrentRoomyToHome()
         for roomy in self.roomies! {
             if(roomy.objectId != Roomy.current()?.objectId){
                 if(self.checkIfRoomyIsHome(roomy: roomy)){
@@ -278,21 +306,28 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifier.Cell.homeCollectionViewCell, for: indexPath) as! RoomyCollectionViewCell
         
+        print(collectionView.tag)
         if(collectionView.tag == 0) {
             
             let roomy = roomiesHome?[indexPath.row]
             
             cell.roomyUserNameLabel.text = roomy?.username
             cell.roomyStatusMessageLabel.text = roomy?.status
+            cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
             
-            roomy?.profileImage?.getDataInBackground(block: { (image: Data?, error: Error?) in
-                if error == nil {
+            
+            let pfImage = roomy?["profile_image"] as! PFFile
+            
+            pfImage.getDataInBackground(block: { (image: Data?, error: Error?) in
+                if error == nil && image != nil {
+                    print(image!)
                     cell.roomyPosterView.image = UIImage(data: image!)
+                    //cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
                 } else {
-                    cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
+                    print("no image")
+                    //cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
                 }
             })
-            
         } else {
             
             let roomy = roomiesNotHome?[indexPath.row]
@@ -300,14 +335,21 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.roomyUserNameLabel.text = roomy?.username
             cell.roomyStatusMessageLabel.text = roomy?.status
             
-            roomy?.profileImage?.getDataInBackground(block: { (image: Data?, error: Error?) in
-                if error == nil {
+            let pfImage = roomy?["profile_image"] as! PFFile
+            
+            pfImage.getDataInBackground(block: { (image: Data?, error: Error?) in
+                if error == nil  && image != nil{
                     cell.roomyPosterView.image = UIImage(data: image!)
+                    //print(image!)
+                    //cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
                 } else {
-                     cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
+                    print("no image")
+                     //cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
                 }
-            })
+            })             
         }
+        
+        //cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
        
         cell.roomyPosterView.layer.cornerRadius = cell.roomyPosterView.frame.size.width / 2
         cell.roomyPosterView.clipsToBounds = true

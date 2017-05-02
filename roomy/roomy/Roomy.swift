@@ -37,11 +37,11 @@ extension Roomy {
         static func createUser(username: String, password: String, email: String,profileImage: PFFile, status: String, successful: @escaping (Bool) -> (), failure: @escaping (Error) -> () ) {
         
         let roomy = Roomy(username: username, password: password, email: email,profileImage: profileImage, status: status)
-        
+            
             do {
                 try roomy.signUp()
-                
-                
+                roomy["profile_image"] = profileImage
+                try roomy.save()
                 print("Successfully signed up a user: User.swift")
                 successful(true)
             }
@@ -50,10 +50,10 @@ extension Roomy {
                 failure(error!)
             }
             
-            let currentRoomy = Roomy.current()
-            currentRoomy?.setObject(profileImage, forKey: "profile_image")
-            currentRoomy?.setObject(status, forKey: "status")
-            currentRoomy?.saveInBackground()
+//            let currentRoomy = Roomy.current()
+//            currentRoomy?.setObject(profileImage, forKey: "profile_image")
+//            currentRoomy?.setObject(status, forKey: "status")
+//            currentRoomy?.saveInBackground()
 
     }
 }

@@ -147,7 +147,6 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
                     self.view.frame.origin.y = self.viewOriginalYPoint
                     self.addPhotoButton.frame.origin.y -= keyboardSize.height / 4
                 })
-                
             }
         }
     }
@@ -162,9 +161,12 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
         // Get the image captured by the UIImagePickerController
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
+        let resizedImage = image.resized(withPercentage: 0.1)
+        
         // Do something with the images (based on your use case)
-        let imageData = UIImagePNGRepresentation(image)
-        profileImage = PFFile(data: imageData!)!
+        let imageData = UIImagePNGRepresentation(resizedImage!)
+        
+        profileImage = PFFile(name: "image.png", data: imageData!)!
         
         // Dismiss UIImagePickerController to go back to your original view controller
         addPhotoButton.isHidden = true
@@ -177,7 +179,22 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
-    
 
+extension UIImage {
+    func resized(withPercentage percentage: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: size.width * percentage, height: size.height * percentage)
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+    func resized(toWidth width: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
 }

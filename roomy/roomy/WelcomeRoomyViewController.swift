@@ -24,7 +24,10 @@ class WelcomeRoomyViewController: UIViewController {
         let currentRoomy = Roomy.current()
         //currentRoomy?.setObject(currentRoomy?.profileImage, forKey: "profile_image")
         //currentRoomy?.setObject(status, forKey: "status")
+        print(currentRoomy)
+        
         currentRoomy?["profile_image"] = currentRoomy?.profileImage
+        currentRoomy?["status"] = ""
         currentRoomy?.saveInBackground()
 
         setRoomyWelcomeImage()
