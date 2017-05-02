@@ -25,7 +25,7 @@ class PopPresentingAnimationController: NSObject, UIViewControllerAnimatedTransi
         toView.frame = CGRect(x: 0,
                               y: 0,
                               width: transitionContext.containerView.bounds.width * 0.8,
-                              height: transitionContext.containerView.bounds.height * 0.5);
+                              height: transitionContext.containerView.bounds.height * 0.3);
         let p = CGPoint(x: transitionContext.containerView.center.x, y: -transitionContext.containerView.center.y);
         toView.alpha = 0.92
         toView.center = p;

@@ -25,6 +25,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         imgPicker.delegate = self
         //imgPicker.allowsEditing = true
         
+        print(currentUser?.password)
         // Load existing user settings
         usernameTextField.text = currentUser?.username
         emailTextField.text = currentUser?.email

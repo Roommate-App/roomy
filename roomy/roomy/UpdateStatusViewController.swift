@@ -10,8 +10,6 @@ import UIKit
 
 class UpdateStatusViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-    
     let statuses: [String]! = ["🏚I'm home.",
                                "👋I'm out of the house.",
                                "😴Going to sleep. ",
@@ -22,7 +20,6 @@ class UpdateStatusViewController: UIViewController, UITableViewDelegate, UITable
 
     @IBOutlet weak var statusTableView: UITableView!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,8 +30,10 @@ class UpdateStatusViewController: UIViewController, UITableViewDelegate, UITable
         statusTableView .estimatedRowHeight = 120
         self.view.layer.cornerRadius = 9.0
         
-        statusTableView.separatorStyle = .none
+        //statusTableView.separatorStyle = .none
         statusTableView.alwaysBounceVertical = false
+        statusTableView.tableFooterView = UIView()
+        
 
         statusTableView.reloadData()
 
@@ -67,33 +66,23 @@ class UpdateStatusViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Roomy.current()?.status = statuses[indexPath.row]
+       
+        Roomy.current()?["status_message"] = statuses[indexPath.row]
         
-        Roomy.current()?.setObject(Roomy.current()?.status!, forKey: "status_message")
-
+        //Roomy.current()?.setObject(Roomy.current()?.status!, forKey: "status_message")
+        //self.delegate.updateStatus(status: "d")
         Roomy.current()?.saveInBackground(block: { (success, error) in
             if success {
                 print("Successfully updated status")
-                self.dismiss(animated: true, completion: nil)
+                
+                self.dismiss(animated: true, completion: {
+                    
+                })
 
             } else {
                 print("Error")
             }
         })
     }
-
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
