@@ -27,6 +27,7 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     var profileImage: PFFile!
     
+    @IBOutlet weak var profileImageLabel: UILabel!
 
     @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
 
@@ -171,6 +172,7 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
         // Dismiss UIImagePickerController to go back to your original view controller
         addPhotoButton.isHidden = true
         self.roomyPosterView.image = image
+        profileImageLabel.text = "Profile Image"
         dismiss(animated: true, completion: nil)
     }
     

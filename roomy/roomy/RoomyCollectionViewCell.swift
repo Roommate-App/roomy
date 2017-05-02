@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import IBAnimatable
 
 class RoomyCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var roomyUserNameLabel: UILabel!
     
-    @IBOutlet weak var roomyStatusMessageLabel: UILabel!
-    @IBOutlet weak var roomyPosterView: UIImageView!
+    @IBOutlet weak var roomyPosterView: AnimatableImageView!
+    @IBOutlet weak var roomyBadgeView: AnimatableImageView!
 }

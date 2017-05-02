@@ -13,6 +13,7 @@ import MBProgressHUD
 import MapKit
 import UserNotifications
 import IBAnimatable
+import QuartzCore
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
     
@@ -311,22 +312,22 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifier.Cell.homeCollectionViewCell, for: indexPath) as! RoomyCollectionViewCell
         
-        print(collectionView.tag)
+        var statusText = ""
+        
         if(collectionView.tag == 0) {
             
             let roomy = roomiesHome?[indexPath.row]
+            statusText = roomy?["status_message"] as? String ?? ""
             
             cell.roomyUserNameLabel.text = roomy?.username
-            cell.roomyStatusMessageLabel.text = roomy?["status_message"] as? String ?? ""
             cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
-            
             
             let pfImage = roomy?["profile_image"] as! PFFile
             
             pfImage.getDataInBackground(block: { (image: Data?, error: Error?) in
                 if error == nil && image != nil {
                     print(image!)
-                    cell.roomyPosterView.image = UIImage(data: image!)
+                    cell.roomyPosterView.image = UIImage(data: image!)!
                     //cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
                 } else {
                     print("no image")
@@ -336,15 +337,16 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else {
             
             let roomy = roomiesNotHome?[indexPath.row]
+            statusText = roomy?["status_message"] as? String ?? ""
             
             cell.roomyUserNameLabel.text = roomy?.username
-            cell.roomyStatusMessageLabel.text = roomy?["status_message"] as? String ?? ""
+            //cell.roomyStatusMessageLabel.text = roomy?["status_message"] as? //String ?? ""
             
             let pfImage = roomy?["profile_image"] as! PFFile
             
             pfImage.getDataInBackground(block: { (image: Data?, error: Error?) in
                 if error == nil  && image != nil{
-                    cell.roomyPosterView.image = UIImage(data: image!)
+                    cell.roomyPosterView.image = UIImage(data: image!)!
                     //print(image!)
                     //cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
                 } else {
@@ -353,16 +355,29 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 }
             })             
         }
-        
-        //cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
        
-        cell.roomyPosterView.layer.cornerRadius = cell.roomyPosterView.frame.size.width / 2
-        cell.roomyPosterView.clipsToBounds = true
-        
+
+        if(statusText != ""){
+            let index = statusText.index((statusText.startIndex), offsetBy: 1)
+            let emoji = statusText.substring(to: index)
+           
+            cell.roomyBadgeView.image = emoji.image()
+          
+        }
         return cell
     }
     
     
+    func drawImageView(mainImage: UIImage, withBadge badge: UIImage) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(mainImage.size, false, 0.0)
+        mainImage.draw(in: CGRect(x: 0, y: 0, width: mainImage.size.width, height: mainImage.size.height))
+        badge.draw(in: CGRect(x: mainImage.size.width - badge.size.width, y: 0, width: badge.size.width, height: badge.size.height))
+        
+        let resultImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return resultImage
+    }
+
 }
 
 extension HomeViewController: UNUserNotificationCenterDelegate{
@@ -382,6 +397,20 @@ extension HomeViewController: UNUserNotificationCenterDelegate{
         
         
     }
+}
 
+extension String {
+    
+    func image() -> UIImage? {
+        let size = CGSize(width: 30, height: 35)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0);
+        UIColor.white.set()
+        let rect = CGRect(origin: CGPoint(), size: size)
+        UIRectFill(CGRect(origin: CGPoint(), size: size))
+        (self as NSString).draw(in: rect, withAttributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 30)])
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
     
 }

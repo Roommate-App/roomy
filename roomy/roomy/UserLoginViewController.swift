@@ -16,6 +16,8 @@ import SkyFloatingLabelTextField
 class UserLoginViewController: UIViewController, UITextFieldDelegate {
     
 
+    @IBOutlet weak var loginPosterView: AnimatableImageView!
+    
     var viewOriginalYPoint: CGFloat!
     
     @IBOutlet var roomyNameTextField: SkyFloatingLabelTextFieldWithIcon!
@@ -102,8 +104,9 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
                 
-                UIView.animate(withDuration: 1.0, animations: {
-                    self.view.frame.origin.y -= keyboardSize.height
+                UIView.animate(withDuration: 10.0, animations: {
+                    self.loginPosterView.tintOpacity = 1.0
+                    self.view.frame.origin.y -= keyboardSize.height / 1.6
                 })
             }
         }

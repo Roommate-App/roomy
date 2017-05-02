@@ -112,7 +112,7 @@ class HouseLoginViewController: UIViewController, UITextFieldDelegate {
             if self.view.frame.origin.y == 0 {
                 
                 UIView.animate(withDuration: 1.0, animations: {
-                    self.view.frame.origin.y -= keyboardSize.height
+                    self.view.frame.origin.y -= keyboardSize.height / 1.6
                 })
             }
         }
