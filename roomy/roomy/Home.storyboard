@@ -166,13 +166,14 @@
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="WOC-Ca-Mfi">
-                        <barButtonItem key="leftBarButtonItem" image="back" id="dIJ-vH-zpR">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="dIJ-vH-zpR">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onLogoutButtonTapped:" destination="BOz-Qg-GJO" id="mHG-qa-BEh"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="R9i-NI-Nss">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="YJo-l2-RX7" kind="show" id="hgg-GD-t6b"/>
                             </connections>
@@ -220,7 +221,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back" width="21" height="21"/>
         <image name="compass" width="24" height="24"/>
     </resources>
 </document>

@@ -47,6 +47,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         addRoomiesToHome()
         let roomyQuery = getRoomyQuery()
         subscription = ParseLiveQuery.Client.shared.subscribe(roomyQuery).handle(Event.updated) { (query, roomy) in
+            
+            
             self.roomyChangedHomeStatus(roomy: roomy)
             let content = UNMutableNotificationContent()
             
@@ -179,6 +181,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
         let query: PFQuery<Roomy> = PFQuery(className: "_User")
         query.whereKey("house", equalTo: House._currentHouse!)
+        
         
         do {
             let roomies = try query.findObjects()
