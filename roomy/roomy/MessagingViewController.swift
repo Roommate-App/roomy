@@ -11,24 +11,23 @@ import Parse
 import JSQMessagesViewController
 import ParseLiveQuery
 import UserNotifications
+import MobileCoreServices
 
 
-// TODO: Add avatar after the profile picture is added
+// TODO:
 
 
-class MessagingViewController: JSQMessagesViewController {
+class MessagingViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     /*===============================================================
      Initialization for the properties
      ===============================================================*/
     
-    let requestIdentifier = "SampleRequest"
-    
     // array of JSQMessage and instantiating it
     var messages = [JSQMessage]()
     
-    // WHY?
-    var houseID: House?
+    // userAvatars
+    var userAvatars = [String: UIImage]()
     
     // Sets the bubbles
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
@@ -39,23 +38,53 @@ class MessagingViewController: JSQMessagesViewController {
     
     
     /*===============================================================
-     viewDidLoad and viewDidAppear
+        viewDidLoad
      ===============================================================*/
     
-    // viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Bringing up the keyboard for the textField
         inputToolbar.contentView.textView.becomeFirstResponder()
-        
-        // removing the avatars
-        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
-        collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
         
         // Setting the senderId to the currentUser id so that we can differentiate between incoming and outgoing messages
         self.senderId = Roomy.current()?.objectId
         self.senderDisplayName = Roomy.current()?.username
+        
+        userAvatars["Alfred Pennyworth"] = UIImage(named: "avatar-alfred")
+        userAvatars["Bruce Wayne"] = UIImage(named: "avatar-brucewayne")
+        userAvatars["Catwoman"] = UIImage(named: "avatar-catwoman")
+        userAvatars["Harley Quinn"] = UIImage(named: "avatar-harleyquinn")
+        userAvatars["Joker"] = UIImage(named: "avatar-joker")
+        userAvatars["Poison Ivy"] = UIImage(named: "avatar-poisonivy")
+        userAvatars["Robin"] = UIImage(named: "avatar-robin")
+        userAvatars["Wonder Woman"] = UIImage(named: "avatar-wonderwoman")
+        
+        // saving the user avatars
+//        let query: PFQuery<Roomy> = PFQuery(className: "_User")
+//        query.whereKey("house", equalTo: House._currentHouse!)
+//        
+//        do {
+//            let roomies = try query.findObjects()
+//            for roomy in roomies {
+//                if let profilePicture = roomy["profile_image"] as? PFFile {
+//                    // convert image from PFFile to UIImage
+//                    profilePicture.getDataInBackground(block: { (imageData: Data?, error: Error?) in
+//                        if (error == nil) {
+//                            let image = UIImage(data: imageData!)
+//                            // key for avatar is objectId
+//                            self.userAvatars[roomy.objectId!] = image
+//                        } else {
+//                            print("Error: \(String(describing: error?.localizedDescription))")
+//                        }
+//                    })
+//                } else {
+//                    print("No profile picture for \(String(describing: roomy.username))")
+//                }
+//            }
+//        } catch let error as Error? {
+//            print(error?.localizedDescription ?? "ERROR")
+//        }
+
         
         // liveQuery for Parse
         // HOW DOES THIS WORK?
@@ -97,7 +126,6 @@ class MessagingViewController: JSQMessagesViewController {
         }
         
         self.loadMessages(query: self.getMessageQuery())
-
     }
     
     
@@ -109,6 +137,11 @@ class MessagingViewController: JSQMessagesViewController {
 
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
+    }
+    
+    // numberOfItemsInSection: Total cells
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return messages.count
     }
     
     // messageBubbleImageDataForItemAt: determining the type of bubble (incoming or outgoing)
@@ -123,7 +156,25 @@ class MessagingViewController: JSQMessagesViewController {
     
     // avatarImageDataForItemat: returns the avatar
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        return nil
+        let message = messages[indexPath.item]
+//        if let profilePicture = userAvatars[message.senderId] {
+//            // convert profilePicture from UIImage to JSQMessageSomething
+//            let profilePictureWorking = JSQMessagesAvatarImageFactory.avatarImage(with: profilePicture, diameter: 30)
+//            return profilePictureWorking
+//        } else {
+//            let batmanAvatarImage = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "avatar-batman"), diameter: 30)
+//            return batmanAvatarImage
+//        }
+        
+        if let profilePicture = userAvatars[message.senderDisplayName] {
+            // convert profilePicture from UIImage to JSQMessageSomething
+            let profilePictureWorking = JSQMessagesAvatarImageFactory.avatarImage(with: profilePicture, diameter: 30)
+            return profilePictureWorking
+        } else {
+            let batmanAvatarImage = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "avatar-batman"), diameter: 30)
+            return batmanAvatarImage
+        }
+        
     }
     
     // attributedTextForMessageBubbleTopLabelAt: the username of the person that sent the message
@@ -141,22 +192,37 @@ class MessagingViewController: JSQMessagesViewController {
         }
     }
     
-    // heightForMessageBubbleTopLabelAt: Increases the size of the cell
+    // heightForMessageBubbleTopLabelAt: Increases the size of the cell to display name
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
         let message = messages[indexPath.item]
-        if message.senderId != senderId {
-            return 15
+        if indexPath.item >= 1 {
+            let previousMessage = messages[indexPath.item - 1]
+            if previousMessage.senderId == message.senderId {
+                return 0
+            } else {
+                return 15
+            }
         }
-        return 1
-        
-//    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
-//        return 15
+        return 15
     }
     
-    // numberOfItemsInSection: Total cells
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
+    // attributedTextForCellTopLabelAt: Will show the time and date every 5 texts
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
+        if indexPath.item % 5 == 0 {
+            let message = messages[indexPath.item]
+            return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: message.date)
+        }
+        return nil
     }
+    
+    // heightForCellTopLabelAt: Increases the size of the cell for the time and date
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAt indexPath: IndexPath!) -> CGFloat {
+        if indexPath.item % 5 == 0 {
+            return kJSQMessagesCollectionViewCellLabelHeightDefault
+        }
+        return 0
+    }
+    
     
     // cellForItemAt:
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -184,6 +250,53 @@ class MessagingViewController: JSQMessagesViewController {
         return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     }
     
+    /*===============================================================
+        Adding Photos
+     ===============================================================*/
+
+    // Paperclip button to add images
+    override func didPressAccessoryButton(_ sender: UIButton!) {
+        view.endEditing(true)
+        
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.allowsEditing = true
+        
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let takePhotoAction = UIAlertAction(title: "Take Photo", style: .default) { _ in
+            vc.sourceType = UIImagePickerControllerSourceType.camera
+            
+            self.present(vc, animated: true, completion: nil)
+        }
+        alertVC.addAction(takePhotoAction)
+        
+        let chooseExistingPhotoAction = UIAlertAction(title: "Choose Photo", style: .default) { _ in
+            vc.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            
+            self.present(vc, animated: true, completion: nil)
+        }
+        alertVC.addAction(chooseExistingPhotoAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertVC.addAction(cancelAction)
+        
+        present(alertVC, animated: true, completion: nil)
+    }
+
+    // send a message after picture has been taken
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let picture: UIImage
+        
+        if info[UIImagePickerControllerEditedImage] == nil {
+            picture = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
+        } else {
+            picture = (info[UIImagePickerControllerEditedImage] as? UIImage)!
+        }
+        self.sendMessage(text: "", video: nil, picture: picture)
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
     
     /*===============================================================
      Sending/Creating the message
@@ -194,8 +307,24 @@ class MessagingViewController: JSQMessagesViewController {
         sendMessage(text: text, video: nil, picture: nil)
     }
     
-    // method to send the message to Parse
     private func sendMessage(text: String, video: URL?, picture: UIImage?) {
+        var modifiedText = text
+        var pictureFile: PFFile?
+        
+        if let picture = picture,
+            let data = UIImageJPEGRepresentation(picture, 0.6),
+            let file = PFFile(name: "picture.jpg", data: data) {
+            
+            modifiedText += "[Picture message]"
+            pictureFile = file
+            file.saveInBackground { succeed, error in
+                if succeed {
+                    print("MessagingViewController/sendMessage() Photo saved")
+                } else {
+                    print("MessagingViewController/sendMessage() Photo saving error: \(String(describing: error?.localizedDescription))")
+                }
+            }
+        }
         
         // creates the messageObject
         if PFUser.current() != nil {
@@ -203,21 +332,43 @@ class MessagingViewController: JSQMessagesViewController {
             messageObject.roomy = Roomy.current()
             messageObject.senderName = Roomy.current()?.username
             messageObject.houseID = House._currentHouse
-            messageObject.text = text
+            messageObject.text = modifiedText
+            
+            if let pictureFile = pictureFile {
+                messageObject["picture"] = pictureFile
+            }
             
             messageObject.saveInBackground { succeeded, error in
                 if succeeded {
                     self.finishSendingMessage()
+                    JSQSystemSoundPlayer.jsq_playMessageSentSound()
+                    print("MessagingViewController/sendMessage() Message sent")
                 } else {
-                    print("Error")
+                    print("MessagingViewController/sendMessage() Message sending error: \(String(describing: error?.localizedDescription))")
                 }
             }
         }
     }
     
     
+//    private func getPFFileFromImage(image: UIImage?) -> PFFile? {
+//        
+//        // check if image is not nil
+//        if let image = image {
+//            
+//            // get image data and check if that is not nil
+//            if let imageData = UIImagePNGRepresentation(image) {
+//                
+//                //returns file
+//                return PFFile(name: "image.png", data: imageData)
+//            }
+//        }
+//        return nil
+//    }
+    
+    
     /*===============================================================
-     Retrieving the messages
+        Loading the messages
      ===============================================================*/
     
     // Makes the query
@@ -241,8 +392,9 @@ class MessagingViewController: JSQMessagesViewController {
         query.findObjectsInBackground { pfMessages, error in
             if let pfMessages = pfMessages {
                 self.add(pfMessages: pfMessages.reversed())
+                print("MessagingViewController/loadMessages() Messages recieved")
             } else {
-                print("Error")
+                print("MessagingViewController/loadMessages() Messages revieved failed: \(String(describing: error?.localizedDescription))")
             }
         }
     }
@@ -250,20 +402,56 @@ class MessagingViewController: JSQMessagesViewController {
     // add the messages to the collection view
     private func add(pfMessages: [Message]) {
         
-        // NOTE: mfMessage["roomy"] does not exist right now. ~Dustyn 4/10 8:36pm
         func add(pfMessage: Message) {
             
             if let pfUserObject = pfMessage.roomy as? Roomy {
                 
                 if let authorID = pfUserObject.objectId,
                     let authorFullName = pfMessage.senderName {
+                    
                     let jsqMessage: JSQMessage? = {
                         
-                        if let text = pfMessage["text"] as? String {
-                            return JSQMessage(senderId: authorID, senderDisplayName: authorFullName, date: pfMessage.createdAt, text: text)
-                        } else {
-                            return nil
+                        let pictureFile = pfMessage["picture"] as? PFFile
+                        
+                        // No picture; only text
+                        if pictureFile == nil {
+                            
+                            if let text = pfMessage["text"] as? String {
+                                
+                                if authorID != self.senderId {
+                                    JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+                                }
+                                return JSQMessage(senderId: authorID, senderDisplayName: authorFullName, date: pfMessage.createdAt, text: text)
+                            } else {
+                                return nil
+                            }
                         }
+                        
+                        if let pictureFile = pictureFile {
+                            
+                            if let mediaItem = JSQPhotoMediaItem(image: nil) {
+                                mediaItem.appliesMediaViewMaskAsOutgoing = (authorID == self.senderId)
+                                let pictureDelayedJSQMessage = JSQMessage(senderId: authorID,
+                                                                          senderDisplayName: authorFullName,
+                                                                          date: pfMessage.createdAt,
+                                                                          media: mediaItem)
+                                
+                                pictureFile.getDataInBackground { imageData, error in
+                                    if let imageData = imageData, let image = UIImage(data: imageData) {
+                                        mediaItem.image = image
+                                        self.collectionView.reloadData()
+                                    }
+                                }
+                                
+                                if authorID != self.senderId {
+                                    JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+                                }
+                                
+                                return pictureDelayedJSQMessage
+                            }
+                        }
+
+                        return nil
                     }()
                     
                     if let jsqMessage = jsqMessage {
@@ -276,13 +464,10 @@ class MessagingViewController: JSQMessagesViewController {
         }
         
         for pfMessage in pfMessages {
-            print("pfMesssage: ")
-            print(pfMessage)
-            print()
             add(pfMessage: pfMessage)
         }
         
-        // ??????
+        // Scrolls to bottom if new message arrives
         if pfMessages.count >= 1 {
             self.scrollToBottom(animated: true)
             self.finishReceivingMessage()
@@ -310,6 +495,7 @@ class MessagingViewController: JSQMessagesViewController {
     
 }
 
+// Notfications
 extension MessagingViewController: UNUserNotificationCenterDelegate{
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let storyboard = UIStoryboard(name: R.Identifier.Storyboard.tabBar, bundle: nil)
@@ -323,7 +509,94 @@ extension MessagingViewController: UNUserNotificationCenterDelegate{
         print("Notification being triggered")
         
         completionHandler( [.alert,.sound,.badge])
-        
-        
     }
 }
+
+
+//final class Camera {
+//    
+//    enum MediaType {
+//        case Photo, Video
+//    }
+//    
+//    class func shouldStartCamera(target: AnyObject, canEdit: Bool, frontFacing: Bool) -> Bool {
+//        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+//            return false
+//        }
+//        
+//        let type = kUTTypeImage as String
+//        let cameraUI = UIImagePickerController()
+//        
+//        let available = UIImagePickerController.isSourceTypeAvailable(.camera) &&
+//            (UIImagePickerController.availableMediaTypes(for: .camera)?.contains(type) ?? false)
+//        
+//        if available {
+//            cameraUI.mediaTypes = [type]
+//            cameraUI.sourceType = .camera
+//            
+//            if frontFacing {
+//                if UIImagePickerController.isCameraDeviceAvailable(.front) {
+//                    cameraUI.cameraDevice = .front
+//                } else if UIImagePickerController.isCameraDeviceAvailable(.rear) {
+//                    cameraUI.cameraDevice = .rear
+//                }
+//            } else {
+//                if UIImagePickerController.isCameraDeviceAvailable(.rear) {
+//                    cameraUI.cameraDevice = .rear
+//                } else if UIImagePickerController.isCameraDeviceAvailable(.front) {
+//                    cameraUI.cameraDevice = .front
+//                }
+//            }
+//        } else {
+//            return false
+//        }
+//        
+//        cameraUI.allowsEditing = canEdit
+//        cameraUI.showsCameraControls = true
+//        if let target = target as? UINavigationControllerDelegate & UIImagePickerControllerDelegate {
+//            cameraUI.delegate = target
+//        }
+//        
+//        target.present(cameraUI, animated: true, completion: nil)
+//        
+//        return true
+//    }
+//    
+//    class func shouldStartPhotoLibrary(target: AnyObject, mediaType: MediaType, canEdit: Bool) -> Bool {
+//        if !UIImagePickerController.isSourceTypeAvailable(.photoLibrary) &&
+//            !UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+//            return false
+//        }
+//        
+//        let type: String = {
+//            switch mediaType {
+//            case .Photo:
+//                return kUTTypeImage as String
+//            case .Video:
+//                return kUTTypeMovie as String
+//            }
+//        }()
+//        let imagePicker = UIImagePickerController()
+//        
+//        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) &&
+//            (UIImagePickerController.availableMediaTypes(for: .photoLibrary)?.contains(type) ?? false) {
+//            imagePicker.mediaTypes = [type]
+//            imagePicker.sourceType = .photoLibrary
+//        } else if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) &&
+//            (UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum)?.contains(type) ?? false) {
+//            imagePicker.mediaTypes = [type]
+//            imagePicker.sourceType = .savedPhotosAlbum
+//        } else {
+//            return false
+//        }
+//        
+//        imagePicker.allowsEditing = canEdit
+//        if let target = target as? UINavigationControllerDelegate & UIImagePickerControllerDelegate {
+//            imagePicker.delegate = target
+//        }
+//        
+//        target.present(imagePicker, animated: true, completion: nil)
+//        
+//        return true
+//    }
+//}

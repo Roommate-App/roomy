@@ -46,6 +46,7 @@
 		A56978121E778E3200BC8378 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A56978111E778E3200BC8378 /* Assets.xcassets */; };
 		A56978151E778E3200BC8378 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A56978131E778E3200BC8378 /* LaunchScreen.storyboard */; };
 		A5800D651E7DE3C800FB35F4 /* House.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5800D641E7DE3C800FB35F4 /* House.swift */; };
+		A5BF9FB81EB6CAA100B7A179 /* MessagingNavigationItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF9FB71EB6CAA100B7A179 /* MessagingNavigationItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +96,7 @@
 		A56978141E778E3200BC8378 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A56978161E778E3200BC8378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5800D641E7DE3C800FB35F4 /* House.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = House.swift; sourceTree = "<group>"; };
+		A5BF9FB71EB6CAA100B7A179 /* MessagingNavigationItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagingNavigationItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 				A51575061E7DB4AB009F93F8 /* HomeTimelineViewController.swift */,
 				736DD9AE1E940541008BAA2E /* HomeViewController.swift */,
 				A513C1781E987ED000F2B5D2 /* MessagingViewController.swift */,
+				A5BF9FB71EB6CAA100B7A179 /* MessagingNavigationItemViewController.swift */,
 				4F2C400B1E9B16E700EBC693 /* TodoListViewController.swift */,
 				4FC8B1F61E9B1E8C00109093 /* TodoAddItemViewController.swift */,
 				7355325B1EA6CD78007815A8 /* UpdateStatusViewController.swift */,
@@ -396,6 +399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5BF9FB81EB6CAA100B7A179 /* MessagingNavigationItemViewController.swift in Sources */,
 				73713BAA1E9994C000EF1923 /* Roomy.swift in Sources */,
 				3E88E3451EB1913E00C9D89A /* StatusTableViewCell.swift in Sources */,
 				73BF27DD1E9D51DE0080841D /* RoomyTableViewCell.swift in Sources */,
