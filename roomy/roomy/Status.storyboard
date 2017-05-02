@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,9 +22,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="137" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QIu-rI-YhE">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="137" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QIu-rI-YhE">
+                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatusTableViewCell" rowHeight="137" id="x0z-yZ-sTj" customClass="StatusTableViewCell" customModule="roomy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="137"/>
@@ -35,7 +37,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="STATUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yza-WF-7Nz">
                                                     <rect key="frame" x="8" y="8" width="59" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -46,27 +48,32 @@
                                                 <constraint firstItem="yza-WF-7Nz" firstAttribute="top" secondItem="0kA-pk-hyc" secondAttribute="top" constant="8" id="eVB-zn-KyP"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="statusMessageLabel" destination="yza-WF-7Nz" id="9lU-am-8CZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUg-z4-EiS">
-                                <rect key="frame" x="168" y="0.0" width="39" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Close"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUg-z4-EiS">
+                                <rect key="frame" x="339" y="32" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="8Ab-Hq-DHb"/>
+                                    <constraint firstAttribute="width" constant="20" id="JJ7-Wk-etA"/>
+                                </constraints>
+                                <state key="normal" title="Close" image="close"/>
                                 <connections>
                                     <action selector="onCloseButtonTapped:" destination="Vzb-z9-izc" eventType="touchUpInside" id="sLr-OP-pSu"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="QIu-rI-YhE" firstAttribute="leading" secondItem="A8C-ed-9Hr" secondAttribute="leading" id="EX0-XB-deI"/>
+                            <constraint firstItem="DUg-z4-EiS" firstAttribute="trailing" secondItem="A8C-ed-9Hr" secondAttribute="trailingMargin" constant="8" id="KEt-ZR-BeS"/>
                             <constraint firstAttribute="trailing" secondItem="QIu-rI-YhE" secondAttribute="trailing" id="Ybj-Ml-Oxy"/>
                             <constraint firstItem="MuV-P4-yyv" firstAttribute="top" secondItem="QIu-rI-YhE" secondAttribute="bottom" id="mSG-xo-gOI"/>
-                            <constraint firstItem="QIu-rI-YhE" firstAttribute="top" secondItem="A8C-ed-9Hr" secondAttribute="top" id="yK9-jz-pkm"/>
+                            <constraint firstItem="QIu-rI-YhE" firstAttribute="top" secondItem="A8C-ed-9Hr" secondAttribute="top" constant="28" id="yK9-jz-pkm"/>
                         </constraints>
                     </view>
                     <connections>
@@ -75,7 +82,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="roH-id-4gG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2560.8000000000002" y="-690.40479760119945"/>
+            <point key="canvasLocation" x="-2582" y="-582"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="close" width="120" height="120"/>
+    </resources>
 </document>

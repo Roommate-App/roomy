@@ -29,7 +29,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var currentRoomyProfilePoster: AnimatableImageView!
     @IBOutlet weak var currentRoomynameLabel: UILabel!
     @IBOutlet weak var currentRoomyStatus: UILabel!
-    @IBOutlet weak var currentRoomyHomeStatusLabel: UILabel!
+
+    @IBOutlet weak var currentRoomyHomeBadge: AnimatableImageView!
     
     private var subscription: Subscription<Roomy>!
     
@@ -80,6 +81,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        print("test")
         loadCurrentRoomyProfileView()
     }
     
@@ -91,6 +93,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         loadCurrentRoomyProfileView()
     }
     
+    
     func loadCurrentRoomyProfileView(){
         let roomy = Roomy.current()
         currentRoomynameLabel.text = roomy?.username
@@ -98,7 +101,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let pfImage = roomy?["profile_image"] as! PFFile
         currentRoomyStatus.text = roomy?["status_message"] as? String ?? ""
-        print(roomy)
+        //currentRoomyStatus.text = roomy?.status ?? ""
         
         pfImage.getDataInBackground(block: { (image: Data?, error: Error?) in
             if error == nil {
@@ -109,9 +112,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
         
         if(checkIfRoomyIsHome(roomy: Roomy.current()!)){
-            currentRoomyHomeStatusLabel.text = "Home"
+            currentRoomyHomeBadge.image = #imageLiteral(resourceName: "home")
         } else {
-            currentRoomyHomeStatusLabel.text = "Not Home"
+            //currentRoomyHomeStatusLabel.text = "Not Home"
+            currentRoomyHomeBadge.image = #imageLiteral(resourceName: "not-home")
         }
     }
     
@@ -294,6 +298,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        currentRoomyStatus.text = Roomy.current()?["status_message"] as! String 
         return PopDismissingAnimationController()
     }
     
@@ -356,7 +361,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             })             
         }
        
-
         if(statusText != ""){
             let index = statusText.index((statusText.startIndex), offsetBy: 1)
             let emoji = statusText.substring(to: index)
@@ -367,7 +371,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
-    
+    //MARK: Draws a badge on an UIImageView
     func drawImageView(mainImage: UIImage, withBadge badge: UIImage) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(mainImage.size, false, 0.0)
         mainImage.draw(in: CGRect(x: 0, y: 0, width: mainImage.size.width, height: mainImage.size.height))
@@ -380,7 +384,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 }
 
-extension HomeViewController: UNUserNotificationCenterDelegate{
+extension HomeViewController: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let storyboard = UIStoryboard(name: R.Identifier.Storyboard.tabBar, bundle: nil)
@@ -395,10 +399,9 @@ extension HomeViewController: UNUserNotificationCenterDelegate{
         
         completionHandler( [.alert,.sound,.badge])
         
-        
     }
 }
-
+//MARK: Converts a string to an UIImage. Used to convert emoji's to UIImages in roomy status.
 extension String {
     
     func image() -> UIImage? {

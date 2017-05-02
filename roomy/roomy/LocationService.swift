@@ -64,7 +64,6 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
-        print(location)
     }
     
     //MARK: Location Manager region monitoring functions
@@ -75,11 +74,6 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
         Roomy.current()?.saveInBackground(block: { (success: Bool?, error: Error?) in
             
         })
-//        do {
-//            try Roomy.current()?.save()
-//        } catch let error as Error? {
-//            
-//        }
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
@@ -88,10 +82,5 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
         Roomy.current()?.saveInBackground(block: { (success: Bool? , error: Error?) in
             print("test")
         })
-//        do {
-//            try Roomy.current()?.save()
-//        } catch let error as Error? {
-//            
-//        }
     }
 }

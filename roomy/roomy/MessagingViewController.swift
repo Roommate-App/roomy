@@ -311,13 +311,18 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
         var modifiedText = text
         var pictureFile: PFFile?
         
-        if let picture = picture,
-            let data = UIImageJPEGRepresentation(picture, 0.6),
-            let file = PFFile(name: "picture.jpg", data: data) {
+        
+        
+        if let picture = picture{
+            
+            let image = picture.resized(withPercentage: 0.1)
+            let data = UIImagePNGRepresentation(picture)
+            
+            let file = PFFile(name: "picture.png", data: data!)
             
             modifiedText += "[Picture message]"
             pictureFile = file
-            file.saveInBackground { succeed, error in
+            file?.saveInBackground { succeed, error in
                 if succeed {
                     print("MessagingViewController/sendMessage() Photo saved")
                 } else {
@@ -412,6 +417,8 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
                     let jsqMessage: JSQMessage? = {
                         
                         let pictureFile = pfMessage["picture"] as? PFFile
+                        print("HELP")
+                        print(pictureFile)
                         
                         // No picture; only text
                         if pictureFile == nil {
@@ -431,13 +438,19 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
                             
                             if let mediaItem = JSQPhotoMediaItem(image: nil) {
                                 mediaItem.appliesMediaViewMaskAsOutgoing = (authorID == self.senderId)
+                                
                                 let pictureDelayedJSQMessage = JSQMessage(senderId: authorID,
                                                                           senderDisplayName: authorFullName,
                                                                           date: pfMessage.createdAt,
                                                                           media: mediaItem)
                                 
+                                
+                                
                                 pictureFile.getDataInBackground { imageData, error in
-                                    if let imageData = imageData, let image = UIImage(data: imageData) {
+
+                                    if let imageData = imageData {
+                                        let image = UIImage(data: imageData)
+                                        print(image)
                                         mediaItem.image = image
                                         self.collectionView.reloadData()
                                     }
