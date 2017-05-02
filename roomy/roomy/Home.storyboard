@@ -52,6 +52,8 @@
                                 <rect key="frame" x="0.0" y="216" width="375" height="451"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexColor" red="0.0" green="0.0" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="1" alpha="0.22433410234899329" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeTableViewCell" rowHeight="187" id="c2i-bK-sEe" customClass="RoomyTableViewCell" customModule="roomy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="187"/>
@@ -109,6 +111,7 @@
                                                 </collectionView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="collectionView" destination="dU9-ib-U8r" id="lsN-xy-Lb7"/>
                                         </connections>
