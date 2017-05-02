@@ -49,22 +49,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         subscription = ParseLiveQuery.Client.shared.subscribe(roomyQuery).handle(Event.updated) { (query, roomy) in
             self.roomyChangedHomeStatus(roomy: roomy)
             let content = UNMutableNotificationContent()
-            content.title = roomy.username!
-            let roomyIsHome = roomy["is_home"] as! Bool
             
-            if(roomyIsHome) {
-                content.body = "Came Home!"
-            } else {
-                content.body = "Left Home!"
-            }
+                content.title = roomy.username!
+                let roomyIsHome = roomy["is_home"] as! Bool
+                
+                if(roomyIsHome) {
+                    content.body = "Came Home!"
+                } else {
+                    content.body = "Left Home!"
+                }
+                
+                content.badge = 1
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
+                UNUserNotificationCenter.current().delegate = self
+                
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
+                })
             
-            content.badge = 1
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-            let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
-            UNUserNotificationCenter.current().delegate = self
-            
-            UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
-            })
         }
     }
 
@@ -233,7 +235,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func roomyChangedHomeStatus(roomy: Roomy){
-        let isRoomyHome = roomy["is_home"] as! Bool
+        let isRoomyHome = roomy["is_home"] as? Bool ?? false
         
         if(isRoomyHome){
             roomiesNotHome = roomiesNotHome?.filter({$0.username != roomy.username})
@@ -312,7 +314,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let roomy = roomiesHome?[indexPath.row]
             
             cell.roomyUserNameLabel.text = roomy?.username
-            cell.roomyStatusMessageLabel.text = roomy?.status
+            cell.roomyStatusMessageLabel.text = roomy?["status_message"] as? String ?? ""
             cell.roomyPosterView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
             
             
@@ -333,7 +335,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let roomy = roomiesNotHome?[indexPath.row]
             
             cell.roomyUserNameLabel.text = roomy?.username
-            cell.roomyStatusMessageLabel.text = roomy?.status
+            cell.roomyStatusMessageLabel.text = roomy?["status_message"] as? String ?? ""
             
             let pfImage = roomy?["profile_image"] as! PFFile
             
