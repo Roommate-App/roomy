@@ -87,6 +87,10 @@
                                                                                 <real key="value" value="6"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="_maskType" value="Circle"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="_animationType" value="pop"/>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                                                                <real key="value" value="2"/>
+                                                                            </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                 </subviews>
@@ -129,7 +133,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZaO-ce-2gc" customClass="AnimatableLabel" customModule="IBAnimatable">
-                                <rect key="frame" x="137" y="131" width="222" height="34"/>
+                                <rect key="frame" x="137" y="131" width="232" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -193,7 +197,7 @@
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="WOC-Ca-Mfi">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="dIJ-vH-zpR">
+                        <barButtonItem key="leftBarButtonItem" id="dIJ-vH-zpR">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onLogoutButtonTapped:" destination="BOz-Qg-GJO" id="mHG-qa-BEh"/>

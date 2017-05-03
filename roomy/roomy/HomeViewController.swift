@@ -40,6 +40,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         LocationService.shared.setUpHouseFence()
         LocationService.shared.isRoomyHome()
         
+        
         homeTableView.dataSource = self
         homeTableView.delegate = self
         homeTableView.sizeToFit()
@@ -64,7 +65,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 content.badge = 1
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false)
                 let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
                 UNUserNotificationCenter.current().delegate = self
                 
@@ -89,15 +90,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         loadCurrentRoomyProfileView()
     }
     
-    func updateRoomyProfile(userName: String, profileImage: UIImage){
-        currentRoomynameLabel.text = userName
+    
+    //MARK: Roomy settings delegate.
+    func updateRoomyProfile(userName: String, profileImage: UIImage?){
+        
+        if(userName != ""){
+            currentRoomynameLabel.text = userName
+        }
         currentRoomyProfilePoster.image = profileImage
-        
-        
-        AnimationType.wobble(repeatCount: 10)
     }
     
     
+    //MARK: Loads the current roomy's profile view.
     func loadCurrentRoomyProfileView(){
         let roomy = Roomy.current()
         currentRoomynameLabel.text = roomy?.username
@@ -105,7 +109,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let pfImage = roomy?["profile_image"] as! PFFile
         currentRoomyStatus.text = roomy?["status_message"] as? String ?? ""
-        
         
         pfImage.getDataInBackground(block: { (image: Data?, error: Error?) in
             if error == nil {
@@ -123,16 +126,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    
+    //MARK: PROGRESSHUD FUNCTIONS
     func showProgressHud(){
         hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.mode = MBProgressHUDMode.indeterminate
         hud.animationType = .zoomIn
-    }
-    
-    func reloadTableView(){
-        hud.hide(animated: true, afterDelay: 1)
-        homeTableView.reloadData()
     }
     
     func hideProgressHud(){
@@ -140,6 +138,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     //MARK: TABLE VIEW FUNCTIONS
+    func reloadTableView(){
+        hud.hide(animated: true, afterDelay: 1)
+        homeTableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 1
     }
@@ -166,11 +169,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 30))
         
-        let homeTextLabel = UILabel(frame: CGRect(x: 20, y: 5, width: 100, height: 20))
+        let homeTextLabel = UILabel(frame: CGRect(x: 20, y: 5, width: 100, height: 30))
         homeTextLabel.adjustsFontSizeToFitWidth = true
         homeTextLabel.font = UIFont (name: "HelveticaNeue-UltraLight", size: 20)
         
         let iconImage = UIImageView(frame: CGRect(x: 0, y: 5, width: 20, height: 20))
+        
+        
     
         if(section == 0){
             homeTextLabel.text = R.Header.home
@@ -185,7 +190,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 30
     }
     
-    //MARK: PARSE QUERYING TO GET ROOMIES
+    //MARK: PARSE QUERY TO GET ROOMIES
     func getRoomyQuery() -> PFQuery<Roomy>{
     
         let query: PFQuery<Roomy> = PFQuery(className: "_User")
@@ -201,6 +206,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return query
     }
     
+    
+    //MARK: ROOMY HOME FUNCTIONS
     func addRoomiesToHome() {
         //addCurrentRoomyToHome()
         for roomy in self.roomies! {
@@ -274,6 +281,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
+    
+    //LOGOUTS ROOMY
     @IBAction func onLogoutButtonTapped(_ sender: Any) {
         PFUser.logOutInBackground { (error: Error?) in
             if error == nil {
@@ -384,6 +393,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.roomyBadgeView.image = emoji.image()
           
         }
+        
         return cell
     }
     
@@ -397,14 +407,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         UIGraphicsEndImageContext()
         return resultImage
     }
-    
-    
-  
-    
-
 }
 
+//MARK: USER NOTIFICATION DELEGATE CLASS EXTENSION. DISPLAYS NOTFICATION TO ROOMY.
 extension HomeViewController: UNUserNotificationCenterDelegate {
+    
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let storyboard = UIStoryboard(name: R.Identifier.Storyboard.tabBar, bundle: nil)

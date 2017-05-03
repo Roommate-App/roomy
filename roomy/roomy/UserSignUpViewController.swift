@@ -52,7 +52,8 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
         viewOriginalYPoint = view.frame.origin.y
         
         emailTextField.delegate = self
-        imagePicker.delegate = self 
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
     }
     
     private func displayProgressHud(){

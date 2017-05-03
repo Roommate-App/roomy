@@ -8,32 +8,32 @@
 
 import UIKit
 import Parse
+import SkyFloatingLabelTextField
 
 class SettingsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var usernameTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var profileImage: UIImageView!
     
     
     var settingsDelegate: RoomySettingsDelegate!
+    var newProfileImage: UIImage!
+    var viewOriginalYPoint: CGFloat!
     
     let currentUser = Roomy.current()
     let imgPicker = UIImagePickerController()
-    var newProfileImage: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         imgPicker.delegate = self
-        //imgPicker.allowsEditing = true
+        imgPicker.allowsEditing = true
         
-        print(currentUser?.password)
         // Load existing user settings
-        usernameTextField.text = currentUser?.username
-        emailTextField.text = currentUser?.email
-        
+        usernameTextField.placeholder = currentUser?.username
+        emailTextField.placeholder = currentUser?.email
         
         if let imageFile = currentUser?.value(forKey: "profile_image") as? PFFile {
             imageFile.getDataInBackground(block: { (imgData: Data?, error: Error?) in
@@ -46,6 +46,11 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             })
         }
         profileImage.layer.cornerRadius = 10
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        self.hideKeyboardWhenTappedAround()
+        self.viewOriginalYPoint = self.view.frame.origin.y
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -75,13 +80,26 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func didTapDone(_ sender: Any) {
         let newUserName = usernameTextField.text
-        currentUser?.username = newUserName
-        if passwordTextField.text != "123456" {
+        
+        //NOTE: make as switch statment
+        if passwordTextField.text != ""{
             currentUser?.password = passwordTextField.text
         }
-        currentUser?.email = emailTextField.text
+        
+        if newUserName != "" {
+            currentUser?.username = newUserName
+        }
+        
+        if(emailTextField.text != ""){
+            currentUser?.email = emailTextField.text
+        }
+        
         currentUser?.saveInBackground()
-        self.dismiss(animated: true, completion: nil)
+        
+        if(self.newProfileImage == nil){
+            self.newProfileImage = self.profileImage.image
+        }
+        
         self.dismiss(animated: true) { 
             self.settingsDelegate.updateRoomyProfile(userName: newUserName!, profileImage: self.newProfileImage)
         }
@@ -90,10 +108,38 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func didTapCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                
+                UIView.animate(withDuration: 1.0, animations: {
+                    self.view.frame.origin.y -= keyboardSize.height / 4
+                    
+                })
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                
+                UIView.animate(withDuration: 1.0, animations: {
+                    self.view.frame.origin.y = self.viewOriginalYPoint
+                })
+            }
+        }
+    }
 
 }
 
+
+
+
+
 protocol RoomySettingsDelegate: class {
-    func updateRoomyProfile(userName: String, profileImage: UIImage)
+    func updateRoomyProfile(userName: String, profileImage: UIImage?)
 }
 
