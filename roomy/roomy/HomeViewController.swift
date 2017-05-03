@@ -50,9 +50,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let roomyQuery = getRoomyQuery()
         subscription = ParseLiveQuery.Client.shared.subscribe(roomyQuery).handle(Event.updated) { (query, roomy) in
             
-            self.roomyChangedHomeStatus(roomy: roomy)
-            let content = UNMutableNotificationContent()
-            
+            if(roomy.username != Roomy.current()?.username){
+                self.roomyChangedHomeStatus(roomy: roomy)
+                let content = UNMutableNotificationContent()
+                
                 content.title = roomy.username!
                 let roomyIsHome = roomy["is_home"] as! Bool
                 
@@ -63,13 +64,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 
                 content.badge = 1
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
                 let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
                 UNUserNotificationCenter.current().delegate = self
                 
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
                 })
-        }
+            }
+
+            }
     }
 
     override func didReceiveMemoryWarning() {
