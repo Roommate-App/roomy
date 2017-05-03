@@ -28,7 +28,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var currentRoomyProfilePoster: AnimatableImageView!
     @IBOutlet weak var currentRoomynameLabel: UILabel!
-    @IBOutlet weak var currentRoomyStatus: UILabel!
+    @IBOutlet weak var currentRoomyStatus: AnimatableLabel!
 
     @IBOutlet weak var currentRoomyHomeBadge: AnimatableImageView!
     
@@ -50,7 +50,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let roomyQuery = getRoomyQuery()
         subscription = ParseLiveQuery.Client.shared.subscribe(roomyQuery).handle(Event.updated) { (query, roomy) in
             
-            
             self.roomyChangedHomeStatus(roomy: roomy)
             let content = UNMutableNotificationContent()
             
@@ -70,7 +69,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error: Error?) in
                 })
-            
         }
     }
 
@@ -79,11 +77,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        print("test")
-        loadCurrentRoomyProfileView()
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -96,6 +89,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func updateRoomyProfile(userName: String, profileImage: UIImage){
         currentRoomynameLabel.text = userName
         currentRoomyProfilePoster.image = profileImage
+        
+        
+        AnimationType.wobble(repeatCount: 10)
     }
     
     
@@ -304,6 +300,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         currentRoomyStatus.text = Roomy.current()?[R.Parse.Key.StatusMessage] as! String
+        currentRoomyStatus.animate()
         return PopDismissingAnimationController()
     }
     
