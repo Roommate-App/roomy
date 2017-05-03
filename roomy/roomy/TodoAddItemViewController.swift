@@ -18,7 +18,10 @@ class TodoAddItemViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.delegate = self
+        //navigationController?.delegate = self\
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

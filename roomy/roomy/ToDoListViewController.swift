@@ -31,8 +31,7 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
-        
-        
+        tableView.tableFooterView = UIView()
         
         let todoItemQuery = getTodosQuery()
         

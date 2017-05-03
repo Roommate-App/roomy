@@ -1,57 +1,48 @@
 {
   "images" : [
     {
-      "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "iconmonstr-building-10-249.png",
+      "size" : "20x20",
       "scale" : "2x"
     },
     {
-      "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "iconmonstr-building-10-250.png",
+      "size" : "20x20",
       "scale" : "3x"
     },
     {
-      "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "iconmonstr-building-10-246.png",
+      "size" : "29x29",
       "scale" : "1x"
     },
     {
-      "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "iconmonstr-building-10-247.png",
+      "size" : "29x29",
       "scale" : "2x"
     },
     {
-      "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "iconmonstr-building-10-248.png",
+      "size" : "29x29",
       "scale" : "3x"
     },
     {
-      "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "iconmonstr-building-10-244.png",
+      "size" : "40x40",
       "scale" : "2x"
     },
     {
-      "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "iconmonstr-building-10-245.png",
+      "size" : "40x40",
       "scale" : "3x"
     },
     {
+      "idiom" : "iphone",
       "size" : "57x57",
-      "idiom" : "iphone",
-      "filename" : "iconmonstr-building-10-242.png",
       "scale" : "1x"
     },
     {
-      "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "iconmonstr-building-10-243.png",
+      "size" : "57x57",
       "scale" : "2x"
     },
     {
