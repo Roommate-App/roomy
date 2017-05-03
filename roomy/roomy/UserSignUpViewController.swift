@@ -132,6 +132,7 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
                 
+
                 UIView.animate(withDuration: 1.0, animations: {
                     self.view.frame.origin.y -= keyboardSize.height / 2
                     self.addPhotoButton.frame.origin.y += keyboardSize.height / 4

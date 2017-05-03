@@ -8,17 +8,18 @@
 
 import UIKit
 import Parse
+import SkyFloatingLabelTextField
 
 class TodoAddItemViewController: UIViewController, UINavigationControllerDelegate {
     
     var todoItem: TodoItem?
 
-    @IBOutlet weak var todoItemTextField: UITextField!
+    @IBOutlet weak var todoItemTextField: SkyFloatingLabelTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //navigationController?.delegate = self\
+        navigationController?.delegate = self
         
         
         
@@ -39,7 +40,7 @@ class TodoAddItemViewController: UIViewController, UINavigationControllerDelegat
 
                 //self.todoItem = TodoItem(name: self.todoItemTextField.text!)
                 //vc.todoItems.add(self.todoItem!)
-
+                
                 self.todoItem = TodoItem(name: self.todoItemTextField.text!, house: House._currentHouse!)
                 vc.newTodoItem = self.todoItem
 
