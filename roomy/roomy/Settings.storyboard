@@ -116,6 +116,9 @@
                                         <real key="value" value="13"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onLogoutButtonTapped:" destination="Uee-Lr-X2g" eventType="touchUpInside" id="Thg-uK-vKj"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qt1-MU-l3L" customClass="AnimatableButton" customModule="IBAnimatable">
                                 <rect key="frame" x="124" y="260" width="127" height="27"/>
@@ -170,7 +173,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jPn-17-NJi" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ILR-50-dNf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ILR-50-dNf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>

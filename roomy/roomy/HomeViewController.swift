@@ -282,18 +282,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    //LOGOUTS ROOMY
-    @IBAction func onLogoutButtonTapped(_ sender: Any) {
-        PFUser.logOutInBackground { (error: Error?) in
-            if error == nil {
-                House._currentHouse = nil
-                let mainStoryboard = UIStoryboard(name: R.Identifier.Storyboard.loginAndSignUp, bundle: nil)
-                let loginViewController = mainStoryboard.instantiateViewController(withIdentifier: "UserLoginViewController") as! UserLoginViewController
-                self.present(loginViewController, animated: true, completion: nil)
-            }
-        }
-    }
-    
+
+    //MARK: CHANGES CURRENT ROOMY'S STATUS
     @IBAction func onChangedStatusButtonTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: R.Identifier.Storyboard.Status, bundle: nil)
         let updateStatusViewController = storyboard.instantiateViewController(withIdentifier: R.Identifier.ViewController.updateStatusViewController) as! UpdateStatusViewController

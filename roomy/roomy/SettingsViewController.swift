@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import SkyFloatingLabelTextField
+import MBProgressHUD
 
 class SettingsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -109,6 +110,24 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func onLogoutButtonTapped(_ sender: Any) {
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.mode = MBProgressHUDMode.indeterminate
+        hud.animationType = .zoomIn
+        
+        PFUser.logOutInBackground { (error: Error?) in
+            if error == nil {
+                House._currentHouse = nil
+                let mainStoryboard = UIStoryboard(name: R.Identifier.Storyboard.loginAndSignUp, bundle: nil)
+                let loginViewController = mainStoryboard.instantiateViewController(withIdentifier: "UserLoginViewController") as! UserLoginViewController
+                self.present(loginViewController, animated: true, completion: { 
+                    hud.hide(animated: true, afterDelay: 1)
+                })
+            }
+        }
+
+        
+    }
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
