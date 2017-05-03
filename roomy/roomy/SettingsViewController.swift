@@ -16,8 +16,12 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var profileImage: UIImageView!
     
+    
+    var settingsDelegate: RoomySettingsDelegate!
+    
     let currentUser = Roomy.current()
     let imgPicker = UIImagePickerController()
+    var newProfileImage: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +65,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         let imageData = UIImagePNGRepresentation(image)
         let imageFile: PFFile? = PFFile(data: imageData!)!
         currentUser?.setObject(imageFile!, forKey: "profile_image")
+        
+        newProfileImage = image
         self.profileImage.image = image
         
         // Dismiss UIImagePickerController to go back to your original view controller
@@ -68,13 +74,17 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func didTapDone(_ sender: Any) {
-        currentUser?.username = usernameTextField.text
+        let newUserName = usernameTextField.text
+        currentUser?.username = newUserName
         if passwordTextField.text != "123456" {
             currentUser?.password = passwordTextField.text
         }
         currentUser?.email = emailTextField.text
         currentUser?.saveInBackground()
         self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) { 
+            self.settingsDelegate.updateRoomyProfile(userName: newUserName!, profileImage: self.newProfileImage)
+        }
     }
     
     @IBAction func didTapCancel(_ sender: Any) {
@@ -82,3 +92,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     }
 
 }
+
+protocol RoomySettingsDelegate: class {
+    func updateRoomyProfile(userName: String, profileImage: UIImage)
+}
+

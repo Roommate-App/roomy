@@ -170,7 +170,6 @@ class TodoListViewController: UIViewController, UITableViewDataSource, UITableVi
                 print("There was an error")
             }
         }
-        
         tableView.reloadData()
     }
     

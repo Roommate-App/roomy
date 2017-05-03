@@ -15,7 +15,7 @@ import UserNotifications
 import IBAnimatable
 import QuartzCore
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate, RoomySettingsDelegate{
     
     @IBOutlet weak var homeTableView: UITableView!
 
@@ -93,15 +93,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         loadCurrentRoomyProfileView()
     }
     
+    func updateRoomyProfile(userName: String, profileImage: UIImage){
+        currentRoomynameLabel.text = userName
+        currentRoomyProfilePoster.image = profileImage
+    }
+    
     
     func loadCurrentRoomyProfileView(){
         let roomy = Roomy.current()
         currentRoomynameLabel.text = roomy?.username
-        currentRoomyProfilePoster.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
+        //currentRoomyProfilePoster.image = #imageLiteral(resourceName: "blank-profile-picture-973460_960_720")
         
         let pfImage = roomy?["profile_image"] as! PFFile
         currentRoomyStatus.text = roomy?["status_message"] as? String ?? ""
-        //currentRoomyStatus.text = roomy?.status ?? ""
+        
         
         pfImage.getDataInBackground(block: { (image: Data?, error: Error?) in
             if error == nil {
@@ -298,8 +303,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        currentRoomyStatus.text = Roomy.current()?["status_message"] as! String 
+        currentRoomyStatus.text = Roomy.current()?[R.Parse.Key.StatusMessage] as! String
         return PopDismissingAnimationController()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if(segue.identifier == R.Identifier.Segue.SettingsSegue){
+            let navigationController = segue.destination as! UINavigationController
+            let settingsViewController = navigationController.topViewController as! SettingsViewController
+            settingsViewController.settingsDelegate = self
+        }
+        
+        
     }
     
 }
@@ -381,6 +397,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         UIGraphicsEndImageContext()
         return resultImage
     }
+    
+    
+  
+    
 
 }
 

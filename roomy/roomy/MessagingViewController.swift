@@ -411,14 +411,18 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
             
             if let pfUserObject = pfMessage.roomy as? Roomy {
                 
+                //let roomyProfilePictureFile = pfUserObject["profile_image"] as! PFObject
+                //let roomyProfilePicture = roomyProfilePictureFile.fetchIfNeededInBackground()
+                
                 if let authorID = pfUserObject.objectId,
                     let authorFullName = pfMessage.senderName {
                     
                     let jsqMessage: JSQMessage? = {
                         
                         let pictureFile = pfMessage["picture"] as? PFFile
-                        print("HELP")
-                        print(pictureFile)
+                        
+                        //print("HELP")
+                        //print(pictureFile)
                         
                         // No picture; only text
                         if pictureFile == nil {
@@ -428,6 +432,11 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
                                 if authorID != self.senderId {
                                     JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
                                 }
+                                
+                                //if(roomyProfilePicture != nil){}
+                                
+//                                JSQMessage(senderId: <#T##String!#>, senderDisplayName: <#T##String!#>, date: <#T##Date!#>, media: //<#T##JSQMessageMediaData!#>)
+                                
                                 return JSQMessage(senderId: authorID, senderDisplayName: authorFullName, date: pfMessage.createdAt, text: text)
                             } else {
                                 return nil
@@ -450,7 +459,7 @@ class MessagingViewController: JSQMessagesViewController, UIImagePickerControlle
 
                                     if let imageData = imageData {
                                         let image = UIImage(data: imageData)
-                                        print(image)
+                                        
                                         mediaItem.image = image
                                         self.collectionView.reloadData()
                                     }

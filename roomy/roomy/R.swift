@@ -8,6 +8,13 @@
 
 
 struct R {
+    
+    struct Parse {
+        struct Key{
+            static let StatusMessage = "status_message"
+        }
+    }
+    
     struct Header {
         static let home = "Home"
         static let notHome = "Not Home"
@@ -35,6 +42,7 @@ struct R {
         struct Segue {
             static let WelcomeToRoomySegue = "WelcomeToRoomySegue"
             static let TabBarController = "TabBarControllerSegue"
+            static let SettingsSegue = "SettingsControllerSegue"
         }
     }
     struct TabBarController {
