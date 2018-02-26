@@ -16,6 +16,9 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
     static let shared = LocationService()
     var locationManager = CLLocationManager()
     var region: CLCircularRegion!
+	
+	func requestLocationAuthorization(){
+	}
     
     func startUpdatingLocation(){
         locationManager.requestAlwaysAuthorization()
@@ -25,7 +28,8 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
     }
-    
+  
+    //Set's up house geofence
     func setUpHouseFence(){
         startUpdatingLocation()
         let title = "Home"
@@ -63,24 +67,11 @@ class LocationService: NSObject, CLLocationManagerDelegate  {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[0]
+		
+		let location = locations[0]
     }
     
     //MARK: Location Manager region monitoring functions
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("User is home")
-        Roomy.current()?["is_home"] = true
-    
-        Roomy.current()?.saveInBackground(block: { (success: Bool?, error: Error?) in
-            
-        })
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        print("User is not home")
-        Roomy.current()?["is_home"] = false
-        Roomy.current()?.saveInBackground(block: { (success: Bool? , error: Error?) in
-            print("test")
-        })
-    }
-}
+ }
+
+

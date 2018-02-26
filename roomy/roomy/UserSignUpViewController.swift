@@ -92,9 +92,12 @@ class UserSignUpViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     private func createRoomy(_ roomyname: String,_ password: String ,_ email: String){
         
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.mode = MBProgressHUDMode.indeterminate
+        hud.animationType = .zoomIn
         Roomy.createUser(username: roomyname, password: password, email: email, profileImage: profileImage, status: "", successful: { (_ successful: Bool) in
             if(successful){
-                self.hideProgressHud()
+                hud.hide(animated: true, afterDelay: 10)
                 self.performSegue(withIdentifier: R.Identifier.Segue.WelcomeToRoomySegue, sender: nil)
             }
 

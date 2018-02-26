@@ -23,7 +23,10 @@ open class Client: NSObject {
     let clientKey: String?
 
     var socket: WebSocket?
+    public var shouldPrintWebSocketLog = true
+    public var shouldPrintWebSocketTrace = false
     public var userDisconnected = false
+    var isConnecting = false
 
     // This allows us to easily plug in another request ID generation scheme, or more easily change the request id type
     // if needed (technically this could be a string).
@@ -51,7 +54,7 @@ open class Client: NSObject {
             fatalError("Server should be a valid URL.")
         }
         var components = cmpts
-        components.scheme = components.scheme == "https" ? "wss" : "ws"
+        components.scheme = (components.scheme == "https" || components.scheme == "wss") ? "wss" : "ws"
 
         // Simple incrementing generator - can't use ++, that operator is deprecated!
         var currentRequestId = 0
@@ -127,7 +130,7 @@ extension Client {
     public func subscribe<T>(
         _ query: PFQuery<T>,
         subclassType: T.Type = T.self
-        ) -> Subscription<T> where T: PFObject {
+        ) -> Subscription<T> {
         return subscribe(query, handler: Subscription<T>())
     }
 
@@ -157,7 +160,7 @@ extension Client {
             if !userDisconnected {
                 reconnect()
             } else {
-                debugPrint("Warning: The client was explicitly disconnected! You must explicitly call .reconnect() in order to process your subscriptions.")
+                NSLog("ParseLiveQuery: Warning: The client was explicitly disconnected! You must explicitly call .reconnect() in order to process your subscriptions.")
             }
         }
         
@@ -205,11 +208,15 @@ extension Client {
     }
 
     func unsubscribe(matching matcher: @escaping (SubscriptionRecord) -> Bool) {
-        subscriptions.filter {
-            matcher($0)
-        }.forEach {
-            _ = sendOperationAsync(.unsubscribe(requestId: $0.requestId))
+        var temp = [SubscriptionRecord]()
+        subscriptions.forEach {
+            if matcher($0) {
+                _ = sendOperationAsync(.unsubscribe(requestId: $0.requestId))
+            } else {
+                temp.append($0)
+            }
         }
+        subscriptions = temp
     }
 }
 
@@ -221,12 +228,14 @@ extension Client {
      you use the client, and should usually only be called when an error occurs.
      */
     public func reconnect() {
+        guard socket == nil || !isConnecting else { return }
         socket?.disconnect()
         socket = {
             let socket = WebSocket(url: host)
             socket.delegate = self
             socket.callbackQueue = queue
             socket.connect()
+            isConnecting = true
             userDisconnected = false
             return socket
         }()
@@ -239,6 +248,7 @@ extension Client {
      Use this if you wish to dispose of the live query client.
      */
     public func disconnect() {
+        isConnecting = false
         guard let socket = socket
             else {
                 return

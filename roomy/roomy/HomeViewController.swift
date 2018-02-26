@@ -32,6 +32,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var currentRoomyHomeBadge: AnimatableImageView!
     
+    var homeTableViewSection: RoomyTableViewCell!
+    var notHomeTableViewSection: RoomyTableViewCell!
+    
     private var subscription: Subscription<Roomy>!
     
     override func viewDidLoad() {
@@ -159,8 +162,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath){
         guard let tableViewCell = cell as? RoomyTableViewCell
             else {
-            print("test")
             return
+        }
+        
+        if(indexPath.section == 0){
+            homeTableViewSection = tableViewCell
+        } else {
+            notHomeTableViewSection = tableViewCell
         }
         tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.section)
     }
@@ -175,8 +183,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let iconImage = UIImageView(frame: CGRect(x: 0, y: 5, width: 20, height: 20))
         
-        
-    
         if(section == 0){
             homeTextLabel.text = R.Header.home
         } else {
@@ -259,11 +265,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if(isRoomyHome){
             roomiesNotHome = roomiesNotHome?.filter({$0.username != roomy.username})
             roomiesHome?.append(roomy)
+            notHomeTableViewSection.reloadCollectionViewData()
         } else {
             roomiesHome = roomiesHome?.filter({$0.username != roomy.username})
             roomiesNotHome?.append(roomy)
         }
-        reloadTableView()
+        //reloadTableView()
+        
+        notHomeTableViewSection.reloadCollectionViewData()
+        homeTableViewSection.reloadCollectionViewData()
     }
     
     //MARK: Displays directions home in Google Maps (If available) or in Maps. 

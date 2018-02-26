@@ -12,7 +12,6 @@ import GooglePlaces
 import ParseFacebookUtilsV4
 import UserNotifications
 
-@UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
@@ -22,9 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     // First method that is called when the program runs
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        
-        
+			
         LocationService.shared.startUpdatingLocation()
         
         if(launchOptions?[UIApplicationLaunchOptionsKey.location] != nil){

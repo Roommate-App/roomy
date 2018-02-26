@@ -116,34 +116,27 @@ func == (first: Client.RequestId, second: Client.RequestId) -> Bool {
 
 extension Client: WebSocketDelegate {
 
-    public func websocketDidReceiveData(socket: WebSocket, data: Data) {
-        print("Received binary data but we don't handle it...")
+    public func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: Received binary data but we don't handle it...") }
     }
 
-    public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-        handleOperationAsync(text).continueWith { task in
-            if let error = task.error {
-                print("Error: \(error)")
+    public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        handleOperationAsync(text).continueWith { [weak self] task in
+            if let error = task.error, self?.shouldPrintWebSocketLog == true {
+                NSLog("ParseLiveQuery: Error processing message: \(error)")
             }
         }
     }
 
-    public func websocketDidConnect(socket: WebSocket) {
+    public func websocketDidConnect(socket: WebSocketClient) {
+        isConnecting = false
         let sessionToken = PFUser.current()?.sessionToken ?? ""
-        _ = self.sendOperationAsync(.connect(applicationId: applicationId, sessionToken: sessionToken))
+        _ = self.sendOperationAsync(.connect(applicationId: applicationId, sessionToken: sessionToken, clientKey: clientKey))
     }
 
-    public func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-        print("error: \(error)")
-
-        // TODO: Better retry logic, unless `disconnect()` was explicitly called
-        if !userDisconnected {
-            reconnect()
-        }
-    }
-
-    public func webSocket(_ webSocket: WebSocket, didCloseWithCode code: Int, reason: String?, wasClean: Bool) {
-        print("code: \(code) reason: \(reason)")
+    public func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        isConnecting = false
+        if shouldPrintWebSocketLog { NSLog("ParseLiveQuery: WebSocket did disconnect with error: \(String(describing: error))") }
 
         // TODO: Better retry logic, unless `disconnect()` was explicitly called
         if !userDisconnected {
@@ -199,12 +192,14 @@ extension Client {
             let jsonEncoded = operation.JSONObjectRepresentation
             let jsonData = try JSONSerialization.data(withJSONObject: jsonEncoded, options: JSONSerialization.WritingOptions(rawValue: 0))
             let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)
+            if self.shouldPrintWebSocketTrace { NSLog("ParseLiveQuery: Sending message: \(jsonString!)") }
             self.socket?.write(string: jsonString!)
         }
     }
 
     func handleOperationAsync(_ string: String) -> Task<Void> {
         return Task(.queue(queue)) {
+            if self.shouldPrintWebSocketTrace { NSLog("ParseLiveQuery: Received message: \(string)") }
             guard
                 let jsonData = string.data(using: String.Encoding.utf8),
                 let jsonDecoded = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions(rawValue: 0))
@@ -213,8 +208,6 @@ extension Client {
                 else {
                     throw LiveQueryErrors.InvalidResponseError(response: string)
             }
-
-
 
             switch response {
             case .connected:

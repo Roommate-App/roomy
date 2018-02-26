@@ -14,9 +14,9 @@
 		4FC8B1F51E9B1B1100109093 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8B1F41E9B1B1100109093 /* TodoItem.swift */; };
 		4FC8B1F71E9B1E8C00109093 /* TodoAddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8B1F61E9B1E8C00109093 /* TodoAddItemViewController.swift */; };
 		5B746737D24F0C7CB6868BEC /* Pods_roomy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E55EEA4792D224C573647F /* Pods_roomy.framework */; };
-		731E20F31EA5B04F003F1B2E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731E20F21EA5B04F003F1B2E /* FBSDKCoreKit.framework */; };
-		731E20F51EA5B059003F1B2E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731E20F41EA5B059003F1B2E /* FBSDKLoginKit.framework */; };
 		731E20F71EA5B0BE003F1B2E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731E20F61EA5B0BE003F1B2E /* Bolts.framework */; };
+		735031272044A12B00B68F50 /* RoomyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735031262044A12B00B68F50 /* RoomyUITests.swift */; };
+		7350312F2044A1E000B68F50 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7350312E2044A1E000B68F50 /* SnapshotHelper.swift */; };
 		7355325A1EA6CCE7007815A8 /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 735532591EA6CCE7007815A8 /* Status.storyboard */; };
 		7355325C1EA6CD78007815A8 /* UpdateStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355325B1EA6CD78007815A8 /* UpdateStatusViewController.swift */; };
 		7355325E1EA6CF4F007815A8 /* PopPresentingAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7355325D1EA6CF4E007815A8 /* PopPresentingAnimationController.swift */; };
@@ -49,6 +49,23 @@
 		A5BF9FB81EB6CAA100B7A179 /* MessagingNavigationItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BF9FB71EB6CAA100B7A179 /* MessagingNavigationItemViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7350310620449D3800B68F50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A56977FF1E778E3200BC8378 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A56978061E778E3200BC8378;
+			remoteInfo = roomy;
+		};
+		735031292044A12B00B68F50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A56977FF1E778E3200BC8378 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A56978061E778E3200BC8378;
+			remoteInfo = roomy;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		33F20C97F9F8B6C11B2AB8EC /* Pods-roomy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-roomy.release.xcconfig"; path = "Pods/Target Support Files/Pods-roomy/Pods-roomy.release.xcconfig"; sourceTree = "<group>"; };
 		37E55EEA4792D224C573647F /* Pods_roomy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_roomy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +81,11 @@
 		731F5DC41E95D2F40004277E /* America.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = America.gpx; sourceTree = "<group>"; };
 		731F5DC51E95D2F40004277E /* GoesHome.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GoesHome.gpx; sourceTree = "<group>"; };
 		731F5DC61E95D2F40004277E /* LeavesHome.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LeavesHome.gpx; sourceTree = "<group>"; };
+		7350310120449D3800B68F50 /* Snapshot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Snapshot.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		735031242044A12B00B68F50 /* RoomyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		735031262044A12B00B68F50 /* RoomyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomyUITests.swift; sourceTree = "<group>"; };
+		735031282044A12B00B68F50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7350312E2044A1E000B68F50 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		735532591EA6CCE7007815A8 /* Status.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Status.storyboard; sourceTree = "<group>"; };
 		7355325B1EA6CD78007815A8 /* UpdateStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateStatusViewController.swift; sourceTree = "<group>"; };
 		7355325D1EA6CF4E007815A8 /* PopPresentingAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopPresentingAnimationController.swift; sourceTree = "<group>"; };
@@ -100,13 +122,25 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		735030FE20449D3800B68F50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		735031212044A12B00B68F50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A56978041E778E3200BC8378 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				5B746737D24F0C7CB6868BEC /* Pods_roomy.framework in Frameworks */,
-				731E20F31EA5B04F003F1B2E /* FBSDKCoreKit.framework in Frameworks */,
-				731E20F51EA5B059003F1B2E /* FBSDKLoginKit.framework in Frameworks */,
 				731E20F71EA5B0BE003F1B2E /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,6 +157,16 @@
 			);
 			name = "GPS Simulations";
 			path = "../../GPS Simulations";
+			sourceTree = "<group>";
+		};
+		735031252044A12B00B68F50 /* RoomyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7350312E2044A1E000B68F50 /* SnapshotHelper.swift */,
+				735031262044A12B00B68F50 /* RoomyUITests.swift */,
+				735031282044A12B00B68F50 /* Info.plist */,
+			);
+			path = RoomyUITests;
 			sourceTree = "<group>";
 		};
 		735532611EA6D249007815A8 /* Animation Controllers  */ = {
@@ -189,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				A56978091E778E3200BC8378 /* roomy */,
+				735031252044A12B00B68F50 /* RoomyUITests */,
 				A56978081E778E3200BC8378 /* Products */,
 				A2DD4AF2D4B1CFE4468A77D4 /* Pods */,
 				D03157F238AB5C7072527FBA /* Frameworks */,
@@ -199,6 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				A56978071E778E3200BC8378 /* roomy.app */,
+				7350310120449D3800B68F50 /* Snapshot.xctest */,
+				735031242044A12B00B68F50 /* RoomyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -267,6 +314,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7350310020449D3800B68F50 /* Snapshot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7350310A20449D3800B68F50 /* Build configuration list for PBXNativeTarget "Snapshot" */;
+			buildPhases = (
+				735030FD20449D3800B68F50 /* Sources */,
+				735030FE20449D3800B68F50 /* Frameworks */,
+				735030FF20449D3800B68F50 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7350310720449D3800B68F50 /* PBXTargetDependency */,
+			);
+			name = Snapshot;
+			productName = Snapshot;
+			productReference = 7350310120449D3800B68F50 /* Snapshot.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		735031232044A12B00B68F50 /* RoomyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7350312B2044A12B00B68F50 /* Build configuration list for PBXNativeTarget "RoomyUITests" */;
+			buildPhases = (
+				735031202044A12B00B68F50 /* Sources */,
+				735031212044A12B00B68F50 /* Frameworks */,
+				735031222044A12B00B68F50 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7350312A2044A12B00B68F50 /* PBXTargetDependency */,
+			);
+			name = RoomyUITests;
+			productName = RoomyUITests;
+			productReference = 735031242044A12B00B68F50 /* RoomyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		A56978061E778E3200BC8378 /* roomy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A56978191E778E3200BC8378 /* Build configuration list for PBXNativeTarget "roomy" */;
@@ -293,13 +376,27 @@
 		A56977FF1E778E3200BC8378 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Poojan Dave";
 				TargetAttributes = {
+					7350310020449D3800B68F50 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 34WD9C788A;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A56978061E778E3200BC8378;
+					};
+					735031232044A12B00B68F50 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 34WD9C788A;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A56978061E778E3200BC8378;
+					};
 					A56978061E778E3200BC8378 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 34WD9C788A;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -323,11 +420,27 @@
 			projectRoot = "";
 			targets = (
 				A56978061E778E3200BC8378 /* roomy */,
+				7350310020449D3800B68F50 /* Snapshot */,
+				735031232044A12B00B68F50 /* RoomyUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		735030FF20449D3800B68F50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		735031222044A12B00B68F50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A56978051E778E3200BC8378 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -353,9 +466,44 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-roomy/Pods-roomy-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts-Swift/BoltsSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FontAwesome-iOS/FontAwesome_iOS.framework",
+				"${BUILT_PRODUCTS_DIR}/IBAnimatable/IBAnimatable.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
+				"${BUILT_PRODUCTS_DIR}/ParseLiveQuery/ParseLiveQuery.framework",
+				"${BUILT_PRODUCTS_DIR}/ParseUI/ParseUI.framework",
+				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BoltsSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_iOS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IBAnimatable.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ParseLiveQuery.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ParseUI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -368,9 +516,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-roomy/Pods-roomy-resources.sh",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -383,18 +534,37 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-roomy-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		735030FD20449D3800B68F50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		735031202044A12B00B68F50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				735031272044A12B00B68F50 /* RoomyUITests.swift in Sources */,
+				7350312F2044A1E000B68F50 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A56978031E778E3200BC8378 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -431,6 +601,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7350310720449D3800B68F50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A56978061E778E3200BC8378 /* roomy */;
+			targetProxy = 7350310620449D3800B68F50 /* PBXContainerItemProxy */;
+		};
+		7350312A2044A12B00B68F50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A56978061E778E3200BC8378 /* roomy */;
+			targetProxy = 735031292044A12B00B68F50 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		A569780E1E778E3200BC8378 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -451,6 +634,119 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7350310820449D3800B68F50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 34WD9C788A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Snapshot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RyanLiszewski.Snapshot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "roomy/Snapshot-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = roomy;
+			};
+			name = Debug;
+		};
+		7350310920449D3800B68F50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 34WD9C788A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Snapshot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RyanLiszewski.Snapshot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "roomy/Snapshot-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = roomy;
+			};
+			name = Release;
+		};
+		7350312C2044A12B00B68F50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 34WD9C788A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = RoomyUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RyanLiszewski.RoomyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = roomy;
+			};
+			name = Debug;
+		};
+		7350312D2044A12B00B68F50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 34WD9C788A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = RoomyUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RyanLiszewski.RoomyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = roomy;
+			};
+			name = Release;
+		};
 		A56978171E778E3200BC8378 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -460,7 +756,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -468,7 +766,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -510,7 +812,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -518,7 +822,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -556,9 +864,64 @@
 				);
 				INFOPLIST_FILE = roomy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"BoltsSwift\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"FontAwesome_iOS\"",
+					"-framework",
+					"\"GoogleMapsBase\"",
+					"-framework",
+					"\"GooglePlaces\"",
+					"-framework",
+					"\"IBAnimatable\"",
+					"-framework",
+					"\"IngeoSDK\"",
+					"-framework",
+					"\"JSQMessagesViewController\"",
+					"-framework",
+					"\"JSQSystemSoundPlayer\"",
+					"-framework",
+					"\"JVFloatLabeledTextField\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"ParseLiveQuery\"",
+					"-framework",
+					"\"ParseUI\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SkyFloatingLabelTextField\"",
+					"-framework",
+					"\"Starscream\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"pop\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = RyanLiszewski.roomy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -574,15 +937,88 @@
 				);
 				INFOPLIST_FILE = roomy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"BoltsSwift\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"FontAwesome_iOS\"",
+					"-framework",
+					"\"GoogleMapsBase\"",
+					"-framework",
+					"\"GooglePlaces\"",
+					"-framework",
+					"\"IBAnimatable\"",
+					"-framework",
+					"\"IngeoSDK\"",
+					"-framework",
+					"\"JSQMessagesViewController\"",
+					"-framework",
+					"\"JSQSystemSoundPlayer\"",
+					"-framework",
+					"\"JVFloatLabeledTextField\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"ParseLiveQuery\"",
+					"-framework",
+					"\"ParseUI\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SkyFloatingLabelTextField\"",
+					"-framework",
+					"\"Starscream\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"pop\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = RyanLiszewski.roomy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7350310A20449D3800B68F50 /* Build configuration list for PBXNativeTarget "Snapshot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7350310820449D3800B68F50 /* Debug */,
+				7350310920449D3800B68F50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7350312B2044A12B00B68F50 /* Build configuration list for PBXNativeTarget "RoomyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7350312C2044A12B00B68F50 /* Debug */,
+				7350312D2044A12B00B68F50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A56978021E778E3200BC8378 /* Build configuration list for PBXProject "roomy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
