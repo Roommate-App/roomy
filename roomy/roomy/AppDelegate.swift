@@ -9,7 +9,6 @@
 import UIKit
 import Parse
 import GooglePlaces
-import ParseFacebookUtilsV4
 import UserNotifications
 
 

@@ -8,7 +8,6 @@
 
 import UIKit
 import Parse
-import ParseFacebookUtilsV4
 import SkyFloatingLabelTextField
 import FontAwesome_iOS
 import IBAnimatable
